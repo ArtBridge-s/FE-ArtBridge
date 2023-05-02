@@ -3,8 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>회원 가입 페이지</title>
+    <link rel="stylesheet" href="member_signup.css">
 </head>
 <body>
-
+<div class="create-account-container">
+    <h1 class="create-account-title">Create account</h1>
+    <p class="signin-text">Already Have an Account? <a href="#">Sign in</a></p>
+</div>
+    <form class="form-container">
+        <div class="input-container">
+            <input class="input-field" type="email" placeholder="이메일을 입력하세요." required>
+            <div class="input-row">
+                <input class="input-field" type="text" placeholder="Firstname" required>
+                <input class="input-field" type="text" placeholder="Lastname" required>
+            </div>
+            <input class="input-field" type="password" placeholder="password를 입력하세요." required>
+        </div>
+        <button class="submit-button" type="submit">Sign Up</button>
+        <div class="checkbox-container">
+            <input class="checkbox" type="checkbox" required>
+            <span class="terms-text">i have read and agree to the <a href="#">terms and services</a></span>
+        </div>
+    </form>
 </body>
 </html>
