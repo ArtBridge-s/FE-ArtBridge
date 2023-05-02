@@ -1,5 +1,9 @@
 # FE-ArtBridge
 
+
+This is a summary of the frontend UI components for the ArtBridge web application. Each component is associated with a unique UI-ID and corresponds to a specific HTML file and related functionality.
+
+
 | UI-ID  | Title                         | 파일명                                      | 관련 기능 |
 |--------|-------------------------------|------------------------------------------|---|
 | UI-001 | 회원정보 조회 페이지                   | member_info.html                         | RL-001 |
