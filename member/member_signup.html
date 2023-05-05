@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>회원 가입 페이지</title>
     <link rel="stylesheet" href="member_signup.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="create-account-container">
@@ -25,5 +26,50 @@
             <span class="terms-text">i have read and agree to the <a href="#">terms and services</a></span>
         </div>
     </form>
+
+<script>
+    $(document).ready(function () {
+        $("form").submit(function (event) {
+            event.preventDefault();
+
+            const email = $("input[type='email']").val();
+            const firstName = $("input[type='text']:eq(0)").val();
+            const lastName = $("input[type='text']:eq(1)").val();
+            const password = $("input[type='password']").val();
+
+            const user = {
+                login: email,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                password: password
+            };
+
+            createUser(user);
+        });
+
+        function createUser(user) {
+            $.ajax({
+                url: "http://192.168.142.1:8000/api/register",
+                type: "POST",
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify(user),
+                error: function(jqXHR) {
+                    const errorTitle = jqXHR.responseJSON && jqXHR.responseJSON.title
+                        ? jqXHR.responseJSON.title
+                        : "An error occurred";
+                    alert(errorTitle);
+                }
+            }).statusCode({
+                201: function () {
+                    alert("User created successfully");
+                    window.location.href = "https://www.artbridge.store/";
+                }
+            })
+        }
+    });
+</script>
+
 </body>
 </html>
