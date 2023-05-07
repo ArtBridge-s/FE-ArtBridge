@@ -12,7 +12,7 @@
     <h1 class="art-bridge">Art Bridge</h1>
 </div>
 <div class="login-container">
-    <form>
+    <form id="login-form">
         <div class="input-container">
             <label class="input-label" for="email">Email</label>
             <div class="email-wrapper">
@@ -22,7 +22,7 @@
         <div class="input-container">
             <label for="password" class="input-label">Password</label>
             <div class="password-wrapper">
-                <input type="password" id="password">
+                <input type="password" id="password" minlength="4" maxlength="100">
                 <span class="toggle-password">&#128065;</span>
             </div>
         </div>
@@ -34,8 +34,9 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        var passwordInput = document.getElementById('password');
-        var togglePassword = document.querySelector('.toggle-password');
+        let passwordInput = document.getElementById('password');
+        let togglePassword = document.querySelector('.toggle-password');
+        let loginForm = document.getElementById('login-form');
 
         togglePassword.addEventListener('click', function () {
             if (passwordInput.type === 'password') {
@@ -45,6 +46,36 @@
                 passwordInput.type = 'password';
                 togglePassword.innerHTML = '&#128065;'; // 눈 아이콘을 닫힌 상태로 변경
             }
+        });
+
+
+        loginForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+
+            let xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://127.0.0.1:8000/api/authenticate');
+            xhr.setRequestHeader('Content-Type', 'application/json');
+
+            let data = {
+                username: email,
+                password: password
+            };
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    let response = xhr.responseText;
+                    alert(response+'\n 로그인 성공');
+                }
+                if (xhr.status === 401) {
+                    let errorResponse = JSON.parse(xhr.responseText);
+                    alert(errorResponse.detail)
+                }
+            };
+
+            xhr.send(JSON.stringify(data));
         });
     });
 </script>
