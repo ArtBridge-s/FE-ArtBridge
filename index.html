@@ -16,16 +16,26 @@
     <style data-tag="reset-style-sheet">
         html {
             line-height: 1.15;
-        }
-
-        body {
-            margin: 0;
+            scroll-behavior: smooth;
         }
 
         * {
             box-sizing: border-box;
-            border-width: 0;
-            border-style: solid;
+            border: 0 solid;
+        }
+
+        body {
+            margin: 0;
+            font-family: inherit;
+            font-size: 100%;
+            font-weight: 400;
+            font-style: normal;
+            text-decoration: none;
+            text-transform: none;
+            letter-spacing: normal;
+            line-height: 1.15;
+            color: var(--dl-color-gray-black);
+            background-color: var(--dl-color-gray-white);
         }
 
         p, li, ul, pre, div, h1, h2, h3, h4, h5, h6, figure, blockquote, figcaption {
@@ -33,23 +43,11 @@
             padding: 0;
         }
 
-        button {
-            background-color: transparent;
-        }
-
-        button, input, optgroup, select, textarea {
-            font-family: inherit;
-            font-size: 100%;
-            line-height: 1.15;
-            margin: 0;
-        }
-
         button, select {
             text-transform: none;
-        }
-
-        button, [type="button"], [type="reset"], [type="submit"] {
+            background-color: transparent;
             -webkit-appearance: button;
+            border-style: none;
         }
 
         button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner {
@@ -68,19 +66,19 @@
 
         input {
             padding: 2px 4px;
+            font-family: inherit;
+            font-size: 100%;
+            line-height: 1.15;
+            margin: 0;
         }
 
         img {
             display: block;
         }
-
-        html {
-            scroll-behavior: smooth
-        }
     </style>
     <style data-tag="default-style-sheet">
         html {
-            font-family: Inter;
+            font-family: Inter, sans-serif;
             font-size: 16px;
         }
 
@@ -93,9 +91,9 @@
             line-height: 1.15;
             color: var(--dl-color-gray-black);
             background-color: var(--dl-color-gray-white);
-
         }
     </style>
+
 
     <!--페이지 로드 시 페이드 인 효과-->
     <script>
@@ -136,12 +134,15 @@
         </div>
 
         <span class="delimiter">ㅣ</span>
+
         <span class="LogoutText">
             <a href="member/logout.html">LOGOUT</a>   <!--TODO: - 수정해야 할 부분  -->
         </span>
+
         <div class="LanguageContainer">
             <span class="LanguageText"><span>한국어</span></span>
         </div>
+
         <img src="index_source/images/LanguageSelectButton.png" class="imgLanguageSelectButton" alt="..."/>
 
         <!--Search Bar-->
@@ -227,6 +228,7 @@
         <img src="/index_source/images/Exhibition2.jpg" alt="Exhibition2 Image" class="imgContent4"/>
         <img src="/index_source/images/Exhibition3.jpg" alt="Exhibition3 Image" class="imgContent4"/>
     </div>
+
     <span class="Content4More">
         <a href="/exhibition/exhibition_list.html">see more</a>
     </span>
