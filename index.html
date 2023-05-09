@@ -103,15 +103,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!--페이지 로드 시 페이드 인 효과-->
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             var body = $('body');
             body.css('display', 'none');
             body.fadeIn(2000);
 
-            $('a.transition').click(function(event) {
+            $('a.transition').click(function (event) {
                 event.preventDefault();
                 var linkLocation = this.href;
-                body.fadeOut(1000, function() {
+                body.fadeOut(1000, function () {
                     window.location = linkLocation;
                 });
             });
@@ -120,7 +120,6 @@
 </head>
 <body>
 <div>
-
 
 
     <div class="Container">
@@ -137,14 +136,19 @@
 
         <!--Components in Right Corner-->
         <div class="LoginContainer">
-            <span class="LoginText"><a href="member/login.html">LOGIN</a></span>
+            <span class="LoginText">
+                <a href="member/login.html">LOGIN</a>
+            </span>
         </div>
+
         <span class="delimiter">ㅣ</span>
-        <span class="LogoutText"><a href="member/logout.html">LOGOUT</a></span>
+        <span class="LogoutText">
+            <a href="member/logout.html">LOGOUT</a>   <!--TODO: - 수정해야 할 부분  -->
+        </span>
         <div class="LanguageContainer">
             <span class="LanguageText"><span>한국어</span></span>
         </div>
-        <img src="index_source/images/LanguageSelectButton.png" class="imgLanguageSelectButton"/>
+        <img src="index_source/images/LanguageSelectButton.png" class="imgLanguageSelectButton" alt="..."/>
 
         <!--Search Bar-->
         <div class="SearchContainer">
@@ -153,7 +157,6 @@
                 <a id="searchButton" href="#">
                     <img src="index_source/images/SearchIcon.svg" alt="Search Icon" class="SearchButton"/>
                 </a>
-
             </div>
         </div>
         <div class="UploadContainer">
@@ -192,7 +195,8 @@
 
     <span class="Content2Title">
             <span>Popular Artworks</span>
-          </span>
+    </span>
+
     <div class="slider1">
         <img src="index_source/images/Artwork3.jpg" alt="Artwork3 Image" class="imgContent2 active"/>
         <img src="index_source/images/Artwork.png" alt="Artwork Image" class="imgContent2"/>
@@ -200,7 +204,9 @@
         <img src="index_source/images/Artwork4.jpg" alt="Artwork4 Image" class="imgContent2"/>
     </div>
 
-    <div class="Content2More"><a href="/artwork/artwork_list.html">see more</a></div>
+    <div class="Content2More">
+        <a href="/artwork/artwork_list.html">see more</a>
+    </div>
 
 
     <span class="Content3Title">
@@ -214,15 +220,22 @@
         <img src="index_source/images/Artist4.jpg" alt="Artist4 Image" class="imgContent3"/>
     </div>
 
-    <span class="Content3More"><a href="/artrist_profile/artist_profile_list.html">see more</a></span>
-    <span class="Content4Title"><span>Current Exhibitions</span></span>
+    <span class="Content3More">
+        <a href="/artrist_profile/artist_profile_list.html">see more</a> <!--TODO: - 수정해야 할 부분  -->
+    </span>
+
+    <span class="Content4Title">
+        <span>Current Exhibitions</span>
+    </span>
 
     <div class="slider3">
         <img src="/index_source/images/Exhibition.png" alt="Exhibition Image" class="imgContent4 active"/>
         <img src="/index_source/images/Exhibition2.jpg" alt="Exhibition2 Image" class="imgContent4"/>
         <img src="/index_source/images/Exhibition3.jpg" alt="Exhibition3 Image" class="imgContent4"/>
     </div>
-    <span class="Content4More"><a href="/exhibition/exhibition_list.html">see more</a></span>
+    <span class="Content4More">
+        <a href="/exhibition/exhibition_list.html">see more</a>
+    </span>
 </div>
 
 
