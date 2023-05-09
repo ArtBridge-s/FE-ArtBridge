@@ -239,10 +239,10 @@
 </div>
 
 
-<!--Silde show2-->
+<!--slide show-->
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const sliderImages = document.querySelectorAll(".slider2 img");
+    function initSlider(className, intervalTime) {
+        const sliderImages = document.querySelectorAll(className + " img");
         let currentImage = 0;
 
         function updateSlider() {
@@ -252,39 +252,13 @@
         }
 
         updateSlider();
-        setInterval(updateSlider, 9000);
-    });
-</script>
-<!--Silde show1-->
-<script>
+        setInterval(updateSlider, intervalTime);
+    }
+
     document.addEventListener("DOMContentLoaded", function () {
-        const sliderImages = document.querySelectorAll(".slider1 img");
-        let currentImage = 0;
-
-        function updateSlider() {
-            sliderImages.forEach((img) => img.classList.remove("active"));
-            sliderImages[currentImage].classList.add("active");
-            currentImage = (currentImage + 1) % sliderImages.length;
-        }
-
-        updateSlider();
-        setInterval(updateSlider, 6000);
-    });
-</script>
-<!--Silde show3-->
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const sliderImages = document.querySelectorAll(".slider3 img");
-        let currentImage = 0;
-
-        function updateSlider() {
-            sliderImages.forEach((img) => img.classList.remove("active"));
-            sliderImages[currentImage].classList.add("active");
-            currentImage = (currentImage + 1) % sliderImages.length;
-        }
-
-        updateSlider();
-        setInterval(updateSlider, 14000);
+        initSlider(".slider1", 6000);
+        initSlider(".slider2", 9000);
+        initSlider(".slider3", 14000);
     });
 </script>
 </body>
