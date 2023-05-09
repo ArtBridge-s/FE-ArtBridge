@@ -100,25 +100,27 @@
     <link rel="stylesheet" href="index_source/style.css"/>
 
     <link href="index_source/uiStyle.css" rel="stylesheet"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--페이지 로드 시 페이드 인 효과-->
+    <script>
+        $(document).ready(function() {
+            var body = $('body');
+            body.css('display', 'none');
+            body.fadeIn(2000);
+
+            $('a.transition').click(function(event) {
+                event.preventDefault();
+                var linkLocation = this.href;
+                body.fadeOut(1000, function() {
+                    window.location = linkLocation;
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 <div>
-    <!--페이지 로드 시 페이드 인 효과-->
-    <script>
-        jQuery(function ($) {
-            $("body").css("display", "none");
-            $("body").fadeIn(2000);
-            $("a.transition").click(function (event) {
-                event.preventDefault();
-                linkLocation = this.href;
-                $("body").fadeOut(1000, redirectPage);
-            });
 
-            function redirectPage() {
-                window.location = linkLocation;
-            }
-        });
-    </script>
 
 
     <div class="Container">
