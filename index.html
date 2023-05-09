@@ -94,13 +94,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Estonia&display=swap" rel="stylesheet">
     <!--일반 폰트-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" data-tag="font"/>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+          data-tag="font"/>
     <link rel="stylesheet" href="index_source/style.css"/>
+
+    <link href="index_source/uiStyle.css" rel="stylesheet"/>
 </head>
 <body>
 <div>
-    <link href="index_source/uiStyle.css" rel="stylesheet"/>
-
     <!--페이지 로드 시 페이드 인 효과-->
     <script>
         jQuery(function ($) {
@@ -180,42 +182,26 @@
 
     <!--Main Contents-->
     <span class="Content1Title"><span>About ArtBridge</span></span>
-    <img
-            src="index_source/images/Introduce.png"
-            alt="Introduce Image"
-            class="imgContent1"
-    />
+    <img src="index_source/images/Introduce.png" alt="Introduce Image" class="imgContent1"/>
+
     <span class="Content1Text">
             <span>
               아트브릿지는 비영리 예술 커뮤니케이션 서비스입니다. 공유하고 싶은
               작품을 업로드하고, 자유롭게 이야기를 나누세요. 당신이 활동하는
               이곳이 바로 시간과 공간의 제약 없는 무한한 미술관입니다.
             </span>
-          </span>
+    </span>
+
+
     <span class="Copywrite">
             <span>
               <span>34, Geobukgol-ro, Seodaemun-gu, Seoul</span>
               <br/>
               <span>ART Bridge - All rights reserved 2023</span>
             </span>
-          </span>
+    </span>
 
-    <!--Silde show1-->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const sliderImages = document.querySelectorAll(".slider1 img");
-            let currentImage = 0;
 
-            function updateSlider() {
-                sliderImages.forEach((img) => img.classList.remove("active"));
-                sliderImages[currentImage].classList.add("active");
-                currentImage = (currentImage + 1) % sliderImages.length;
-            }
-
-            updateSlider();
-            setInterval(updateSlider, 6000);
-        });
-    </script>
     <span class="Content2Title">
             <span>Popular Artworks</span>
           </span>
@@ -231,23 +217,8 @@
 
     <span class="Content3Title">
             <span>Today's Artists</span>
-          </span>
-    <!--Silde show2-->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const sliderImages = document.querySelectorAll(".slider2 img");
-            let currentImage = 0;
+    </span>
 
-            function updateSlider() {
-                sliderImages.forEach((img) => img.classList.remove("active"));
-                sliderImages[currentImage].classList.add("active");
-                currentImage = (currentImage + 1) % sliderImages.length;
-            }
-
-            updateSlider();
-            setInterval(updateSlider, 9000);
-        });
-    </script>
     <div class="slider2">
         <img src="/index_source/images/Artist.png" alt="Artist Image" class="imgContent3 active"/>
         <img src="index_source/images/Artist2.jpg" alt="Artist2 Image" class="imgContent3"/>
@@ -257,22 +228,7 @@
 
     <span class="Content3More"><a href="/artrist_profile/artist_profile_list.html">see more</a></span>
     <span class="Content4Title"><span>Current Exhibitions</span></span>
-    <!--Silde show3-->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const sliderImages = document.querySelectorAll(".slider3 img");
-            let currentImage = 0;
 
-            function updateSlider() {
-                sliderImages.forEach((img) => img.classList.remove("active"));
-                sliderImages[currentImage].classList.add("active");
-                currentImage = (currentImage + 1) % sliderImages.length;
-            }
-
-            updateSlider();
-            setInterval(updateSlider, 14000);
-        });
-    </script>
     <div class="slider3">
         <img src="/index_source/images/Exhibition.png" alt="Exhibition Image" class="imgContent4 active"/>
         <img src="/index_source/images/Exhibition2.jpg" alt="Exhibition2 Image" class="imgContent4"/>
@@ -281,5 +237,55 @@
     <span class="Content4More"><a href="/exhibition/exhibition_list.html">see more</a></span>
 </div>
 </div>
+
+
+<!--Silde show2-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sliderImages = document.querySelectorAll(".slider2 img");
+        let currentImage = 0;
+
+        function updateSlider() {
+            sliderImages.forEach((img) => img.classList.remove("active"));
+            sliderImages[currentImage].classList.add("active");
+            currentImage = (currentImage + 1) % sliderImages.length;
+        }
+
+        updateSlider();
+        setInterval(updateSlider, 9000);
+    });
+</script>
+<!--Silde show1-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sliderImages = document.querySelectorAll(".slider1 img");
+        let currentImage = 0;
+
+        function updateSlider() {
+            sliderImages.forEach((img) => img.classList.remove("active"));
+            sliderImages[currentImage].classList.add("active");
+            currentImage = (currentImage + 1) % sliderImages.length;
+        }
+
+        updateSlider();
+        setInterval(updateSlider, 6000);
+    });
+</script>
+<!--Silde show3-->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const sliderImages = document.querySelectorAll(".slider3 img");
+        let currentImage = 0;
+
+        function updateSlider() {
+            sliderImages.forEach((img) => img.classList.remove("active"));
+            sliderImages[currentImage].classList.add("active");
+            currentImage = (currentImage + 1) % sliderImages.length;
+        }
+
+        updateSlider();
+        setInterval(updateSlider, 14000);
+    });
+</script>
 </body>
 </html>
