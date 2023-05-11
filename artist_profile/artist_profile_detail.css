@@ -27,7 +27,7 @@ body {
 
 .divider {
     width: 100%;
-    height: 0.5px;
+    height: 1px;
     background-color: #C3C3C3;
     margin-bottom: 20px;
 }
