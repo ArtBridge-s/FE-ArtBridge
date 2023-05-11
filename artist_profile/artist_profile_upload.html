@@ -3,8 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>아티스트 프로필 업로드 페이지</title>
+    <link rel="stylesheet" href="artist_profile_upload.css">
 </head>
 <body>
-
+<div class="container">
+    <h1>아티스트 프로필 업로드</h1>
+    <hr/>
+    <div class="co">
+        <div class="con">
+            <div class="photo">
+                <input type="file" id="photo"/>
+            </div>
+            <div class="input">
+                <div class="input-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name"/>
+                </div>
+                <div class="input-group">
+                    <label for="real-name">본명</label>
+                    <input type="text" id="real-name"/>
+                </div>
+                <div class="input-group">
+                    <label for="works">작품</label>
+                    <input type="text" id="works"/>
+                </div>
+                <div class="input-group">
+                    <label for="contact">연락처</label>
+                    <input type="text" id="contact"/>
+                </div>
+                <div class="input-group">
+                    <label for="career">경력</label>
+                    <input type="text" id="career"/>
+                </div>
+            </div>
+        </div>
+        <div class="buttons">
+            <button id="register">등록</button>
+            <button id="cancel">취소</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
