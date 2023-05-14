@@ -4,26 +4,15 @@
     <meta charset="UTF-8" />
     <title>작품 목록 페이지</title>
   </head>
+  <link rel="stylesheet" href="card.css" />
   <body>
-    <div data-include-path="../components/cardInformation.html"></div>
-
-    <script>
-      window.addEventListener('load', function () {
-        let allElements = document.getElementsByTagName('*');
-        Array.prototype.forEach.call(allElements, function (el) {
-          let includePath = el.dataset.includePath;
-          if (includePath) {
-            let xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-              if (this.readyState === 4 && this.status === 200) {
-                el.outerHTML = this.responseText;
-              }
-            };
-            xhttp.open('GET', includePath, true);
-            xhttp.send();
-          }
-        });
-      });
-    </script>
+    <div class="card">
+      <img src="../dummy/exampleImg.png" alt="이미지" class="img" />
+      <div class="textContainer">
+        <text class="titleText">별이 빛나는 밤</text>
+        <text class="text">해당 작품은 ~</text>
+      </div>
+    </div>
+    <script></script>
   </body>
 </html>
