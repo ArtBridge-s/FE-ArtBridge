@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="member_delete.css">
     <title>회원 탈퇴 페이지</title>
+    <link rel="stylesheet" href="member_delete.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -34,5 +35,44 @@
         </div>
     </div>
 </div>
+
+<!--회원 탈퇴 처리-->
+<script>
+    $(document).ready(function() {
+        $(".agree").click(function() {
+            deleteUserAccount();
+        });
+
+        function deleteUserAccount() {
+            let token = localStorage.getItem('token');
+            if (!token) {
+                alert('로그인이 필요한 서비스입니다.'); // 토큰이 없는 경우 로그인 요청
+                return;
+            }
+            $.ajax({
+                url: "http://localhost:8000/api/account",
+                type: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token // 토큰을 사용하여 Authorization 헤더 설정
+                },
+                success: function() {
+                    localStorage.removeItem('token'); // 회원 탈퇴 후 토큰 삭제
+                    alert("회원 탈퇴가 완료되었습니다.");
+                    // window.location.href = "../index.html"; // 로그아웃 또는 메인 페이지로 이동
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status === 401) {
+                        alert("인증 오류가 발생했습니다. 로그인 후 다시 시도해주세요.");
+                    } else if (jqXHR.status === 404) {
+                        alert("회원 정보를 찾을 수 없습니다. 올바른 계정인지 확인해주세요.");
+                    } else {
+                        alert("회원 탈퇴 중 오류가 발생했습니다. 다시 시도해 주세요.");
+                    }
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
