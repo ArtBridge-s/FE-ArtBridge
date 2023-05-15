@@ -11,7 +11,7 @@
     <form class="form">
         <p class="recommended-size">권장 사이즈 400X250</p>
         <div class="input-group">
-            <input type="text" class="input input-upload" placeholder="이미지 첨부">
+            <input type="text" class="input input-upload" placeholder="이미지 첨부" disabled>
             <input type="file" class="btn upload" id="fileUpload">
             <label for="fileUpload" class="fileUpload">파일 선택</label>
         </div>
@@ -26,5 +26,12 @@
         </div>
     </form>
 </div>
+
+<!--파일 선택 시 파일명 텍스트 필드에 표시-->
+<script>
+    document.getElementById("fileUpload").onchange = function() {
+        document.querySelector(".input-upload").value = this.files[0].name;
+    };
+</script>
 </body>
 </html>
