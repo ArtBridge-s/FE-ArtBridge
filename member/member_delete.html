@@ -6,6 +6,17 @@
     <title>회원 탈퇴 페이지</title>
     <link rel="stylesheet" href="member_delete.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!--로그인 여부 체크 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let token = localStorage.getItem('token');
+            if (!token || token === 'undefined') {
+                // window.location.href = '../index.html'; // 로그인 안 되어있으면 index로 이동
+            }
+        });
+    </script>
+
 </head>
 <body>
 <div class="container">
