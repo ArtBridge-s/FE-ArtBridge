@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>작품 수정 페이지</title>
+    <link rel="stylesheet" type="text/css" href="artwork_edit.css">
 </head>
 <body>
-
+<div class="artwork-info">
+    <h1>작품정보를 작성해주세요</h1>
+    <form class="form">
+        <p class="recommended-size">권장 사이즈 400X250</p>
+        <div class="input-group">
+            <input type="text" class="input input-upload" placeholder="이미지 첨부">
+            <input type="file" class="btn upload" id="fileUpload">
+            <label for="fileUpload" class="fileUpload">파일 선택</label>
+        </div>
+        <div class="input-group">
+            <input type="text" class="input" placeholder="작품 명을 입력해주세요">
+        </div>
+        <div class="input-group">
+            <textarea class="input input-large" placeholder="작품 소개를 입력해주세요 (글자수 제한)"></textarea>
+        </div>
+        <div class="input-group">
+            <input type="text" class="input" placeholder="가격을 입력해주세요">
+        </div>
+        <div class="input-group">
+            <input type="text" class="input" placeholder="작가를 입력해주세요">
+        </div>
+        <div class="input-group">
+            <textarea class="input input-large" placeholder="작품 설명을 해주세요"></textarea>
+        </div>
+        <div class="button-group">
+            <button type="submit" class="btn btn-small">등록</button>
+            <button type="reset" class="btn btn-small">취소</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>
