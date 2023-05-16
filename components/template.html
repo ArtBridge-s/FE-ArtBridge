@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <!--폰트 연결-->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <!--파비콘-->
+    <link rel="icon" type="image/png" href="./resource/Favicon.png" />
+    <!--.css 연결-->
+    <link rel="stylesheet" href="./template_style.css" />
+  </head>
+  <body>
+    <!--전체 영역-->
+    <div class="Container">
+      <!--상단 기본 메뉴 영역-->
+      <div class="Container-MenuBar">
+        <div class="Container-LeftMenu">
+          <span class="BrandName"><span>아트브릿지</span></span>
+          <a href="../index.html">
+            <img
+              alt="Logo image"
+              src="./resource/Logo.png"
+              class="ImgLogo"
+              draggable="false"
+            />
+          </a>
+          <span class="HomeMenu"><a href="../index.html">홈</a></span>
+          <span class="ArtworkMenu"
+            ><a href="../artwork/artwork_list.html">작품</a></span
+          >
+          <span class="ExhibitionMenu"
+            ><a href="../exhibition/exhibition_list.html">전시회</a></span
+          >
+          <span class="IntroduceMenu"><span>소개</span></span>
+          <span class="ArtistMenu"
+            ><a href="../artist_profile/artist_profile_list.html"
+              >아티스트</a
+            ></span
+          >
+        </div>
+        <div class="Container-RightMenu">
+          <div class="GroupLoginLogout">
+            <span class="TextLogin"
+              ><a href="../member/login.html" id="login">LOGIN</a></span
+            >
+            <span class="TextDelimeter">ㅣ</span>
+            <span class="TextLogout"
+              ><a href="../member/logout.html" id="logout">LOGOUT</a></span
+            >
+          </div>
+          <div class="GroupLanguageSelection">
+            <span class="CurrentLanguage"><span>한국어</span></span>
+            <img
+              alt="LanguageSelect image"
+              src="./resource/icon_LanguageSelect.png"
+              class="LanguageSelectImgBtn"
+              draggable="false"
+            />
+          </div>
+          <div class="BtnUploadArtwork">
+            <span class="BtnTextUploadArtwork"
+              ><a href="../artwork/artwork_upload.html">작품 올리기</a></span
+            >
+          </div>
+          <div class="BtnUploadExhibition">
+            <span class="BtnTextUploadExhibition"
+              ><a href="../exhibition/exhibition_upload.html"
+                >전시회 올리기</a
+              ></span
+            >
+          </div>
+          <div class="Container-SearchBar">
+            <div class="GroupSearchInputAndButton">
+              <input id="input" placeholder="Search" class="TextSearchInput" />
+              <a id="searchButton" href="#">
+                <img
+                  alt="Search Button image"
+                  src="./resource/icon_Search.svg"
+                  class="BtnSearch"
+                  draggable="false"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--본문 영역-->
+      <div class="Container-Content">
+        <!--아래부터 컨텐츠 작성-->
+        <h1>
+          여기부터 본문 영역, ABCDEFGHIJKLMNOPQRSTUVWXYZ 가나다라마바사
+          아자차카타파하 あいうえお かきくけこ さしすせそ たちつてと なにぬねの
+          はひふへほ まみむめも やゆよ らりるれろ わをん
+        </h1>
+      </div>
+    </div>
+    <!--검색창 기능-->
+    <script>
+      let link = document.getElementById("searchButton");
+      let input = document.getElementById("input");
+      // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
+      link.addEventListener("click", (e) => {
+        let searchText = input.value;
+        e.preventDefault();
+        let url = "search/?q=" + encodeURIComponent(searchText);
+        window.location.href = url;
+      });
+    </script>
+  </body>
+</html>
