@@ -1,0 +1,206 @@
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+}
+
+.container .image {
+    float: left;
+    width: 39%;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.container .image img {
+    width: 100%;
+    height: auto;
+}
+
+.container .info {
+    max-width: 600px;
+    float: left;
+    width: 60%;
+    box-sizing: border-box;
+}
+
+.container .info h1 {
+    font-size: 32px;
+    color: #333D41;
+    margin-bottom: 5px;
+}
+
+.container .info .description-metadata {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container .info .description-metadata .description {
+    flex-basis: 70%;
+    white-space: normal;
+}
+
+.container .info .description-metadata .metadata {
+    flex-basis: 30%;
+    text-align: right;
+}
+
+.container .info .description-metadata .metadata .author,
+.container .info .description-metadata .metadata .year {
+    margin: 0;
+}
+
+.container .info .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.container .info .actions .download {
+    width: 150px;
+    height: 40px;
+    background-color: #333D41;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.container .info .actions .actions-secondary {
+    display: flex;
+    gap: 10px;
+}
+
+.container .info .actions .like,
+.container .info .actions .share {
+    background-color: #ffffff;
+    color: #333D41;
+    width: 80px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #333D41;
+}
+
+.container .info .actions i {
+    margin-right: 5px;
+}
+
+.container .info .copyright {
+    font-size: 15px;
+    color: #A0A4A8;
+    margin: 20px 0;
+    border-top: 1px solid #A0A4A8;
+    height: 50px;
+    border-bottom: 1px solid #A0A4A8;
+    padding: 10px 0;
+}
+
+.container .info .comments {
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.container .info .comments .comment {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.container .info .comments .comment .user-icon {
+    color: #A0A4A8;
+    margin-right: 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #A0A4A8;
+    position: relative;
+}
+
+
+.container .info .comments .comment .user-icon:before {
+    content: "\f007";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+}
+
+
+.container .info .comments .comment .username {
+    font-size: 20px;
+    margin-right: 10px;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+}
+
+.container .info .comments .comment .comment-text {
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+}
+
+
+.container .info .add-comment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ECECEC;
+    padding: 10px;
+    width: 100%;
+}
+
+.container .info .add-comment input {
+    flex-grow: 1;
+    margin-right: 10px;
+    height: 30px;
+}
+
+.container .info .add-comment .post {
+    background-color: #333D41;
+    color: #ffffff;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.container .info .add-comment .post:hover {
+    background-color: #5b5e63;
+    cursor: pointer;
+}
+
+.container .info .add-comment .post:active {
+    background-color: #202124;
+}
+
+.container .info .add-comment input[type='text'] {
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.container .info .add-comment input[type='text']:focus {
+    outline: none;
+}
