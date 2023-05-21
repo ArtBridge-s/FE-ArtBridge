@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>전시회 정보 리스트 조회</title>
+    <link rel="stylesheet" href="list.css" />
+  </head>
+  <body>
+    <div id="cards" class="container"></div>
+    <script>
+      const dummy = [
+        {
+          title: '가나다 개인전',
+          duration: '기간 2022.04.23~2022.05.04',
+          location: '서울 마포구',
+        },
+        {
+          title: '가나다 개인전',
+          duration: '기간 2022.04.23~2022.05.04',
+          location: '서울 마포구',
+        },
+        {
+          title: '가나다 개인전',
+          duration: '기간 2022.04.23~2022.05.04',
+          location: '서울 마포구',
+        },
+        {
+          title: '가나다 개인전',
+          duration: '기간 2022.04.23~2022.05.04',
+          location: '서울 마포구',
+        },
+        {
+          title: '가나다 개인전',
+          duration: '기간 2022.04.23~2022.05.04',
+          location: '서울 마포구',
+        },
+      ];
+      const $card = document.getElementById('cards');
+
+      dummy.map((item) => {
+        const title = item.title;
+        const location = item.location;
+        const duration = item.duration;
+
+        console.log(location);
+        console.log(duration);
+        // Creating the card container
+        const cardContainer = document.createElement('div');
+        cardContainer.classList.add('card');
+
+        // Creating the text container
+        const textContainer = document.createElement('div');
+        textContainer.classList.add('textContainer');
+
+        // Creating the title text element
+        const titleText = document.createElement('text');
+        titleText.classList.add('titleText');
+        titleText.textContent = title;
+
+        // Creating the content text element
+        const contentText = document.createElement('text');
+        contentText.classList.add('text');
+        contentText.textContent = duration;
+
+        const locationText = document.createElement('text');
+        locationText.classList.add('text');
+        locationText.textContent = location;
+
+        // Appending the image and text elements to the respective containers
+        textContainer.appendChild(titleText);
+        textContainer.appendChild(contentText);
+        textContainer.appendChild(locationText);
+        cardContainer.appendChild(textContainer);
+
+        // Appending the card container to the main container
+        $card.appendChild(cardContainer);
+      });
+    </script>
+  </body>
+</html>
