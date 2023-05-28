@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>전시회 정보 업로드 페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <!--폰트 연결-->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <!--파비콘-->
+    <link rel="icon" type="image/png" href="images/upload/Favicon.png" />
+    <!--.css 연결-->
+    <link rel="stylesheet" href="upload.css" />
+  </head>
+  <body>
+    <!--전체 영역-->
+    <div class="Container">
+      <!--상단 기본 메뉴 영역-->
+      <div class="Container-MenuBar">
+        <div class="Container-LeftMenu">
+          <span class="BrandName"><span>아트브릿지</span></span>
+          <a href="../../index.html">
+            <img
+              alt="Logo image"
+              src="images/upload/Logo.png"
+              class="ImgLogo"
+              draggable="false"
+            />
+          </a>
+          <span class="HomeMenu"><a href="../../index.html">홈</a></span>
+          <span class="ArtworkMenu"
+            ><a href="../artwork/list.html">작품</a></span
+          >
+          <span class="ExhibitionMenu"
+            ><a href="list.html">전시회</a></span
+          >
+          <span class="IntroduceMenu"><span>소개</span></span>
+          <span class="ArtistMenu"
+            ><a href="../artist/list.html"
+              >아티스트</a
+            ></span
+          >
+        </div>
+        <div class="Container-RightMenu">
+          <div class="GroupLoginLogout">
+            <span class="TextLogin"
+              ><a href="../member/login.html" id="login">LOGIN</a></span
+            >
+            <span class="TextDelimeter">ㅣ</span>
+            <span class="TextLogout"
+              ><a href="../member/logout.html" id="logout">LOGOUT</a></span
+            >
+          </div>
+          <div class="GroupLanguageSelection">
+            <span class="CurrentLanguage"><span>한국어</span></span>
+            <img
+              alt="LanguageSelect image"
+              src="images/upload/icon_LanguageSelect.png"
+              class="LanguageSelectImgBtn"
+              draggable="false"
+            />
+          </div>
+          <div class="BtnUploadArtwork">
+            <span class="BtnTextUploadArtwork"
+              ><a href="../artwork/upload.html">작품 올리기</a></span
+            >
+          </div>
+          <div class="BtnUploadExhibition">
+            <span class="BtnTextUploadExhibition"
+              ><a href="/upload.html">전시회 올리기</a></span
+            >
+          </div>
+          <div class="Container-SearchBar">
+            <div class="GroupSearchInputAndButton">
+              <input id="input" placeholder="Search" class="TextSearchInput" />
+              <a id="searchButton" href="#">
+                <img
+                  alt="Search Button image"
+                  src="images/upload/icon_Search.svg"
+                  class="BtnSearch"
+                  draggable="false"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--본문 영역-->
+      <div class="Container-Content">
+        <!--아래부터 컨텐츠 작성-->
+        <div class="container">
+          <div class="title">
+            <div class="rectangle-1943"></div>
+            <h1>전시회 정보 업로드</h1>
+            <div></div>
+          </div>
+          <div class="lines">
+            <hr class="combined-line" />
+          </div>
+
+          <form>
+            <div class="image-upload">
+              <label for="image">사진</label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                onchange="previewImage(this);"
+              />
+            </div>
+            <div class="fields">
+              <div class="field">
+                <label for="name" style="font-weight: bold">전시회 이름</label>
+                <input type="text" id="name" name="name" />
+              </div>
+              <div class="field">
+                <label for="period">기간</label>
+                <input type="text" id="period" name="period" />
+              </div>
+              <div class="field">
+                <label for="place">장소</label>
+                <input type="text" id="place" name="place" />
+              </div>
+              <div class="field" id="introduceField">
+                <label for="introduce" id="introduceTitle">소개</label>
+                <textarea id="introduce" name="career"></textarea>
+              </div>
+            </div>
+            <div class="buttons">
+              <button type="submit" class="button" id="buttonUpload">
+                업로드
+              </button>
+              <button type="reset" class="button" id="buttonCancel">
+                취소
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--검색창 기능-->
+    <script>
+      let link = document.getElementById("searchButton");
+      let input = document.getElementById("input");
+      // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
+      link.addEventListener("click", (e) => {
+        let searchText = input.value;
+        e.preventDefault();
+        let url = "search/?q=" + encodeURIComponent(searchText);
+        window.location.href = url;
+      });
+    </script>
+    <!-- 이미지 미리보기 -->
+    <script>
+      function previewImage(input) {
+        if (input.files && input.files[0]) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const imageUpload = document.querySelector(".image-upload");
+            imageUpload.style.background = "none";
+            imageUpload.style.backgroundImage = `url(${e.target.result})`;
+            imageUpload.style.backgroundSize = "contain";
+            imageUpload.style.backgroundPosition = "center";
+            imageUpload.style.backgroundRepeat = "no-repeat";
+
+            const imageLabel = document.querySelector(".image-upload label");
+            imageLabel.style.display = "none";
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+    </script>
+  </body>
+</html>

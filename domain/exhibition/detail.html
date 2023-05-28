@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>전시회 정보 상세 조회 페이지</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <!--파비콘-->
+    <link rel="icon" type="image/png" href="images/detail/Favicon.png" />
+    <!--폰트 연결-->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <!--.css 연결-->
+    <link rel="stylesheet" href="detail.css" />
+    <!--좋아요 관련 JS-->
+    <script>
+      window.addEventListener('load', function() {
+        var image = document.getElementById('like');
+        var isLiked = false;  //좋아요 눌렀는지 여부
+
+      // 서버에서 좋아요 여부를 받아와서 isLiked 변수를 설정하는 메소드
+      function getIsLikedFromServer() {
+
+      }
+      // 이미지 변경하는 메소드
+      function changeImage() {
+        if (isLiked) {
+          image.src = './detail_resource/icon_FilledHeart.png';
+        } else {
+          image.src = './detail_resource/icon_Heart.png';
+        }
+      }
+      // 페이지 로드시 isLiked 값을 서버에서 받아온 뒤 이미지를 변경
+      getIsLikedFromServer();
+      changeImage();
+
+      //좋아요 버튼 클릭시
+      image.addEventListener('click', function() {
+        isLiked = !isLiked;  // 좋아요 반전(좋아요 상태에서 누르면 좋아요 해제, 역도 성립)
+        changeImage();
+      });
+    });
+  </script>
+  </head>
+  <body>
+    <!--전체 영역-->
+    <div class="Container">
+      <!--상단 기본 메뉴 영역-->
+      <div class="Container-MenuBar">
+        <div class="Container-LeftMenu">
+          <span class="BrandName"><span>아트브릿지</span></span>
+          <a href="../../index.html">
+            <img
+              alt="Logo image"
+              src="images/detail/Logo.png"
+              class="ImgLogo"
+              draggable="false"
+            />
+          </a>
+            <span class="HomeMenu"><a href="../../index.html">홈</a></span>
+            <span class="ArtworkMenu"><a href="../artwork/list.html">작품</a></span>
+            <span class="ExhibitionMenu"><a href="list.html">전시회</a></span>
+            <span class="IntroduceMenu"><span>소개</span></span>
+            <span class="ArtistMenu"><a href="../artist/list.html">아티스트</a></span>
+        </div>
+        <div class="Container-RightMenu">
+          <div class="GroupLoginLogout">
+            <span class="TextLogin"><a href="../member/login.html" id="login">LOGIN</a></span>
+            <span class="TextDelimeter">ㅣ</span>
+            <span class="TextLogout"><a href="../member/logout.html" id="logout">LOGOUT</a></span> 
+          </div>
+          <div class="GroupLanguageSelection">
+            <span class="CurrentLanguage"><span>한국어</span></span>
+            <img
+              alt="LanguageSelect image"
+              src="images/detail/icon_LanguageSelect.png"
+              class="LanguageSelectImgBtn"
+              draggable="false"
+            />
+          </div>
+          <div class="BtnUploadArtwork">
+            <span class="BtnTextUploadArtwork"><a href="../artwork/upload.html">작품 올리기</a></span>
+          </div>
+          <div class="BtnUploadExhibition">
+            <span class="BtnTextUploadExhibition"><a href="upload.html">전시회 올리기</a></span>
+          </div>
+          <div class="Container-SearchBar">
+            <div class="GroupSearchInputAndButton">
+              <input id="input" placeholder="Search" class="TextSearchInput"/>
+              <a id="searchButton" href="#">
+              <img
+                alt="Search Button image"
+                src="images/detail/icon_Search.svg"
+                class="BtnSearch"
+                draggable="false"
+              />
+            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--본문 영역-->
+      <div class="Container-Content">
+        <div class="Container-Exhibition">
+          <span class="ExhibitionName">
+            <span id = "exhibitionName">김건우 개인전</span>
+          </span>
+          <div class="ExhibitionPlaceCity">
+            <span id = "place">아트브릿지</span>
+            <span> / </span>
+            <span id = "city">서울</span>
+          </span>
+          <img
+            alt="Exibition Poster image"
+            src="images/detail/ExhibitionPoster.png"
+            class="ImgPoster"
+            draggable="false"
+          />
+          <span class="ExhibitionDescription">
+            <span>
+              김건우의 아트브릿지 발표회는 환상적인 작품들을 볼 수 있을 것이다.
+              유년기에 그는 "유년기 시골 마을에서 자라며 형성된 동양적인 정서와
+              자연"을 추구한다. 작가는 말한다. "자연을 바라보며 편안하고
+              행복했던 순간들, 그 안에서 뿜어져 나오는 에너지들을 늘 감사하게
+              생각하며 저만의 방식으로 나타내고 있습니다." 체엄적 자연으로부터
+              소환하는 유년기 과거의 기억, 그리고 생명 에너지로 변환하는
+              표현주의적 추상이 바로 김건우의 본원적 회화 정신이라고 하겠다.
+            </span>
+          </span>
+          <div class="Container-ExhibitionInfo">
+            <span class="TitleExhibitionInfo">
+              <span>전시 정보</span>
+            </span>
+            <img
+              alt="Underbar image"
+              src="images/detail/ExhibitionInfoUnderbar.png"
+              class="ImgExhibitionInfoUnderBar"
+              draggable="false"
+            />
+            <img
+              alt="ExhibitionInfoBox image"
+              src="images/detail/ExhibitionInfoBox.png"
+              class="ExhibitionInfoBox"
+              draggable="false"
+            />
+            <img
+              alt="ExhibitionInfoBoxHeader image"
+              src="images/detail/ExhibitionInfoBoxHeader.png"
+              class="ExhibitionInfoBoxHeader"
+              draggable="false"
+            />
+            <img
+              alt="Share image"
+              src="images/detail/icon_Share.png"
+              class="ImgShare"
+              id="share"
+              draggable="false"
+            />
+            <img
+              alt="Like image"
+              src="images/detail/icon_Heart.png"
+              class="ImgLike"
+              id="like"
+              draggable="false"
+            />
+            <span class="TitleAuthor"><span>작가</span></span>
+            <span class="TextAuthor"><span id = "aurthorName">김건우</span></span>
+            <span class="TitlePlace"><span>장소</span></span>
+            <span class="TextPlace"><span>아트브릿지</span></span>
+            <span class="TitlePeriod"><span>기간</span></span>
+            <span class="TextPeriod">
+              <span>2023.05.08~2023.06.15</span>
+            </span>
+            <span class="TitleTime"><span>시간</span></span>
+            <span class="TextTime">
+              <span>15:00~17:40 일요일 휴관</span>
+            </span>
+            <span class="TitleFee"><span>관람료</span></span>
+            <span class="TextFee"><span>무료</span></span>
+            <span class="TitleInquiry"><span>문의</span></span>
+            <span class="TextInquiry">
+              <span>02-1234-5678</span>
+            </span>
+            <span class="TextNotice">
+              <span>주최측 사정에 따라 변경될 수 있습니다.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--검색창 기능-->
+    <script>
+      let link = document.getElementById("searchButton");
+      let input = document.getElementById("input");
+      // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
+      link.addEventListener("click", (e) => {
+        let searchText = input.value;
+        e.preventDefault();
+        let url = "search/?q=" + encodeURIComponent(searchText);
+        window.location.href = url;
+      });
+    </script>
+    <!--공유하기 기능-->
+    <script>
+      let exhibitionName =  document.getElementById('exhibitionName').textContent;
+      let url = "detail.html?exhibitionName=" + encodeURIComponent(exhibitionName);
+      //팝업창에서 링크 정보 공유 위해 localStrage에 주소값 setting
+      localStorage.setItem('url', url);
+      window.addEventListener('load', function() {
+        let button = document.getElementById('share');
+        button.addEventListener('click', function() {
+          let popup = window.open("sharePopupPage.html", "Share", "width=400,height=300");
+        });
+      });
+    </script>
+  </body>
+</html>

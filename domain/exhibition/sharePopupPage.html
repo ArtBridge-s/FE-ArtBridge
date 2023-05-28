@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>공유하기</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <!--폰트 연결-->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link rel="icon" type="image/png" href="images/detail/Favicon.png" />
+    <style>
+      /* 스크롤바 숨김 */
+      ::-webkit-scrollbar {
+        display: none;
+      }
+
+      body {
+        font-family: Inter;
+        color: rgba(0, 0, 0, 0.5);
+      }
+      #urlBar {
+        width: 55%;
+        height: 30px;
+        border: 1px solid rgba(217, 217, 217, 0.29);
+        background-color: rgba(217, 217, 217, 0.29);
+        margin-left: 15%;
+        margin-top: 20%;
+        margin-bottom: 10%;
+        overflow: auto;
+      }
+      #url {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        font-size: 20px;
+        padding: 3px;
+      }
+
+      #copyBtn {
+        color: rgba(255, 255, 255, 1);
+        border-color: rgba(51, 61, 65, 1);
+        background-color: rgba(51, 61, 65, 1);
+        width: 50px;
+        height: 31px;
+        margin-left: 2%;
+        margin-top: 20%;
+      }
+      #copyBtn:hover {
+        background-color: rgba(207, 94, 83, 1);
+        border-color: rgba(207, 94, 83, 1);
+      }
+      .LogostoShare {
+        padding: 3%;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex">
+      <div id="urlBar">
+        <span id="url">주소</span>
+      </div>
+      <button id="copyBtn" onclick="copyAddress()">복사</button>
+    </div>
+    <div style="width: 100%; text-align: center; margin-bottom: 20%">
+      <!-- 페이스북 공유 버튼 -->
+      <a
+        href=""
+        onclick="window.open(url_combine_fb, '', 'scrollbars=no, width=600, height=600'); return false;"
+        ><img
+          src="images/detail/logo_Facebook.png"
+          title="페이스북으로 공유하기"
+          class="LogostoShare"
+          style="width: 45px"
+      /></a>
+      <!-- 트위터 공유 버튼 -->
+      <a
+        href=""
+        onclick="window.open(url_combine_tw, '', 'scrollbars=no, width=600, height=600'); return false;"
+        ><img
+          src="images/detail/logo_Twitter.png"
+          title="트위터로 공유하기"
+          class="LogostoShare"
+          style="width: 45px"
+      /></a>
+      <!-- 카카오 스토리 공유 버튼 -->
+      <a
+        href=""
+        onclick="window.open(url_combine_ks, '', 'scrollbars=no, width=600, height=600'); return false;"
+        ><img
+          src="images/detail/logo_KakaoStory.png"
+          title="카카오스토리로 공유하기"
+          class="LogostoShare"
+          style="width: 45px"
+      /></a>
+      <!-- 밴드 공유 버튼 -->
+      <a
+        href=""
+        onclick="window.open(url_combine_band, '', 'scrollbars=no, width=584, height=635'); return false;"
+        ><img
+          src="images/detail/logo_Band.png"
+          title="밴드로 공유하기"
+          class="LogostoShare"
+          style="width: 45px"
+      /></a>
+    </div>
+    <!--주소바 텍스트 세팅 JS-->
+    <script>
+      window.addEventListener("load", function () {
+        var url = localStorage.getItem("url");
+        document.getElementById("url").textContent = url;
+      });
+    </script>
+    <!--복사 버튼 클릭시 클립보드에 복사하는 JS-->
+    <script>
+      function copyAddress() {
+        var urlText = document.getElementById("url").textContent;
+        navigator.clipboard
+          .writeText(urlText)
+          .then(function () {
+            alert("주소가 클립보드에 복사되었습니다.");
+          })
+          .catch(function (error) {
+            console.error("클립보드 복사 실패:", error);
+          });
+      }
+    </script>
+    <!-- SNS 공유용 주소 연결 JS -->
+    <script type="text/javascript" async>
+      var url_default_ks = "https://story.kakao.com/share?url=";
+      var url_default_fb = "https://www.facebook.com/sharer/sharer.php?u=";
+      var url_default_tw_txt = "https://twitter.com/intent/tweet?text=";
+      var url_default_tw_url = "&url=";
+      var url_default_band = "http://band.us/plugin/share?body=";
+      var url_route_band = "&route=";
+      var url_toShare = localStorage.getItem("url"); //부모 창의 해당 전시회 주소
+      var url_combine_ks = url_default_ks + url_toShare;
+      var url_combine_fb = url_default_fb + url_toShare;
+      var url_combine_tw =
+        url_default_tw_txt + url_default_tw_url + url_toShare;
+      var url_combine_band =
+        url_default_band +
+        encodeURI(url_toShare) +
+        "%0A" +
+        "%0A" +
+        "&route=tistory.com";
+    </script>
+  </body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>아티스트 프로필 업로드 페이지</title>
+    <link rel="stylesheet" href="upload.css">
+</head>
+<body>
+<div class="container">
+    <div class="title">
+        <div class="rectangle-1943"></div>
+        <h1>아티스트 프로필 업로드</h1>
+        <div></div>
+    </div>
+    <div class="lines">
+        <hr class="combined-line">
+    </div>
+
+    <form>
+        <div class="image-upload">
+            <label for="image">사진</label>
+            <input type="file" id="image" name="image" onchange="previewImage(this);">
+        </div>
+        <div class="fields">
+            <div class="field">
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name">
+            </div>
+            <div class="field">
+                <label for="real-name">본명</label>
+                <input type="text" id="real-name" name="real_name">
+            </div>
+            <div class="field">
+                <label for="work">작품</label>
+                <input type="text" id="work" name="work">
+            </div>
+            <div class="field">
+                <label for="contact">연락처</label>
+                <input type="text" id="contact" name="contact">
+            </div>
+            <div class="field">
+                <label for="career">경력</label>
+                <input type="text" id="career" name="career">
+            </div>
+        </div>
+        <div class="buttons">
+            <button type="submit" class="button">등록</button>
+            <button type="reset" class="button">취소</button>
+        </div>
+    </form>
+</div>
+
+<!-- 이미지 미리보기 -->
+<script>
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const imageUpload = document.querySelector('.image-upload');
+                imageUpload.style.background = 'none';
+                imageUpload.style.backgroundImage = `url(${e.target.result})`;
+                imageUpload.style.backgroundSize = 'contain';
+                imageUpload.style.backgroundPosition = 'center';
+                imageUpload.style.backgroundRepeat = 'no-repeat';
+
+                const imageLabel = document.querySelector('.image-upload label');
+                imageLabel.style.display = 'none';
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+</body>
+</html>
