@@ -1,0 +1,112 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 1rem;
+}
+
+.head-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.login-btn,
+.logout-btn {
+    background: none;
+    color: #000000;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    width: 70px;
+    height: auto;
+}
+
+.login-btn:hover,
+.logout-btn:hover {
+    color: #CF5E53;
+}
+
+select {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    border: none;
+    outline: none;
+}
+
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+}
+
+.search-box {
+    position: relative;
+    background: rgba(217, 217, 217, 0.29);
+    border-radius: 22px;
+    width: 280px;
+    padding: 0 1rem;
+}
+
+.search-box input {
+    display: flex;
+    justify-content: flex-end;
+    background: none;
+    border: none;
+    height: 40px;
+    outline: none;
+    padding-right: 30px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    color: #333D41;
+}
+
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+button {
+    background: #333D41;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    width: 140px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.buttons-container button:hover {
+    background: #CF5E53;
+}

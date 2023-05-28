@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>작품 목록 페이지</title>
+  </head>
+  <link rel="stylesheet" href="list_card.css" />
+  <body>
+    <!-- <div class="card"> -->
+    <!-- <img src="../dummy/exampleImg.png" alt="이미지" class="img" />
+      <div class="textContainer">
+        <text class="titleText">별이 빛나는 밤</text>
+        <text class="text">해당 작품은 ~</text>
+      </div> -->
+    <!-- </div> -->
+    <div id="cards" class="container"></div>
+    <script>
+      const dummy = [
+        {
+          img_src: './exampleImg.png',
+          title: 'This is the title.',
+          content: 'This is the body.',
+        },
+        {
+          img_src: './exampleImg.png',
+          title: 'This is the title1.',
+          content: 'This is the body1.',
+        },
+        {
+          img_src: './exampleImg.png',
+          title: 'This is the title2.',
+          content: 'This is the body2.',
+        },
+        {
+          img_src: './exampleImg.png',
+          title: 'This is the title3.',
+          content: 'This is the body3.',
+        },
+        {
+          img_src: './exampleImg.png',
+          title: 'This is the title4.',
+          content: 'This is the body4.',
+        },
+      ];
+      const $card = document.getElementById('cards');
+
+      dummy.map((item) => {
+        const imgSrc = `../dummy/${item.img_src}`;
+        const title = item.title;
+        const content = item.content;
+
+        // Creating the card container
+        const cardContainer = document.createElement('div');
+        cardContainer.classList.add('card');
+
+        // Creating the image element
+        const img = document.createElement('img');
+        img.src = imgSrc;
+        img.alt = 'image';
+        img.classList.add('img');
+
+        // Creating the text container
+        const textContainer = document.createElement('div');
+        textContainer.classList.add('textContainer');
+
+        // Creating the title text element
+        const titleText = document.createElement('text');
+        titleText.classList.add('titleText');
+        titleText.textContent = title;
+
+        // Creating the content text element
+        const contentText = document.createElement('text');
+        contentText.classList.add('text');
+        contentText.textContent = content;
+
+        // Appending the image and text elements to the respective containers
+        textContainer.appendChild(titleText);
+        textContainer.appendChild(contentText);
+        cardContainer.appendChild(img);
+        cardContainer.appendChild(textContainer);
+
+        // Appending the card container to the main container
+        $card.appendChild(cardContainer);
+      });
+    </script>
+  </body>
+</html>
