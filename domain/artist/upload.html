@@ -103,7 +103,7 @@
         }));
 
         // JWT 토큰 가져오기 (이 예제에서는 localStorage에서 가져옵니다)
-        const jwtToken = localStorage.getItem('jwtToken');
+        const jwtToken = localStorage.getItem('token');
 
         uploadArtist(formData, jwtToken); // Ajax 요청
     }
@@ -119,6 +119,9 @@
             cache: false,
             contentType: false,
             processData: false,
+            xhrFields: {
+                withCredentials: true
+            },
             success: function (data, textStatus, xhr) {
                 if (xhr.status === 201) {
                     alert('아티스트 프로필이 성공적으로 업로드되었습니다.');
