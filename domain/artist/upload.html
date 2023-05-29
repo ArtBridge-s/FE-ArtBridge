@@ -52,11 +52,16 @@
             </div>
         </div>
         <div class="buttons">
-            <button type="submit" class="button">등록</button>
+            <button type="submit" class="button" id="submitButton">등록</button>
             <button type="reset" class="button">취소</button>
         </div>
     </form>
+    <!--로딩 표시-->
+    <div id="loading" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+        <img src="images/loading.gif" alt="">
+    </div>
 </div>
+
 
 <!-- 이미지 미리보기 -->
 <script>
@@ -84,6 +89,9 @@
     function submitForm(event) {
         event.preventDefault(); // Submit 기본 동작(페이지 리로딩) 방지
 
+        disableSubmitButton(); // 제출 버튼 비활성화
+        showLoadingIndicator(); // 로딩 표시기 표시
+
         // Form에서 입력받은 데이터 가져오기
         const name = document.querySelector('#name').value;
         const realName = document.querySelector('#real-name').value;
@@ -110,6 +118,17 @@
         uploadArtist(formData, jwtToken); // Ajax 요청
     }
 
+    // 제출 버튼 비활성화
+    function disableSubmitButton() {
+        $("#submitBtn").prop("disabled", true);
+    }
+
+    // 로딩 표시기 표시
+    function showLoadingIndicator() {
+        $("#loading").show();
+    }
+
+    // 폼 데이터 구성 및 Ajax 요청
     function uploadArtist(formData, jwtToken) {
         $.ajax({
             url: 'http://tobiasdev.ml/services/artist/api/artists',
@@ -125,15 +144,35 @@
                 withCredentials: true
             },
             success: function (data, textStatus, xhr) {
+                enableSubmitButton(); // 제출 버튼 활성화
+                hideLoadingIndicator(); // 로딩 표시기 숨김
+
                 if (xhr.status === 201) {
                     alert('아티스트 프로필이 성공적으로 업로드되었습니다.');
                     window.location.href = '../../index.html'; // 성공적으로 업로드한 후 이동할 페이지
                 }
             },
             error: function (xhr, textStatus, error) {
+                // 제출 버튼 활성화 및 로딩 표시기 숨김
+                document.getElementById('submitButton').disabled = false;
+                document.getElementById('loadingIndicator').style.display = 'none';
+
                 alert('아티스트 프로필 업로드에 실패했습니다. 다시 시도해주세요.');
+
+                enableSubmitButton(); // 제출 버튼 활성화
+                hideLoadingIndicator(); // 로딩 표시기 숨김
             }
         });
+    }
+
+    // 제출 버튼 활성화
+    function enableSubmitButton() {
+        $("#submitBtn").prop("disabled", false);
+    }
+
+    // 로딩 표시기 숨김
+    function hideLoadingIndicator() {
+        $("#loading").hide();
     }
 </script>
 
