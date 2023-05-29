@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>작품 업로드 페이지</title>
     <link rel="stylesheet" type="text/css" href="upload.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="artwork-info">
@@ -15,7 +16,7 @@
             <input type="file" class="btn upload" id="fileUpload">
             <label for="fileUpload" class="fileUpload">파일 선택</label>
         </div>
-        <input type="text" class="input" placeholder="작품 명을 입력해주세요">
+        <input type="text" class="input" name="artworkName" placeholder="작품 명을 입력해주세요">
         <textarea class="input input-large" placeholder="작품 소개를 입력해주세요 (글자수 제한)"></textarea>
         <input type="text" class="input" placeholder="가격을 입력해주세요">
         <input type="text" class="input" placeholder="작가를  입력해주세요">
@@ -33,5 +34,47 @@
         document.querySelector(".input-upload").value = this.files[0].name;
     };
 </script>
+
+<!--api-->
+<script>
+    $(document).ready(function () {
+        $(".form").on('submit', function (event) {
+            event.preventDefault(); // To prevent normal form submission
+
+            let formData = new FormData(this);
+            formData.append('artworkDTO', JSON.stringify({
+                title: $("input[name='artworkName']").val(),
+                shortDescription: $("textarea[name='artworkDescription']").val(),
+                artistname: $("input[name='artworkAuthor']").val(),
+                longDescription: $("textarea[name='artworkLongDescription']").val(),
+            }));
+            formData.append('image', $('#fileUpload')[0].files[0]);  // 이미지 파일을 formData에 추가
+
+            let jwtToken = localStorage.getItem('token');  // Retrieve the JWT token from localStorage
+
+            $.ajax({
+                url: 'http://tobiasdev.ml/services/artwork/api/artworks',  // Change this to your API URL
+                type: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + jwtToken  // Include the JWT token as an Authorization header
+                },
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    console.log("Artwork successfully uploaded.");
+                    console.log(data);  // Log the received data to console
+                },
+                error: function (xhr, status, error) {
+                    console.error("Upload error: " + error);
+                }
+            });
+        });
+    });
+</script>
+
+
 </body>
 </html>
+
