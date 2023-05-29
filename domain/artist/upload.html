@@ -97,8 +97,10 @@
         formData.append('artistDTO', JSON.stringify({
             name: name,
             realName: realName,
-            work: work,
-            contact: contact,
+            artworkDTO: {
+                title: work
+            },
+            phone: contact,
             career: career
         }));
 
