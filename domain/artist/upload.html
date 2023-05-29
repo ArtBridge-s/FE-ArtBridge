@@ -27,16 +27,16 @@
     <form onsubmit="submitForm(event)">
         <div class="image-upload">
             <label for="image">사진</label>
-            <input type="file" id="image" name="image" onchange="previewImage(this);">
+            <input type="file" id="image" name="image" onchange="previewImage(this);" required>
         </div>
         <div class="fields">
             <div class="field">
                 <label for="name">이름</label>
-                <input type="text" id="name" name="name">
+                <input type="text" id="name" name="name" minlength="3" maxlength="100" required>
             </div>
             <div class="field">
                 <label for="real-name">본명</label>
-                <input type="text" id="real-name" name="real_name">
+                <input type="text" id="real-name" name="real_name" minlength="2" maxlength="100">
             </div>
             <div class="field">
                 <label for="work">작품</label>
