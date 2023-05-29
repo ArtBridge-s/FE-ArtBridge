@@ -23,7 +23,7 @@
         <hr class="combined-line">
     </div>
 
-    <form>
+    <form onsubmit="submitForm(event)">
         <div class="image-upload">
             <label for="image">사진</label>
             <input type="file" id="image" name="image" onchange="previewImage(this);">
@@ -77,5 +77,59 @@
         }
     }
 </script>
+
+<!--api-->
+<script>
+    function submitForm(event) {
+        event.preventDefault(); // Submit 기본 동작(페이지 리로딩) 방지
+
+        // Form에서 입력받은 데이터 가져오기
+        const name = document.querySelector('#name').value;
+        const realName = document.querySelector('#real-name').value;
+        const work = document.querySelector('#work').value;
+        const contact = document.querySelector('#contact').value;
+        const career = document.querySelector('#career').value;
+
+        // FormData 객체 생성
+        const formData = new FormData();
+        formData.append('image', document.querySelector('#image').files[0]);
+        formData.append('artistDTO', JSON.stringify({
+            name: name,
+            realName: realName,
+            work: work,
+            contact: contact,
+            career: career
+        }));
+
+        // JWT 토큰 가져오기 (이 예제에서는 localStorage에서 가져옵니다)
+        const jwtToken = localStorage.getItem('jwtToken');
+
+        uploadArtist(formData, jwtToken); // Ajax 요청
+    }
+
+    function uploadArtist(formData, jwtToken) {
+        $.ajax({
+            url: 'http://tobiasdev.ml/services/artist/api/artists',
+            type: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + jwtToken
+            },
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 201) {
+                    alert('아티스트 프로필이 성공적으로 업로드되었습니다.');
+                    window.location.href = '../../index.html'; // 성공적으로 업로드한 후 이동할 페이지
+                }
+            },
+            error: function (xhr, textStatus, error) {
+                alert('아티스트 프로필 업로드에 실패했습니다. 다시 시도해주세요.');
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
