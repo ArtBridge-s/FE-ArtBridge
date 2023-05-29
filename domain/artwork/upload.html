@@ -49,51 +49,84 @@
 <!--api-->
 <script>
     $(document).ready(function () {
+        // 폼 제출 이벤트 핸들러 등록
         $(".form").on('submit', function (event) {
-            event.preventDefault(); // To prevent normal form submission
+            event.preventDefault(); // 일반적인 폼 제출 방지
 
-            $("#submitBtn").prop("disabled", true);  // Disable the submit button
-            $("#loading").show();  // Show loading indicator
+            disableSubmitButton(); // 제출 버튼 비활성화
+            showLoadingIndicator(); // 로딩 표시기 표시
 
-            let formData = new FormData(this);
-            formData.append('artworkDTO', JSON.stringify({
-                title: $("input[name='artworkName']").val(),
-                shortDescription: $("textarea[name='artworkDescription']").val(),
-                artistname: $("input[name='artworkAuthor']").val(),
-                longDescription: $("textarea[name='artworkLongDescription']").val(),
-            }));
-            formData.append('image', $('#fileUpload')[0].files[0]);  // 이미지 파일을 formData에 추가
+            let formData = buildFormData(); // 폼 데이터 구성
+            let jwtToken = getJwtToken(); // JWT 토큰 가져오기
 
-            let jwtToken = localStorage.getItem('token');  // Retrieve the JWT token from localStorage
-
-            $.ajax({
-                url: 'http://tobiasdev.ml/services/artwork/api/artworks',  // Change this to your API URL
-                type: 'POST',
-                headers: {
-                    'Authorization': 'Bearer ' + jwtToken  // Include the JWT token as an Authorization header
-                },
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    console.log("Artwork successfully uploaded.");
-                    console.log(data);  // Log the received data to console
-
-                    // Re-enable the submit button and hide loading indicator
-                    $("#submitBtn").prop("disabled", false);
-                    $("#loading").hide();
-                },
-                error: function (xhr, status, error) {
-                    console.error("Upload error: " + error);
-
-                    // Re-enable the submit button and hide loading indicator
-                    $("#submitBtn").prop("disabled", false);
-                    $("#loading").hide();
-                }
-            });
+            uploadArtwork(formData, jwtToken); // 작품 업로드
         });
     });
+
+    // 제출 버튼 비활성화
+    function disableSubmitButton() {
+        $("#submitBtn").prop("disabled", true);
+    }
+
+    // 로딩 표시기 표시
+    function showLoadingIndicator() {
+        $("#loading").show();
+    }
+
+    // 폼 데이터 구성
+    function buildFormData() {
+        let formData = new FormData($(".form")[0]);
+        let artworkDTO = {
+            title: $("input[name='artworkName']").val(),
+            shortDescription: $("textarea[name='artworkDescription']").val(),
+            artistname: $("input[name='artworkAuthor']").val(),
+            longDescription: $("textarea[name='artworkLongDescription']").val(),
+        };
+        formData.append('artworkDTO', JSON.stringify(artworkDTO));
+        formData.append('image', $('#fileUpload')[0].files[0]);
+        return formData;
+    }
+
+    // JWT 토큰 가져오기
+    function getJwtToken() {
+        return localStorage.getItem('token');
+    }
+
+    // 작품 업로드
+    function uploadArtwork(formData, jwtToken) {
+        $.ajax({
+            url: 'http://tobiasdev.ml/services/artwork/api/artworks',
+            type: 'POST',
+            headers: {
+                'Authorization': 'Bearer ' + jwtToken
+            },
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                console.log("Artwork successfully uploaded.");
+                console.log(data);
+                enableSubmitButton(); // 제출 버튼 활성화
+                hideLoadingIndicator(); // 로딩 표시기 숨김
+            },
+            error: function (xhr, status, error) {
+                console.error("Upload error: " + error);
+                enableSubmitButton(); // 제출 버튼 활성화
+                hideLoadingIndicator(); // 로딩 표시기 숨김
+            }
+        });
+    }
+
+    // 제출 버튼 활성화
+    function enableSubmitButton() {
+        $("#submitBtn").prop("disabled", false);
+    }
+
+    // 로딩 표시기 숨김
+    function hideLoadingIndicator() {
+        $("#loading").hide();
+    }
 </script>
 
 
