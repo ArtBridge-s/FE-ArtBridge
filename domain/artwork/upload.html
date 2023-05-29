@@ -29,10 +29,14 @@
         <input type="text" class="input" placeholder="작가를  입력해주세요">
         <textarea class="input input-large" placeholder="작품 설명을 해주세요"></textarea>
         <div class="button-group">
-            <button type="submit" class="btn btn-small">등록</button>
+            <button type="submit" class="btn btn-small" id="submitBtn">등록</button>
             <button type="reset" class="btn btn-small">취소</button>
         </div>
     </form>
+</div>
+
+<div id="loading" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <img src="images/loading.gif" alt="">  <!-- Replace with your loading gif -->
 </div>
 
 <!--파일 선택 시 파일명 텍스트 필드에 표시-->
@@ -47,6 +51,9 @@
     $(document).ready(function () {
         $(".form").on('submit', function (event) {
             event.preventDefault(); // To prevent normal form submission
+
+            $("#submitBtn").prop("disabled", true);  // Disable the submit button
+            $("#loading").show();  // Show loading indicator
 
             let formData = new FormData(this);
             formData.append('artworkDTO', JSON.stringify({
@@ -72,9 +79,17 @@
                 success: function (data) {
                     console.log("Artwork successfully uploaded.");
                     console.log(data);  // Log the received data to console
+
+                    // Re-enable the submit button and hide loading indicator
+                    $("#submitBtn").prop("disabled", false);
+                    $("#loading").hide();
                 },
                 error: function (xhr, status, error) {
                     console.error("Upload error: " + error);
+
+                    // Re-enable the submit button and hide loading indicator
+                    $("#submitBtn").prop("disabled", false);
+                    $("#loading").hide();
                 }
             });
         });
