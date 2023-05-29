@@ -104,19 +104,29 @@
             cache: false,
             contentType: false,
             processData: false,
-            success: function (data) {
-                console.log("Artwork successfully uploaded.");
-                console.log(data);
-                enableSubmitButton(); // 제출 버튼 활성화
-                hideLoadingIndicator(); // 로딩 표시기 숨김
+            xhrFields: {
+                withCredentials: true
             },
-            error: function (xhr, status, error) {
-                console.error("Upload error: " + error);
+            success: function (data, textStatus, xhr) {
+                if (xhr.status === 201) {
+                    console.log("Artwork successfully uploaded.");
+                    console.log(xhr.responseText);
+                    enableSubmitButton(); // 제출 버튼 활성화
+                    hideLoadingIndicator(); // 로딩 표시기 숨김
+                    alert(`작품 업로드 요청 완료되었습니다.`);
+                    window.location.href = '../../index.html'; // 성공적으로 로그인한 후 이동할 페이지
+                }
+            },
+            error: function (xhr, textStatus, error) {
+                console.error("Upload error: " + xhr.status + " " + xhr.statusText);
+                alert(`작품 업로드 요청이 실패하였습니다. 다시 시도해주세요.`);
                 enableSubmitButton(); // 제출 버튼 활성화
                 hideLoadingIndicator(); // 로딩 표시기 숨김
             }
         });
+
     }
+
 
     // 제출 버튼 활성화
     function enableSubmitButton() {
