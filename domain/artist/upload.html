@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <title>아티스트 프로필 업로드 페이지</title>
     <link rel="stylesheet" href="upload.css">
+    <!--Check logged in-->
+    <script>
+        let jwtToken = localStorage.getItem('token'); // Check if user is logged in
+        if (!jwtToken) {
+            window.location.href = "../../index.html" // If user is not logged in, redirect to index.html
+        }
+    </script>
 </head>
 <body>
 <div class="container">
