@@ -12,26 +12,10 @@
     <h1>아티스트 프로필 목록</h1>
     <hr>
 
-    <div class="profile">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/VanGogh_1887_Selbstbildnis.jpg" class="profile-img" alt="Artist A">
-        <h3>A</h3>
-    </div>
-    <div class="profile">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/VanGogh_1887_Selbstbildnis.jpg" class="profile-img" alt="Artist B">
-        <h3>B</h3>
-    </div>
-    <div class="profile">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/VanGogh_1887_Selbstbildnis.jpg" class="profile-img" alt="Artist C">
-        <h3>C</h3>
-    </div>
-    <div class="profile">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/VanGogh_1887_Selbstbildnis.jpg" class="profile-img" alt="Artist D">
-        <h3>D</h3>
+    <div id="artistList">
     </div>
 
-
-    <div class="pagination">
-        1 2 3 4 5 6
+    <div class="pagination" id="pagination">
     </div>
 
     <div class="search">
@@ -40,13 +24,47 @@
             <div class="vertical-line"></div>
         </div>
         <div class="input-container">
+            <input type="text" id="searchQuery">
         </div>
         <div class="vertical-line"></div>
-        <div class="icon-container">
+        <div class="icon-container" onclick="search()">
             <span class="material-icons">search</span>
         </div>
     </div>
 </div>
+
+<script>
+    function loadArtists(page) {
+        $.get('http://tobiasdev.ml/services/artist/api/artists?page=' + page + 'size=1', function(data) {
+            $('#artistList').empty();
+            data.forEach(function(artist) {
+                $('#artistList').append(
+                    '<div class="profile">' +
+                    '<img src="' + artist.imgUrl + '" class="profile-img" alt="Artist ' + artist.name + '">' +
+                    '<h3>' + artist.name + '</h3>' +
+                    '</div>'
+                );
+            });
+        });
+    }
+
+    function search() {
+        let query = $('#searchQuery').val();
+        $.get('http://tobiasdev.ml/services/artist/api/artists?search=' + query, function(data) {
+            $('#artistList').empty();
+            data.forEach(function(artist) {
+                $('#artistList').append(
+                    '<div class="profile">' +
+                    '<img src="' + artist.imgUrl + '" class="profile-img" alt="Artist ' + artist.name + '">' +
+                    '<h3>' + artist.name + '</h3>' +
+                    '</div>'
+                );
+            });
+        });
+    }
+
+    // 페이지 로드 시 첫 페이지의 아티스트 목록을 로드합니다.
+    loadArtists(1);
+</script>
 </body>
 </html>
-
