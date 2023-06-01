@@ -35,7 +35,7 @@
 
 <script>
     function loadArtists(page) {
-        $.get('http://tobiasdev.ml/services/artist/api/artists?page=' + page + '&size=4', function(data) {
+        $.get('http://tobiasdev.ml/services/artist/api/artists?page=' + page + '&size=2', function(data, status, xhr) {
             $('#artistList').empty();
             data.forEach(function(artist) {
                 $('#artistList').append(
@@ -45,8 +45,20 @@
                     '</div>'
                 );
             });
+
+            // 페이지네이션 구현
+            var totalPages = xhr.getResponseHeader('X-Total-Pages');  // API 응답 헤더에서 전체 페이지 수를 가져옴 (API에 따라 다름)
+            $('#pagination').empty();
+            for (var i = 1; i <= totalPages; i++) {
+                if (i === page) {
+                    $('#pagination').append('<span class="current-page">' + i + '</span>');  // 현재 페이지를 표시
+                } else {
+                    $('#pagination').append('<span class="page-link" onclick="loadArtists(' + i + ')">' + i + '</span>');  // 페이지 링크를 생성
+                }
+            }
         });
     }
+
 
     function search() {
         let query = $('#searchQuery').val();
