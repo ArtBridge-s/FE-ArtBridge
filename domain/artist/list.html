@@ -35,7 +35,7 @@
 
 <script>
     function loadArtists(page) {
-        $.get('http://tobiasdev.ml/services/artist/api/artists?page=' + page + 'size=1', function(data) {
+        $.get('http://tobiasdev.ml/services/artist/api/artists?page=' + page + '&size=4', function(data) {
             $('#artistList').empty();
             data.forEach(function(artist) {
                 $('#artistList').append(
