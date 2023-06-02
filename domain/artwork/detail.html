@@ -45,10 +45,13 @@
 </div>
 
 <script>
+    const API_BASE_URL = "http://tobiasdev.ml/services/artwork/api";
+
     function getArtwork() {
         var id = new URL(window.location.href).searchParams.get("id");
+        var artworkUrl = `${API_BASE_URL}/artworks/${id}`;
 
-        $.get(`http://tobiasdev.ml/services/artwork/api/artworks/${id}`, function(data, status, xhr) {
+        $.get(artworkUrl, function(data, status, xhr) {
             if (status === "success") {
                 $("#artworkImage").attr("src", data.imageUrl);
                 $("#artworkImage").attr("alt", data.title);
@@ -63,28 +66,9 @@
 
     // 댓글 조회 함수
     function getComments(artworkId) {
-        $.get(`http://tobiasdev.ml/services/artwork/api/comments?artworkId=${artworkId}`, function(data, status, xhr) {
-            if (status === "success") {
-                data.forEach(comment => {
-                    $('.comments').append(`
-                        <div class="comment">
-                            <p class="comment-text">${comment.content}</p>
-                            <p class="comment-text">${comment.name}</p>
-<!--                            <p class="comment-text">${comment.login}</p>-->
-                        </div>
-                    `);
-                });
-            }
-        });
-    }
+        var commentsUrl = `${API_BASE_URL}/comments?artworkId=${artworkId}`;
 
-    $(document).ready(getArtwork);
-</script>
-
-<script>
-    // 댓글 조회 함수
-    function getComments(artworkId) {
-        $.get(`http://tobiasdev.ml/services/artwork/api/comments?artworkId=${artworkId}`, function(data, status, xhr) {
+        $.get(commentsUrl, function(data, status, xhr) {
             if (status === "success") {
                 $('.comments').html(''); // 기존에 로드된 댓글들을 삭제
                 data.forEach(comment => {
@@ -112,7 +96,7 @@
         };
 
         $.ajax({
-            url: `http://tobiasdev.ml/services/artwork/api/comments`,
+            url: `${API_BASE_URL}/comments`,
             type: "POST",
             headers: {
                 'Authorization': 'Bearer ' + jwtToken
@@ -132,6 +116,7 @@
         });
     }
 
+    $(document).ready(getArtwork);
     $(document).on('click', '.post', postComment);
 </script>
 
