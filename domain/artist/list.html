@@ -34,7 +34,7 @@
 </div>
 
 <script>
-    const ITEMS_PER_PAGE = 3;
+    const ITEMS_PER_PAGE = 5;
 
     function createProfileElement(artwork) {
         return (
@@ -61,7 +61,7 @@
             });
 
             var totalItems = xhr.getResponseHeader('X-Total-Count');
-            var totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+            var totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE) - 1;
 
             $('#pagination').empty();
             for (var i = 1; i <= totalPages; i++) {
