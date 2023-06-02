@@ -38,7 +38,7 @@
 .container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  row-gap: 0.1rem;
+  row-gap: 2rem;
   column-gap: 5rem;
   justify-items: center;
 }
@@ -46,4 +46,5 @@
   display: flex;
   flex-direction: column;
   margin-right: 50rem;
+  margin-top: 15rem;
 }

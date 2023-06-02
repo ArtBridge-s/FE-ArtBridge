@@ -76,8 +76,6 @@
       <div id="cards" class="container"></div>
     </div>
     <script>
-      console.log(window.location.pathname);
-
       async function JsonData() {
         const response = await fetch(
           'http://tobiasdev.ml/services/artwork/api/artworks?page=0&size=20',
@@ -90,6 +88,7 @@
         );
         return response.json(); // JSON 응답을 네이티브 JavaScript 객체로 파싱
       }
+
       JsonData().then((data) => {
         console.log(data);
         dummy = data;
@@ -102,6 +101,8 @@
           const content = item.shortDescription;
 
           // Creating the card container
+          const navigate = document.createElement('a');
+          navigate.setAttribute('href', `detail.html?id=${item.id}`);
           const cardContainer = document.createElement('div');
           cardContainer.classList.add('card');
 
@@ -126,13 +127,14 @@
           contentText.textContent = content;
 
           // Appending the image and text elements to the respective containers
+          navigate.appendChild(cardContainer);
           textContainer.appendChild(titleText);
           textContainer.appendChild(contentText);
           cardContainer.appendChild(img);
           cardContainer.appendChild(textContainer);
 
           // Appending the card container to the main container
-          $card.appendChild(cardContainer);
+          $card.appendChild(navigate);
         });
       });
     </script>
