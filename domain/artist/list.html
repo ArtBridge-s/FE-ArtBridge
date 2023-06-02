@@ -54,7 +54,7 @@
     }
 
     function loadArtworks(page) {
-        $.get(`http://tobiasdev.ml/services/artwork/api/artworks?page=${page}&size=${ITEMS_PER_PAGE}`, function(data, status, xhr) {
+        $.get(`http://tobiasdev.ml/services/artist/api/artists?page=${page}&size=${ITEMS_PER_PAGE}`, function(data, status, xhr) {
             $('#artistList').empty();
             data.forEach(function(artwork) {
                 $('#artistList').append(createProfileElement(artwork));
