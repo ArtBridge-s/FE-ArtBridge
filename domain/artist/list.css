@@ -44,8 +44,13 @@ hr {
 .pagination {
     font-weight: 400;
     font-size: 15px;
+    display: flex;
     color: #757678;
     margin-bottom: 20px;
+}
+
+.pagination .page-link, .pagination .current-page {
+    margin-right: 5px;
 }
 
 .search {
