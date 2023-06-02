@@ -56,9 +56,28 @@
                 $("#artworkDescription").text(data.shortDescription);
                 $("#artworkAuthor").text("작가명 " + data.artistname);
                 $("#artworkYear").text("제작연도 " + data.makingday);
+                getComments(id); // 댓글 조회 API 호출
             }
         });
     }
+
+    // 댓글 조회 함수
+    function getComments(artworkId) {
+        $.get(`http://tobiasdev.ml/services/artwork/api/comments?artworkId=${artworkId}`, function(data, status, xhr) {
+            if (status === "success") {
+                data.forEach(comment => {
+                    $('.comments').append(`
+                        <div class="comment">
+                            <p class="comment-text">${comment.content}</p>
+                            <p class="comment-text">${comment.name}</p>
+<!--                            <p class="comment-text">${comment.login}</p>-->
+                        </div>
+                    `);
+                });
+            }
+        });
+    }
+
     $(document).ready(getArtwork);
 </script>
 
