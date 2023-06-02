@@ -34,49 +34,45 @@
 </div>
 
 <script>
-    function loadArtists(page) {
-        $.get('http://tobiasdev.ml/services/artist/api/artists?page=' + page + '&size=2', function(data, status, xhr) {
+    const ITEMS_PER_PAGE = 3;
+
+    function createProfileElement(artwork) {
+        return (
+            '<div class="profile">' +
+            '<img src="' + artwork.imageUrl + '" class="profile-img" alt="Artwork ' + artwork.title + '">' +
+            '<h3>' + artwork.title + '</h3>' +
+            '</div>'
+        );
+    }
+
+    function createPaginationElement(i, page) {
+        if (i === page) {
+            return '<span class="current-page">' + i + '</span>';
+        } else {
+            return '<span class="page-link" onclick="loadArtworks(' + i + ')">' + i + '</span>';
+        }
+    }
+
+    function loadArtworks(page) {
+        $.get(`http://tobiasdev.ml/services/artwork/api/artworks?page=${page}&size=${ITEMS_PER_PAGE}`, function(data, status, xhr) {
             $('#artistList').empty();
-            data.forEach(function(artist) {
-                $('#artistList').append(
-                    '<div class="profile">' +
-                    '<img src="' + artist.imgUrl + '" class="profile-img" alt="Artist ' + artist.name + '">' +
-                    '<h3>' + artist.name + '</h3>' +
-                    '</div>'
-                );
+            data.forEach(function(artwork) {
+                $('#artistList').append(createProfileElement(artwork));
             });
 
-            // 페이지네이션 구현
-            var totalPages = xhr.getResponseHeader('X-Total-Pages');  // API 응답 헤더에서 전체 페이지 수를 가져옴 (API에 따라 다름)
+            var totalItems = xhr.getResponseHeader('X-Total-Count');
+            var totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+
             $('#pagination').empty();
             for (var i = 1; i <= totalPages; i++) {
-                if (i === page) {
-                    $('#pagination').append('<span class="current-page">' + i + '</span>');  // 현재 페이지를 표시
-                } else {
-                    $('#pagination').append('<span class="page-link" onclick="loadArtists(' + i + ')">' + i + '</span>');  // 페이지 링크를 생성
-                }
+                $('#pagination').append(createPaginationElement(i, page));
             }
         });
     }
 
-
-    function search() {
-        let query = $('#searchQuery').val();
-        $.get('http://tobiasdev.ml/services/artist/api/artists?search=' + query, function(data) {
-            $('#artistList').empty();
-            data.forEach(function(artist) {
-                $('#artistList').append(
-                    '<div class="profile">' +
-                    '<img src="' + artist.imgUrl + '" class="profile-img" alt="Artist ' + artist.name + '">' +
-                    '<h3>' + artist.name + '</h3>' +
-                    '</div>'
-                );
-            });
-        });
-    }
-
-    // 페이지 로드 시 첫 페이지의 아티스트 목록을 로드합니다.
-    loadArtists(1);
+    loadArtworks(1);
 </script>
+
+
 </body>
 </html>
