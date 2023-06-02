@@ -117,9 +117,43 @@
         });
     }
 
+    function likeArtwork() {
+        var id = new URL(window.location.href).searchParams.get("id");
+        const jwtToken = localStorage.getItem('token');
+
+        var likeData = {
+            artwork: {
+                id: id
+            },
+        };
+
+        $.ajax({
+            url: `${API_BASE_URL}/likes`,
+            type: "POST",
+            headers: {
+                'Authorization': 'Bearer ' + jwtToken
+            },
+            contentType: "application/json",
+            data: JSON.stringify(likeData),
+            success: function(data) {
+                alert("작품 좋아요 성공");
+                $('.like').addClass('liked'); // Add 'liked' class to the like button
+            },
+            error: function(request, status, error) {
+                alert("작품 좋아요 실패");
+            }
+        });
+    }
+
+
     $(document).ready(getArtwork);
     $(document).on('click', '.post', postComment);
+    $(document).on('click', '.like', likeArtwork);
 </script>
+
+<script>
+</script>
+
 
 </body>
 </html>

@@ -76,6 +76,7 @@
     gap: 10px;
 }
 
+
 .container .info .actions .like,
 .container .info .actions .share {
     background-color: #ffffff;
@@ -88,6 +89,10 @@
     font-size: 16px;
     border-radius: 5px;
     border: 1px solid #333D41;
+}
+
+.container .info .actions .liked {
+    color: red;
 }
 
 .container .info .actions i {
