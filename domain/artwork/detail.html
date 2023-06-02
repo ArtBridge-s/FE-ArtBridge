@@ -82,15 +82,32 @@
 </script>
 
 <script>
+    // 댓글 조회 함수
+    function getComments(artworkId) {
+        $.get(`http://tobiasdev.ml/services/artwork/api/comments?artworkId=${artworkId}`, function(data, status, xhr) {
+            if (status === "success") {
+                $('.comments').html(''); // 기존에 로드된 댓글들을 삭제
+                data.forEach(comment => {
+                    $('.comments').append(`
+                        <div class="comment">
+                            <p class="comment-text">${comment.content}</p>
+                            <p class="comment-text">${comment.name}</p>
+                        </div>
+                    `);
+                });
+            }
+        });
+    }
+
     function postComment() {
         var commentText = $("#commentInput").val();
         var id = new URL(window.location.href).searchParams.get("id");
         const jwtToken = localStorage.getItem('token');
 
         var commentData = {
-        artwork: {
-            id: id // 해당 아트워크의 id
-        },
+            artwork: {
+                id: id // 해당 아트워크의 id
+            },
             content: commentText // 댓글 내용
         };
 
@@ -104,11 +121,13 @@
             data: JSON.stringify(commentData),
             success: function(data) {
                 // 댓글을 성공적으로 게시했을 때 수행할 작업
-                // 예: 댓글 목록 새로고침
-                alert("댓글 게시 성공")
+                // 댓글 목록 새로고침
+                getComments(id);
+                alert("댓글 게시 성공");
+                $("#commentInput").val(''); // 입력된 댓글 내용 초기화
             },
             error: function(request, status, error) {
-                alert("댓글 게시 실패")
+                alert("댓글 게시 실패");
             }
         });
     }
