@@ -35,10 +35,11 @@
         <div class="add-comment">
             <label>
                 <i class="fas fa-smile"></i>
-                <input type="text" placeholder="댓글 달기">
+                <input id="commentInput" type="text" placeholder="댓글 달기">
             </label>
             <button class="post"> 게시</button>
         </div>
+
     </div>
 
 </div>
@@ -60,5 +61,41 @@
     }
     $(document).ready(getArtwork);
 </script>
+
+<script>
+    function postComment() {
+        var commentText = $("#commentInput").val();
+        var id = new URL(window.location.href).searchParams.get("id");
+        const jwtToken = localStorage.getItem('token');
+
+        var commentData = {
+        artwork: {
+            id: id // 해당 아트워크의 id
+        },
+            content: commentText // 댓글 내용
+        };
+
+        $.ajax({
+            url: `http://tobiasdev.ml/services/artwork/api/comments`,
+            type: "POST",
+            headers: {
+                'Authorization': 'Bearer ' + jwtToken
+            },
+            contentType: "application/json",
+            data: JSON.stringify(commentData),
+            success: function(data) {
+                // 댓글을 성공적으로 게시했을 때 수행할 작업
+                // 예: 댓글 목록 새로고침
+                alert("댓글 게시 성공")
+            },
+            error: function(request, status, error) {
+                alert("댓글 게시 실패")
+            }
+        });
+    }
+
+    $(document).on('click', '.post', postComment);
+</script>
+
 </body>
 </html>
