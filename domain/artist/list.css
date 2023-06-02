@@ -53,6 +53,11 @@ hr {
     margin-right: 5px;
 }
 
+.pagination .current-page {
+    color: red;
+}
+
+
 .search {
     display: flex;
     justify-content: space-between;
