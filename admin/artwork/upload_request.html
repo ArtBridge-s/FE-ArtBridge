@@ -85,6 +85,7 @@
         $(".menu-item.bullet").hide();
 
         $(".menu-item").click(function() {
+            $('.menu-item').removeClass('active');
             // If this is not a bullet item
             if (!$(this).hasClass('bullet')) {
                 // Find the next bullet items
@@ -100,6 +101,7 @@
                 else {
                     $('.menu-item.bullet').hide();
                     $bullet.show();
+                    $(this).addClass('active');
                     // add 'arrow-down' class to the clicked menu item's arrow
                     $(this).find('.arrow').addClass('arrow-down');
                 }
