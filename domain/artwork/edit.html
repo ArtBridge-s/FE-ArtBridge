@@ -14,7 +14,7 @@
         <div class="input-group">
             <input type="text" class="input input-upload" id="fileName" placeholder="이미지 첨부">
             <input type="file" class="btn upload" id="fileUpload">
-            <label for="fileUpload" class="fileUpload">파일 선택</label>
+            <button disabled class="fileUpload">파일 선택</button>
         </div>
         <div class="input-group">
             <input type="text" class="input" id="artworkTitle" placeholder="작품 명을 입력해주세요">
@@ -60,19 +60,19 @@
     }
 
     $(document).ready(function(){
-        var id = new URL(window.location.href).searchParams.get("id");
+        const id = new URL(window.location.href).searchParams.get("id");
         fetchArtworkDetails(id);
 
         $(".form").submit(function(event){
             event.preventDefault();
             const jwtToken = localStorage.getItem('token');
 
-            var artworkData = {
+            const artworkData = {
+                id: id,
                 title: $("#artworkTitle").val(),
-                description: $("#artworkDescription").val(),
-                price: $("#artworkPrice").val(),
-                artist: $("#artworkArtist").val(),
-                details: $("#artworkDetails").val()
+                shortDescription: $("#artworkDescription").val(),
+                artistname: $("#artworkArtist").val(),
+                longDescription: $("#artworkDetails").val()
             };
 
             $.ajax({
@@ -84,11 +84,11 @@
                 contentType: "application/json",
                 data: JSON.stringify(artworkData),
                 success: function(data) {
-                    alert("작품 수정 성공");
-                    location.href = 'artworkDetail.html?id=' + id; // Redirect to the artwork detail page
+                    alert("작품 수정 요청이 완료되었습니다. 관리자 승인 후 수정이 반영됩니다.");
+                    // location.href = 'artworkDetail.html?id=' + id; // Redirect to the artwork detail page
                 },
                 error: function(request, status, error) {
-                    alert("작품 수정 실패");
+                    alert("작품 수정 요청 실패");
                 }
             });
         });
