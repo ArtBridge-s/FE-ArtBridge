@@ -11,10 +11,10 @@
 <div id="sidebar">
     <div id="menu">
         <div class="menu-item">Dashboard</div>
-        <div class="menu-item">작품 정보 관리 <span class="arrow">></span></div>
-        <div class="menu-item bullet" hidden>• 업로드 요청</div>
-        <div class="menu-item bullet" hidden>• 수정 요청</div>
-        <div class="menu-item bullet" hidden>• 삭제 요청</div>
+        <div class="menu-item active">작품 정보 관리 <span class="arrow arrow-down">></span></div>
+        <div class="menu-item bullet" style="background-color: navy">• 업로드 요청</div>
+        <div class="menu-item bullet">• 수정 요청</div>
+        <div class="menu-item bullet">• 삭제 요청</div>
         <div class="menu-item">아티스트 프로필 관리 <span class="arrow">></span></div>
         <div class="menu-item bullet" hidden>• 업로드 요청</div>
         <div class="menu-item bullet" hidden>• 수정 요청</div>
@@ -79,10 +79,9 @@
     </div>
 </div>
 
+
 <script>
     $(document).ready(function() {
-        // Hide all bullets initially
-        $(".menu-item.bullet").hide();
 
         $(".menu-item").click(function() {
             $('.menu-item').removeClass('active');
@@ -109,6 +108,5 @@
         });
     });
 </script>
-
 </body>
 </html>
