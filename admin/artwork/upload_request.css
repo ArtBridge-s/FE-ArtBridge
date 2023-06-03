@@ -41,10 +41,10 @@ body {
     text-align: center;
 }
 
-.menu-item:first-child {
-    font-size: 10px;
-    text-align: left;
-}
+/*.menu-item:first-child {*/
+/*    font-size: 10px;*/
+/*    text-align: left;*/
+/*}*/
 
 .menu-item.bullet {
     font-size: 16px;
@@ -53,11 +53,11 @@ body {
     width: calc(100% - 20px);
 }
 
-.menu-item.bullet:nth-child(4) {
-    background-color: #DC3545;
-    padding: 15px 15px;
-    border-radius: 0 30px 30px 0;
-}
+/*.menu-item.bullet:nth-child(4) {*/
+/*    background-color: #DC3545;*/
+/*    padding: 15px 15px;*/
+/*    border-radius: 0 30px 30px 0;*/
+/*}*/
 
 
 .arrow {
