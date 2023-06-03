@@ -45,7 +45,7 @@ span {
   flex-shrink: 0;
 }
 .Container-LeftMenu {
-  top: 0px;
+  top: 0;
   width: 394.59375px;
   height: 184.3125px;
   display: flex;
@@ -57,7 +57,7 @@ span {
 .BrandName {
   top: 68px;
   color: rgba(51, 61, 65, 0.800000011920929);
-  right: 0px;
+  right: 0;
   height: auto;
   position: absolute;
   font-size: 35px;
@@ -77,9 +77,9 @@ span {
   position: absolute;
 }
 .HomeMenu {
-  left: 0px;
+  left: 0;
   color: rgba(207, 94, 83, 1);
-  bottom: 0px;
+  bottom: 0;
   height: auto;
   position: absolute;
   font-size: 20px;
@@ -157,7 +157,7 @@ span {
 
 .Container-RightMenu {
   top: 45.9765625px;
-  right: 0px;
+  right: 0;
   width: 280px;
   height: 130.96875px;
   display: flex;
@@ -260,7 +260,7 @@ span {
 
 .Container-SearchBar {
   top: 32px;
-  left: 0px;
+  left: 0;
   width: 280px;
   height: 40px;
   display: flex;
