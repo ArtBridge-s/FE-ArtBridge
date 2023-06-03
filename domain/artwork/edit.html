@@ -12,7 +12,7 @@
     <form class="form">
         <p class="recommended-size">권장 사이즈 400X250</p>
         <div class="input-group">
-            <input type="text" class="input input-upload" placeholder="이미지 첨부">
+            <input type="text" class="input input-upload" id="fileName" placeholder="이미지 첨부">
             <input type="file" class="btn upload" id="fileUpload">
             <label for="fileUpload" class="fileUpload">파일 선택</label>
         </div>
@@ -41,11 +41,30 @@
 <script>
     const API_BASE_URL = "http://tobiasdev.ml/services/artwork/api/artworks";
 
+    function fetchArtworkDetails(id) {
+        $.ajax({
+            url: `${API_BASE_URL}/${id}`,
+            type: "GET",
+            success: function(data) {
+                $("#fileName").val(data.imageUrl);
+                $("#artworkTitle").val(data.title);
+                $("#artworkDescription").val(data.shortDescription);
+                $("#artworkPrice").val(data.price);
+                $("#artworkArtist").val(data.artistname);
+                $("#artworkDetails").val(data.longDescription);
+            },
+            error: function(request, status, error) {
+                alert("작품 정보를 불러오는데 실패하였습니다.");
+            }
+        });
+    }
+
     $(document).ready(function(){
+        var id = new URL(window.location.href).searchParams.get("id");
+        fetchArtworkDetails(id);
+
         $(".form").submit(function(event){
             event.preventDefault();
-
-            var id = new URL(window.location.href).searchParams.get("id");
             const jwtToken = localStorage.getItem('token');
 
             var artworkData = {
