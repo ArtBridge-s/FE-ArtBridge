@@ -1,19 +1,3 @@
-* {
-  box-sizing: border-box;
-  border-width: 0;
-  border-style: solid;
-}
-html {
-  line-height: 1.15;
-  scroll-behavior: smooth;
-}
-body {
-  font-weight: 400;
-  letter-spacing: normal;
-  line-height: 1.15;
-  color: var(#595959);
-  background-color: var(#ffffff);
-}
 a {
   font-size: inherit; /* 링크의 텍스트 크기를 부모 요소로 상속 */
   color: inherit; /* 링크의 텍스트 색상을 부모 요소로 상속 */
@@ -28,7 +12,7 @@ span {
 
 .Container {
   width: 100%;
-  height: 1024px;
+  height: 190px;
   display: flex;
   overflow: hidden;
   position: relative;
@@ -38,18 +22,17 @@ span {
 }
 .Container-MenuBar {
   width: 100%;
-  height: 21.48%;
   display: flex;
   overflow: hidden;
   align-items: flex-start;
   flex-shrink: 0;
 }
 .Container-LeftMenu {
-  top: 0px;
+  top: 0;
   width: 394.59375px;
   height: 184.3125px;
   display: flex;
-  position: absolute;
+  position: relative;
   align-items: flex-start;
   margin-left: 6.6%;
   margin-right: 3%;
@@ -57,83 +40,83 @@ span {
 .BrandName {
   top: 68px;
   color: rgba(51, 61, 65, 0.800000011920929);
-  right: 0px;
+  right: 0;
   height: auto;
   position: absolute;
   font-size: 35px;
-  font-style: Regular;
+  font-style: normal;
   text-align: center;
-  font-family: NanumMyeongjo;
+  font-family: NanumMyeongjo, serif;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
   text-decoration: none;
 }
 .ImgLogo {
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 221px;
   height: 137px;
   position: absolute;
 }
 .HomeMenu {
-  left: 0px;
+  left: 0;
   color: rgba(207, 94, 83, 1);
-  bottom: 0px;
+  bottom: 0;
   height: auto;
   position: absolute;
   font-size: 20px;
-  font-style: Regular;
+  font-style: normal;
   text-align: left;
-  font-family: Inter;
+  font-family: Inter, serif;
   font-weight: 400;
   line-height: normal;
-  margin-left: 0%;
+  margin-left: 0;
   font-stretch: normal;
   text-decoration: none;
 }
 .ArtworkMenu {
   left: 45px;
   color: rgba(0, 0, 0, 1);
-  bottom: 0px;
+  bottom: 0;
   height: auto;
   position: absolute;
   font-size: 20px;
-  font-style: Regular;
+  font-style: normal;
   text-align: left;
-  font-family: Inter;
+  font-family: Inter, serif;
   font-weight: 400;
   line-height: normal;
-  margin-left: 0%;
+  margin-left: 0;
   font-stretch: normal;
   text-decoration: none;
 }
 .ExhibitionMenu {
   left: 110px;
   color: rgba(0, 0, 0, 1);
-  bottom: 0px;
+  bottom: 0;
   height: auto;
   position: absolute;
   font-size: 20px;
-  font-style: Regular;
+  font-style: normal;
   text-align: left;
-  font-family: Inter;
+  font-family: Inter, serif;
   font-weight: 400;
   line-height: normal;
-  margin-left: 0%;
+  margin-left: 0;
   font-stretch: normal;
   text-decoration: none;
 }
 .IntroduceMenu {
   left: 190px;
   color: rgba(0, 0, 0, 1);
-  bottom: 0px;
+  bottom: 0;
   height: auto;
   position: absolute;
   font-size: 20px;
-  font-style: Regular;
+  font-style: normal;
   text-align: left;
-  font-family: Inter;
+  font-family: Inter, serif;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
@@ -142,13 +125,13 @@ span {
 .ArtistMenu {
   color: rgba(0, 0, 0, 1);
   right: 73.390625px;
-  bottom: 0px;
+  bottom: 0;
   height: auto;
   position: absolute;
   font-size: 20px;
-  font-style: Regular;
+  font-style: normal;
   text-align: left;
-  font-family: Inter;
+  font-family: Inter, serif;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
@@ -157,7 +140,7 @@ span {
 
 .Container-RightMenu {
   top: 45.9765625px;
-  right: 0px;
+  right: 0;
   width: 280px;
   height: 130.96875px;
   display: flex;
@@ -167,7 +150,7 @@ span {
   margin-right: 6.6%;
 }
 .GroupLoginLogout {
-  top: 0px;
+  top: 0;
   left: 74px;
   width: 123px;
   height: 19px;
@@ -182,9 +165,9 @@ span {
   height: auto;
   position: absolute;
   font-size: 15px;
-  font-style: Regular;
+  font-style: normal;
   text-align: left;
-  font-family: Inter;
+  font-family: Inter, serif;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
@@ -200,9 +183,9 @@ span {
   height: auto;
   position: absolute;
   font-size: 15px;
-  font-style: Regular;
+  font-style: normal;
   text-align: left;
-  font-family: Inter;
+  font-family: Inter, serif;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
@@ -215,9 +198,9 @@ span {
   height: auto;
   position: absolute;
   font-size: 15px;
-  font-style: Regular;
+  font-style: normal;
   text-align: left;
-  font-family: Inter;
+  font-family: Inter, serif;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
@@ -228,7 +211,7 @@ span {
 }
 
 .GroupLanguageSelection {
-  top: 0px;
+  top: 0;
   right: 2.6328125px;
   width: 62px;
   height: 19px;
@@ -242,9 +225,9 @@ span {
   height: auto;
   position: absolute;
   font-size: 15px;
-  font-style: Regular;
+  font-style: normal;
   text-align: left;
-  font-family: Inter;
+  font-family: Inter, serif;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
@@ -260,7 +243,7 @@ span {
 
 .Container-SearchBar {
   top: 32px;
-  left: 0px;
+  left: 0;
   width: 280px;
   height: 40px;
   display: flex;
@@ -292,16 +275,16 @@ span {
   color: rgba(26, 26, 26, 0.699999988079071);
   position: absolute;
   font-size: 15px;
-  font-style: Regular;
+  font-style: normal;
   text-align: left;
-  font-family: Inter;
+  font-family: Inter, serif;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
   text-decoration: none;
 }
 .BtnSearch {
-  top: 0px;
+  top: 0;
   left: 225.33331298828125px;
   width: 21px;
   height: 23px;
@@ -310,7 +293,7 @@ span {
 .BtnUploadArtwork {
   left: 5px;
   width: 130px;
-  bottom: 0px;
+  bottom: 0;
   height: 40px;
   display: flex;
   position: absolute;
@@ -331,9 +314,9 @@ span {
   height: auto;
   position: absolute;
   font-size: 14px;
-  font-style: Medium;
+  font-style: normal;
   text-align: center;
-  font-family: Inter;
+  font-family: Inter, serif;
   font-weight: 500;
   line-height: normal;
   font-stretch: normal;
@@ -342,7 +325,7 @@ span {
 .BtnUploadExhibition {
   right: 2.6328125px;
   width: 130px;
-  bottom: 0px;
+  bottom: 0;
   height: 40px;
   display: flex;
   position: absolute;
@@ -363,20 +346,12 @@ span {
   height: auto;
   position: absolute;
   font-size: 14px;
-  font-style: Medium;
+  font-style: normal;
   text-align: center;
-  font-family: Inter;
+  font-family: Inter, serif;
   font-weight: 500;
   line-height: normal;
   font-stretch: normal;
   text-decoration: none;
 }
 
-.Container-Content {
-  top: 21.48%;
-  width: 100%;
-  height: 78.52%;
-  display: flex;
-  position: absolute;
-  align-items: flex-start;
-}
