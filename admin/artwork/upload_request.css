@@ -29,7 +29,9 @@ body {
     width: 100%;
     margin-top: 20px;
 }
-
+.arrow-down {
+    transform: rotate(90deg);
+}
 .menu-item {
     font-size: 16px;
     color: #FFFFFF;
