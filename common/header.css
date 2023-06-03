@@ -11,8 +11,8 @@ body {
   font-weight: 400;
   letter-spacing: normal;
   line-height: 1.15;
-  color: var(#595959);
-  background-color: var(#ffffff);
+  color: #595959;
+  background-color: #ffffff;
 }
 a {
   font-size: inherit; /* 링크의 텍스트 크기를 부모 요소로 상속 */
