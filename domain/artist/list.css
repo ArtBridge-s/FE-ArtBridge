@@ -29,9 +29,10 @@ hr {
 }
 
 .profile-img {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     border-radius: 1000px;
+    object-fit: contain;
 }
 
 .profile h3 {
@@ -44,9 +45,19 @@ hr {
 .pagination {
     font-weight: 400;
     font-size: 15px;
+    display: flex;
     color: #757678;
     margin-bottom: 20px;
 }
+
+.pagination .page-link, .pagination .current-page {
+    margin-right: 5px;
+}
+
+.pagination .current-page {
+    color: red;
+}
+
 
 .search {
     display: flex;

@@ -5,32 +5,17 @@
     <title>아티스트 프로필 목록 페이지</title>
     <link rel="stylesheet" type="text/css" href="list.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="container">
     <h1>아티스트 프로필 목록</h1>
     <hr>
 
-    <div class="profile">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/VanGogh_1887_Selbstbildnis.jpg" class="profile-img" alt="Artist A">
-        <h3>A</h3>
-    </div>
-    <div class="profile">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/VanGogh_1887_Selbstbildnis.jpg" class="profile-img" alt="Artist B">
-        <h3>B</h3>
-    </div>
-    <div class="profile">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/VanGogh_1887_Selbstbildnis.jpg" class="profile-img" alt="Artist C">
-        <h3>C</h3>
-    </div>
-    <div class="profile">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/VanGogh_1887_Selbstbildnis.jpg" class="profile-img" alt="Artist D">
-        <h3>D</h3>
+    <div id="artistList">
     </div>
 
-
-    <div class="pagination">
-        1 2 3 4 5 6
+    <div class="pagination" id="pagination">
     </div>
 
     <div class="search">
@@ -39,13 +24,55 @@
             <div class="vertical-line"></div>
         </div>
         <div class="input-container">
+            <input type="text" id="searchQuery">
         </div>
         <div class="vertical-line"></div>
-        <div class="icon-container">
+        <div class="icon-container" onclick="search()">
             <span class="material-icons">search</span>
         </div>
     </div>
 </div>
+
+<script>
+    const ITEMS_PER_PAGE = 5;
+
+    function createProfileElement(artwork) {
+        return (
+            '<div class="profile">' +
+            '<img src="' + artwork.imageUrl + '" class="profile-img" alt="Artwork ' + artwork.title + '">' +
+            '<h3>' + artwork.title + '</h3>' +
+            '</div>'
+        );
+    }
+
+    function createPaginationElement(i, page) {
+        if (i === page) {
+            return '<span class="current-page">' + i + '</span>';
+        } else {
+            return '<span class="page-link" onclick="loadArtworks(' + i + ')">' + i + '</span>';
+        }
+    }
+
+    function loadArtworks(page) {
+        $.get(`http://tobiasdev.ml/services/artist/api/artists?page=${page}&size=${ITEMS_PER_PAGE}`, function(data, status, xhr) {
+            $('#artistList').empty();
+            data.forEach(function(artwork) {
+                $('#artistList').append(createProfileElement(artwork));
+            });
+
+            var totalItems = xhr.getResponseHeader('X-Total-Count');
+            var totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE) - 1;
+
+            $('#pagination').empty();
+            for (var i = 1; i <= totalPages; i++) {
+                $('#pagination').append(createPaginationElement(i, page));
+            }
+        });
+    }
+
+    loadArtworks(1);
+</script>
+
+
 </body>
 </html>
-
