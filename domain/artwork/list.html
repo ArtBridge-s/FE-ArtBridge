@@ -5,82 +5,137 @@
     <title>작품 목록 페이지</title>
   </head>
   <link rel="stylesheet" href="list_card.css" />
+  <link rel="stylesheet" href="../exhibition/edit.css" />
   <body>
-    <!-- <div class="card"> -->
-    <!-- <img src="../dummy/exampleImg.png" alt="이미지" class="img" />
-      <div class="textContainer">
-        <text class="titleText">별이 빛나는 밤</text>
-        <text class="text">해당 작품은 ~</text>
-      </div> -->
-    <!-- </div> -->
-    <div id="cards" class="container"></div>
+    <div class="listContainer">
+      <div class="Container-MenuBar">
+        <div class="Container-LeftMenu">
+          <span class="BrandName"><span>아트브릿지</span></span>
+          <a href="../../index.html">
+            <img
+              alt="Logo image"
+              src="images/Logo.png"
+              class="ImgLogo"
+              draggable="false"
+            />
+          </a>
+          <span class="HomeMenu"><a href="../../index.html">홈</a></span>
+          <span class="ArtworkMenu"
+            ><a href="../artwork/list.html">작품</a></span
+          >
+          <span class="ExhibitionMenu"><a href="list.html">전시회</a></span>
+          <span class="IntroduceMenu"><span>소개</span></span>
+          <span class="ArtistMenu"
+            ><a href="../artist/list.html">아티스트</a></span
+          >
+        </div>
+        <div class="Container-RightMenu">
+          <div class="GroupLoginLogout">
+            <span class="TextLogin"
+              ><a href="../member/login.html" id="login">LOGIN</a></span
+            >
+            <span class="TextDelimeter">ㅣ</span>
+            <span class="TextLogout"
+              ><a href="../member/logout.html" id="logout">LOGOUT</a></span
+            >
+          </div>
+          <div class="GroupLanguageSelection">
+            <span class="CurrentLanguage"><span>한국어</span></span>
+            <img
+              alt="LanguageSelect image"
+              src="images/icon_LanguageSelect.png"
+              class="LanguageSelectImgBtn"
+              draggable="false"
+            />
+          </div>
+          <div class="BtnUploadArtwork">
+            <span class="BtnTextUploadArtwork"
+              ><a href="../artwork/upload.html">작품 올리기</a></span
+            >
+          </div>
+          <div class="BtnUploadExhibition">
+            <span class="BtnTextUploadExhibition"
+              ><a href="upload.html">전시회 올리기</a></span
+            >
+          </div>
+          <div class="Container-SearchBar">
+            <div class="GroupSearchInputAndButton">
+              <input id="input" placeholder="Search" class="TextSearchInput" />
+              <a id="searchButton" href="#">
+                <img
+                  alt="Search Button image"
+                  src="images/icon_Search.svg"
+                  class="BtnSearch"
+                  draggable="false"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="cards" class="container"></div>
+    </div>
     <script>
-      const dummy = [
-        {
-          img_src: './exampleImg.png',
-          title: 'This is the title.',
-          content: 'This is the body.',
-        },
-        {
-          img_src: './exampleImg.png',
-          title: 'This is the title1.',
-          content: 'This is the body1.',
-        },
-        {
-          img_src: './exampleImg.png',
-          title: 'This is the title2.',
-          content: 'This is the body2.',
-        },
-        {
-          img_src: './exampleImg.png',
-          title: 'This is the title3.',
-          content: 'This is the body3.',
-        },
-        {
-          img_src: './exampleImg.png',
-          title: 'This is the title4.',
-          content: 'This is the body4.',
-        },
-      ];
-      const $card = document.getElementById('cards');
+      async function JsonData() {
+        const response = await fetch(
+          'http://tobiasdev.ml/services/artwork/api/artworks?page=0&size=20',
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': '*/*',
+            },
+          }
+        );
+        return response.json(); // JSON 응답을 네이티브 JavaScript 객체로 파싱
+      }
 
-      dummy.map((item) => {
-        const imgSrc = `../dummy/${item.img_src}`;
-        const title = item.title;
-        const content = item.content;
+      JsonData().then((data) => {
+        console.log(data);
+        dummy = data;
+        console.log(dummy);
+        const $card = document.getElementById('cards');
 
-        // Creating the card container
-        const cardContainer = document.createElement('div');
-        cardContainer.classList.add('card');
+        dummy.map((item) => {
+          const imgSrc = './images/list/exampleImg.png';
+          const title = item.title;
+          const content = item.shortDescription;
 
-        // Creating the image element
-        const img = document.createElement('img');
-        img.src = imgSrc;
-        img.alt = 'image';
-        img.classList.add('img');
+          // Creating the card container
+          const navigate = document.createElement('a');
+          navigate.setAttribute('href', `detail.html?id=${item.id}`);
+          const cardContainer = document.createElement('div');
+          cardContainer.classList.add('card');
 
-        // Creating the text container
-        const textContainer = document.createElement('div');
-        textContainer.classList.add('textContainer');
+          // Creating the image element
+          const img = document.createElement('img');
+          img.src = imgSrc;
+          img.alt = 'image';
+          img.classList.add('img');
 
-        // Creating the title text element
-        const titleText = document.createElement('text');
-        titleText.classList.add('titleText');
-        titleText.textContent = title;
+          // Creating the text container
+          const textContainer = document.createElement('div');
+          textContainer.classList.add('textContainer');
 
-        // Creating the content text element
-        const contentText = document.createElement('text');
-        contentText.classList.add('text');
-        contentText.textContent = content;
+          // Creating the title text element
+          const titleText = document.createElement('text');
+          titleText.classList.add('titleText');
+          titleText.textContent = title;
 
-        // Appending the image and text elements to the respective containers
-        textContainer.appendChild(titleText);
-        textContainer.appendChild(contentText);
-        cardContainer.appendChild(img);
-        cardContainer.appendChild(textContainer);
+          // Creating the content text element
+          const contentText = document.createElement('text');
+          contentText.classList.add('text');
+          contentText.textContent = content;
 
-        // Appending the card container to the main container
-        $card.appendChild(cardContainer);
+          // Appending the image and text elements to the respective containers
+          navigate.appendChild(cardContainer);
+          textContainer.appendChild(titleText);
+          textContainer.appendChild(contentText);
+          cardContainer.appendChild(img);
+          cardContainer.appendChild(textContainer);
+
+          // Appending the card container to the main container
+          $card.appendChild(navigate);
+        });
       });
     </script>
   </body>
