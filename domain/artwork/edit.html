@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>작품 수정 페이지</title>
     <link rel="stylesheet" type="text/css" href="edit.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="artwork-info">
@@ -16,19 +17,19 @@
             <label for="fileUpload" class="fileUpload">파일 선택</label>
         </div>
         <div class="input-group">
-            <input type="text" class="input" placeholder="작품 명을 입력해주세요">
+            <input type="text" class="input" id="artworkTitle" placeholder="작품 명을 입력해주세요">
         </div>
         <div class="input-group">
-            <textarea class="input input-large" placeholder="작품 소개를 입력해주세요 (글자수 제한)"></textarea>
+            <textarea class="input input-large" id="artworkDescription" placeholder="작품 소개를 입력해주세요 (글자수 제한)"></textarea>
         </div>
         <div class="input-group">
-            <input type="text" class="input" placeholder="가격을 입력해주세요">
+            <input type="text" class="input" id="artworkPrice" placeholder="가격을 입력해주세요">
         </div>
         <div class="input-group">
-            <input type="text" class="input" placeholder="작가를 입력해주세요">
+            <input type="text" class="input" id="artworkArtist" placeholder="작가를 입력해주세요">
         </div>
         <div class="input-group">
-            <textarea class="input input-large" placeholder="작품 설명을 해주세요"></textarea>
+            <textarea class="input input-large" id="artworkDetails" placeholder="작품 설명을 해주세요"></textarea>
         </div>
         <div class="button-group">
             <button type="submit" class="btn btn-small">등록</button>
@@ -36,5 +37,43 @@
         </div>
     </form>
 </div>
+
+<script>
+    const API_BASE_URL = "http://tobiasdev.ml/services/artwork/api/artworks";
+
+    $(document).ready(function(){
+        $(".form").submit(function(event){
+            event.preventDefault();
+
+            var id = new URL(window.location.href).searchParams.get("id");
+            const jwtToken = localStorage.getItem('token');
+
+            var artworkData = {
+                title: $("#artworkTitle").val(),
+                description: $("#artworkDescription").val(),
+                price: $("#artworkPrice").val(),
+                artist: $("#artworkArtist").val(),
+                details: $("#artworkDetails").val()
+            };
+
+            $.ajax({
+                url: `${API_BASE_URL}/${id}`,
+                type: "PUT",
+                headers: {
+                    'Authorization': 'Bearer ' + jwtToken
+                },
+                contentType: "application/json",
+                data: JSON.stringify(artworkData),
+                success: function(data) {
+                    alert("작품 수정 성공");
+                    location.href = 'artworkDetail.html?id=' + id; // Redirect to the artwork detail page
+                },
+                error: function(request, status, error) {
+                    alert("작품 수정 실패");
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
