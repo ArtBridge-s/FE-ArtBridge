@@ -41,10 +41,10 @@
             <th class="col">img</th>
             <th class="col">short des</th>
             <th class="col">long des</th>
-            <th class="col">phone</th>
-            <th class="col">career</th>
-            <th class="col">artworks</th>
-            <th class="col center">업로드 처리</th>
+            <th class="col">artist name</th>
+            <th class="col">created by</th>
+            <th class="col">요청 날짜</th>
+            <th class="col center">선택</th>
         </tr>
         <tr>
             <td>ID</td>
@@ -131,23 +131,24 @@
             });
         }
 
-        // function populateTable(data) {
-        //     data.forEach(function(item) {
-        //         var row = `
-        //             <div class="tr">
-        //                 <div class="">${item.id}</div>
-        //                 <div class="">${item.createdMember}</div>
-        //                 <div class=""><img src="${item.imageUrl}"/></div>
-        //                 <div class="">${item.name}</div>
-        //                 <div class="">${item.realName}</div>
-        //                 <div class="">${item.phone}</div>
-        //                 <div class="">${item.career}</div>
-        //                 <div class="center">${item.artworks}</div>
-        //                 <div class="center">선택</div>
-        //             </div>`;
-        //         $('.table').append(row);
-        //     });
-        // }
+        function populateTable(data) {
+            data.forEach(function(item) {
+                var row = `
+            <tr>
+                <td>${item.id}</td>
+                <td>${item.title}</td>
+                <td><a href="${item.imageUrl}">${item.imageUrl}</a></td>
+                <td>${item.shortDescription}</td>
+                <td>${item.longDescription}</td>
+                <td>${item.artistname}</td>
+                <td>${item.member$login}</td>
+                <td>${item.createdAt}</td>
+                <td class="center"><button class="selectBtn">선택</button></td>
+            </tr>`;
+                $('.table').append(row);
+            });
+        }
+
     });
 </script>
 
