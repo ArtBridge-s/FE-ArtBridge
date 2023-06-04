@@ -108,5 +108,47 @@
         });
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+        fetchPendingArtworkCreations();
+
+        function fetchPendingArtworkCreations() {
+            $.ajax({
+                url: 'http://tobiasdev.ml/services/artwork/api/artworks/pending/creates',  // Change this to your actual API endpoint
+                type: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+                success: function(data) {
+                    populateTable(data);
+                },
+                error: function(xhr, textStatus, error) {
+                    console.error("Error: " + xhr.status + " " + xhr.statusText);
+                    alert(`요청이 실패하였습니다. 다시 시도해주세요.`);
+                }
+            });
+        }
+
+        function populateTable(data) {
+            data.forEach(function(item) {
+                var row = `
+                    <div class="tr">
+                        <div class="">${item.id}</div>
+                        <div class="">${item.createdMember}</div>
+                        <div class=""><img src="${item.imageUrl}"/></div>
+                        <div class="">${item.name}</div>
+                        <div class="">${item.realName}</div>
+                        <div class="">${item.phone}</div>
+                        <div class="">${item.career}</div>
+                        <div class="center">${item.artworks}</div>
+                        <div class="center">선택</div>
+                    </div>`;
+                $('.table').append(row);
+            });
+        }
+    });
+</script>
+
 </body>
 </html>
