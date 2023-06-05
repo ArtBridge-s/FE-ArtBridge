@@ -126,7 +126,7 @@
                 <td>${item.career}</td>
                 <td>${item.artworkDTO$title}</td>
                 <td>${item.memberDTO$login + ` ` + item.memberDTO$name}</td>
-                <td class="center"><button class="selectBtn">선택</button></td>
+                <td class="center"><button class="selectBtn">허가</button></td>
             </tr>`;
                 $('.table').append(row);
             });
@@ -134,6 +134,31 @@
 
     });
 </script>
+
+<script>
+    $(document).ready(function() {
+        $(document).on("click", ".selectBtn", function() {
+            const id = $(this).closest('tr').find('td:first').text();
+
+            $.ajax({
+                url: `http://tobiasdev.ml/services/artist/api/artists/${id}/authorized/ok`,
+                type: 'PATCH',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+                success: function(data) {
+                    alert(`아티스트 ${id}의 수정 요청이 승인되었습니다.`);
+                    location.reload();
+                },
+                error: function(xhr, textStatus, error) {
+                    console.error("Error: " + xhr.status + " " + xhr.statusText);
+                    alert(`요청이 실패하였습니다. 다시 시도해주세요.`);
+                }
+            });
+        });
+    });
+</script>
+
 
 </body>
 </html>
