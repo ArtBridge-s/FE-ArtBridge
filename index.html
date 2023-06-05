@@ -330,5 +330,15 @@
       });
     </script>
 
+    <script>
+      window.addEventListener('DOMContentLoaded', (event) => {
+        if(localStorage.getItem('token')) {
+          document.querySelector('.LoginContainer').style.display = 'none';
+        } else {
+          document.querySelector('.LogoutText').style.display = 'none';
+        }
+      });
+    </script>
+
   </body>
 </html>
