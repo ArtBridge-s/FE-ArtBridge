@@ -302,6 +302,7 @@
     </script>
 
 
+    <!--관리자이면 관리자 페이지로 이동하기 버튼 추가-->
     <script>
       window.addEventListener('DOMContentLoaded', (event) => {
         const auth = JSON.parse(atob(localStorage.getItem('token').split('.')[1])).auth;
