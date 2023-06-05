@@ -215,51 +215,27 @@
       });
     </script>
 
-    <!--Silde show1-->
+    <!--Silde show-->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const sliderImages = document.querySelectorAll(".slider1 img");
-        let currentImage = 0;
+        const sliders = [
+          { images: document.querySelectorAll(".slider1 img"), interval: 6000 },
+          { images: document.querySelectorAll(".slider2 img"), interval: 9000 },
+          { images: document.querySelectorAll(".slider3 img"), interval: 14000 },
+        ];
 
-        function updateSlider() {
-          sliderImages.forEach((img) => img.classList.remove("active"));
-          sliderImages[currentImage].classList.add("active");
-          currentImage = (currentImage + 1) % sliderImages.length;
-        }
-        updateSlider();
-        setInterval(updateSlider, 6000);
-      });
-    </script>
+        sliders.forEach((slider) => {
+          let currentImage = 0;
 
-    <!--Silde show2-->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const sliderImages = document.querySelectorAll(".slider2 img");
-        let currentImage = 0;
+          function updateSlider() {
+            slider.images.forEach((img) => img.classList.remove("active"));
+            slider.images[currentImage].classList.add("active");
+            currentImage = (currentImage + 1) % slider.images.length;
+          }
 
-        function updateSlider() {
-          sliderImages.forEach((img) => img.classList.remove("active"));
-          sliderImages[currentImage].classList.add("active");
-          currentImage = (currentImage + 1) % sliderImages.length;
-        }
-        updateSlider();
-        setInterval(updateSlider, 9000);
-      });
-    </script>
-
-    <!--Silde show3-->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const sliderImages = document.querySelectorAll(".slider3 img");
-        let currentImage = 0;
-
-        function updateSlider() {
-          sliderImages.forEach((img) => img.classList.remove("active"));
-          sliderImages[currentImage].classList.add("active");
-          currentImage = (currentImage + 1) % sliderImages.length;
-        }
-        updateSlider();
-        setInterval(updateSlider, 14000);
+          updateSlider();
+          setInterval(updateSlider, slider.interval);
+        });
       });
     </script>
 
