@@ -237,7 +237,6 @@ body {
 .CurrentMenu {
   top: 159px;
   left: 187px;
-  color: rgba(207, 94, 83, 1);
   height: auto;
   position: absolute;
   font-size: 20px;
@@ -246,66 +245,47 @@ body {
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
+}
+
+.Menu1,
+.Menu2,
+.Menu3,
+.Menu4 {
+  top: 158px;
+  color: rgba(0, 0, 0, 1);
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.CurrentMenu {
+  color: rgba(207, 94, 83, 1);
   text-decoration: underline;
   text-underline-offset: 5px;
 }
 
 .Menu1 {
-  top: 158px;
   left: 240px;
-  color: rgba(0, 0, 0, 1);
-  height: auto;
-  position: absolute;
-  font-size: 20px;
-  text-align: left;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
 }
+
 .Menu2 {
-  top: 158px;
   left: 307px;
-  color: rgba(0, 0, 0, 1);
-  height: auto;
-  position: absolute;
-  font-size: 20px;
-  text-align: left;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
 }
+
 .Menu3 {
-  top: 158px;
   left: 393px;
-  color: rgba(0, 0, 0, 1);
-  height: auto;
-  position: absolute;
-  font-size: 20px;
-  text-align: left;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
 }
+
 .Menu4 {
-  top: 158px;
   left: 460px;
-  color: rgba(0, 0, 0, 1);
-  height: auto;
-  position: absolute;
-  font-size: 20px;
-  text-align: left;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
 }
+
 
 .LoginContainer {
   top: 46px;
