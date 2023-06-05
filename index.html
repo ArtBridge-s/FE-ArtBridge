@@ -300,5 +300,34 @@
         setInterval(updateSlider, 14000);
       });
     </script>
+
+
+    <script>
+      window.addEventListener('DOMContentLoaded', (event) => {
+        const auth = JSON.parse(atob(localStorage.getItem('token').split('.')[1])).auth;
+
+        if (auth.includes('ROLE_ADMIN')) {
+          const uploadContainer2 = document.querySelector('.UploadContainer2');
+          const adminButtonContainer = document.createElement('div');
+          adminButtonContainer.classList.add('AdminButtonContainer');
+
+          const adminButtonSubContainer = document.createElement('div');
+          adminButtonSubContainer.classList.add('AdminButtonSubContainer');
+
+          const adminButtonText = document.createElement('span');
+          adminButtonText.classList.add('AdminButtonText');
+
+          const adminButtonLink = document.createElement('a');
+          adminButtonLink.href = 'admin/artwork/upload_request.html';
+          adminButtonLink.innerText = '>> 관리자 페이지로 이동하기';
+
+          adminButtonText.appendChild(adminButtonLink);
+          adminButtonSubContainer.appendChild(adminButtonText);
+          adminButtonContainer.appendChild(adminButtonSubContainer);
+          uploadContainer2.after(adminButtonContainer);
+        }
+      });
+    </script>
+
   </body>
 </html>
