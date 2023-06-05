@@ -652,33 +652,3 @@ body {
   white-space: nowrap;
 }
 
-.LanguageContainer {
-  top: 46px;
-  left: 1794px;
-  width: 42px;
-  height: 19px;
-  display: flex;
-  position: absolute;
-  align-items: flex-start;
-  flex-shrink: 1;
-}
-.LanguageText {
-  color: rgba(0, 0, 0, 1);
-  width: 42px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  text-align: left;
-  font-family: Inter;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-.imgLanguageSelectButton {
-  top: 47px;
-  left: 1842px;
-  width: 14px;
-  height: 14px;
-  position: absolute;
-}
