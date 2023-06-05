@@ -29,9 +29,9 @@ span {
 
 .list {
   width: 100%;
-  margin: 1em 0px 1em 0px;
+  margin: 1em 0 1em 0;
   display: block;
-  padding: 0px 0px 0px 1.5rem;
+  padding: 0 0 0 1.5rem;
   list-style-type: none;
   list-style-position: outside;
 }
@@ -212,7 +212,7 @@ body {
 }
 
 .Logo {
-  top: 0px;
+  top: 0;
   left: 198px;
   width: 221px;
   height: 137px;
@@ -412,7 +412,7 @@ body {
 }
 
 .SearchButton {
-  top: 0px;
+  top: 0;
   left: 225.33331298828125px;
   width: 21px;
   height: 23px;
@@ -430,8 +430,8 @@ body {
   flex-shrink: 1;
 }
 .UploadSubContainer {
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 130px;
   height: 40px;
   display: flex;
@@ -470,8 +470,8 @@ body {
   flex-shrink: 1;
 }
 .UploadSubContainer2 {
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
   width: 130px;
   height: 40px;
   display: flex;
