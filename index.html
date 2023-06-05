@@ -52,11 +52,7 @@
       <div class="Container">
         <!--Logo and Main Menus-->
         <a href="./index.html">
-          <img
-            src="images/Logo.png"
-            alt="Logo image"
-            class="Logo"
-          />
+          <img src="images/Logo.png" alt="Logo image" class="Logo" />
         </a>
         <span class="LogoText">
           <span>아트브릿지</span>
@@ -83,20 +79,10 @@
             <a href="domain/member/login.html">LOGIN</a>
           </span>
         </div>
-        <span class="delimiter">ㅣ</span>
         <span class="LogoutText">
           <a href="domain/member/delete.html">LOGOUT</a>
         </span>
-        <div class="LanguageContainer">
-          <span class="LanguageText">
-            <span id="selectedLanguage">한국어</span>
-          </span>
-        </div>
-        <img
-          src="images/LanguageSelectButton.png"
-          class="imgLanguageSelectButton"
-          alt=".."
-        />
+        <img src="images/SearchIcon.svg" alt="Search Icon" class="SearchButton" />
 
         <!--Search Bar-->
         <div class="SearchContainer">
@@ -129,11 +115,7 @@
 
       <!--Main Contents-->
       <span class="Content1Title"><span>About ArtBridge</span></span>
-      <img
-        src="images/Introduce.png"
-        alt="Introduce Image"
-        class="imgContent1"
-      />
+      <img src="images/Introduce.png" alt="Introduce Image" class="imgContent1"/>
       <span class="Content1Text">
         <span>
           아트브릿지는 비영리 예술 커뮤니케이션 서비스입니다. 공유하고 싶은
@@ -152,26 +134,11 @@
         <span>Popular Artworks</span>
       </span>
       <div class="slider1">
-        <img
-          src="images/Artwork3.jpg"
-          alt="Artwork3 Image"
-          class="imgContent2 actice"
-        />
-        <img
-          src="images/Artwork.png"
-          alt="Artwork Image"
-          class="imgContent2"
-        />
-        <img
-          src="images/Artwork2.jpg"
-          alt="Artwork2 Image"
-          class="imgContent2"
-        />
-        <img
-          src="images/Artwork4.jpg"
-          alt="Artwork4 Image"
-          class="imgContent2"
-        />
+        <img src="images/Artwork3.jpg" alt="Artwork3 Image" class="imgContent2 active" />
+        <img src="images/Artwork.png" alt="Artwork Image" class="imgContent2" />
+        <img src="images/Artwork2.jpg" alt="Artwork2 Image" class="imgContent2" />
+        <img src="images/Artwork4.jpg" alt="Artwork4 Image" class="imgContent2" />
+
       </div>
       <div class="Content2More">
         <a href="domain/artwork/list.html">see more</a>
@@ -180,26 +147,10 @@
         <span>Today's Artists</span>
       </span>
       <div class="slider2">
-        <img
-          src="images/Artist.png"
-          alt="Artist Image"
-          class="imgContent3 active"
-        />
-        <img
-          src="images/Artist2.jpg"
-          alt="Artist2 Image"
-          class="imgContent3"
-        />
-        <img
-          src="images/Artist3.jpg"
-          alt="Artist3 Image"
-          class="imgContent3"
-        />
-        <img
-          src="images/Artist4.jpg"
-          alt="Artist4 Image"
-          class="imgContent3"
-        />
+        <img src="images/Artist.png" alt="Artist Image" class="imgContent3 active" />
+        <img src="images/Artist2.jpg" alt="Artist2 Image" class="imgContent3" />
+        <img src="images/Artist3.jpg" alt="Artist3 Image" class="imgContent3" />
+        <img src="images/Artist4.jpg" alt="Artist4 Image" class="imgContent3"/>
       </div>
       <span class="Content3More">
         <a href="domain/artist/list.html">see more</a>
@@ -208,26 +159,15 @@
         <span>Current Exhibitions</span>
       </span>
       <div class="slider3">
-        <img
-          src="images/Exhibition.png"
-          alt="Exhibition Image"
-          class="imgContent4 active"
-        />
-        <img
-          src="images/Exhibition2.jpg"
-          alt="Exhibition2 Image"
-          class="imgContent4"
-        />
-        <img
-          src="images/Exhibition3.jpg"
-          alt="Exhibition3 Image"
-          class="imgContent4"
-        />
+        <img src="images/Exhibition.png" alt="Exhibition Image" class="imgContent4 active"/>
+        <img src="images/Exhibition2.jpg" alt="Exhibition2 Image" class="imgContent4"/>
+        <img src="images/Exhibition3.jpg" alt="Exhibition3 Image" class="imgContent4"/>
       </div>
       <span class="Content4More">
         <a href="domain/exhibition/list.html">see more</a>
       </span>
     </div>
+
     <!--페이지 로드 시 페이드 인 효과-->
     <script>
       jQuery(function ($) {
@@ -243,6 +183,7 @@
         }
       });
     </script>
+
     <!--검색창 기능-->
     <script>
       let link = document.getElementById("searchButton");
@@ -255,50 +196,70 @@
         window.location.href = url;
       });
     </script>
-    <!--Silde show1-->
+
+    <!--Silde show-->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const sliderImages = document.querySelectorAll(".slider1 img");
-        let currentImage = 0;
+        const sliders = [
+          { images: document.querySelectorAll(".slider1 img"), interval: 6000 },
+          { images: document.querySelectorAll(".slider2 img"), interval: 9000 },
+          { images: document.querySelectorAll(".slider3 img"), interval: 14000 },
+        ];
 
-        function updateSlider() {
-          sliderImages.forEach((img) => img.classList.remove("active"));
-          sliderImages[currentImage].classList.add("active");
-          currentImage = (currentImage + 1) % sliderImages.length;
-        }
-        updateSlider();
-        setInterval(updateSlider, 6000);
+        sliders.forEach((slider) => {
+          let currentImage = 0;
+
+          function updateSlider() {
+            slider.images.forEach((img) => img.classList.remove("active"));
+            slider.images[currentImage].classList.add("active");
+            currentImage = (currentImage + 1) % slider.images.length;
+          }
+
+          updateSlider();
+          setInterval(updateSlider, slider.interval);
+        });
       });
     </script>
-    <!--Silde show2-->
+
+
+    <!--관리자이면 관리자 페이지로 이동하기 버튼 추가-->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const sliderImages = document.querySelectorAll(".slider2 img");
-        let currentImage = 0;
+      window.addEventListener('DOMContentLoaded', (event) => {
+        const auth = JSON.parse(atob(localStorage.getItem('token').split('.')[1])).auth;
 
-        function updateSlider() {
-          sliderImages.forEach((img) => img.classList.remove("active"));
-          sliderImages[currentImage].classList.add("active");
-          currentImage = (currentImage + 1) % sliderImages.length;
+        if (auth.includes('ROLE_ADMIN')) {
+          const uploadContainer2 = document.querySelector('.UploadContainer2');
+          const adminButtonContainer = document.createElement('div');
+          adminButtonContainer.classList.add('AdminButtonContainer');
+
+          const adminButtonSubContainer = document.createElement('div');
+          adminButtonSubContainer.classList.add('AdminButtonSubContainer');
+
+          const adminButtonText = document.createElement('span');
+          adminButtonText.classList.add('AdminButtonText');
+
+          const adminButtonLink = document.createElement('a');
+          adminButtonLink.href = 'admin/artwork/upload_request.html';
+          adminButtonLink.innerText = '>> 관리자 페이지로 이동하기';
+
+          adminButtonText.appendChild(adminButtonLink);
+          adminButtonSubContainer.appendChild(adminButtonText);
+          adminButtonContainer.appendChild(adminButtonSubContainer);
+          uploadContainer2.after(adminButtonContainer);
         }
-        updateSlider();
-        setInterval(updateSlider, 9000);
       });
     </script>
-    <!--Silde show3-->
+
+    <!--로그인 상태에 따라 로그인/로그아웃 버튼 보이기-->
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const sliderImages = document.querySelectorAll(".slider3 img");
-        let currentImage = 0;
-
-        function updateSlider() {
-          sliderImages.forEach((img) => img.classList.remove("active"));
-          sliderImages[currentImage].classList.add("active");
-          currentImage = (currentImage + 1) % sliderImages.length;
+      window.addEventListener('DOMContentLoaded', (event) => {
+        if(localStorage.getItem('token')) {
+          document.querySelector('.LoginContainer').style.display = 'none';
+        } else {
+          document.querySelector('.LogoutText').style.display = 'none';
         }
-        updateSlider();
-        setInterval(updateSlider, 14000);
       });
     </script>
+
   </body>
 </html>
