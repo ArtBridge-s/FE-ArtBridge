@@ -9,6 +9,10 @@ body {
     font-size: 16px;
 }
 
+a {
+    text-decoration: none;
+}
+
 #sidebar {
     position: fixed;
     width: 259px;
