@@ -5,19 +5,20 @@
     <link rel="stylesheet" type="text/css" href="detail.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <title>작품 상세 조회 페이지</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="container">
     <div class="image">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/757px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg?20121101035929" alt="별이 빛나는 밤">
+        <img id="artworkImage" src="" alt="">
     </div>
     <div class="info">
-        <h1>별이 빛나는 밤</h1>
+        <h1 id="artworkTitle"></h1>
         <div class="description-metadata">
-            <p class="description">고흐의 '별이 빛나는 밤'은 19세기 후반, 프랑스의 생 푸아 풍경을 그린 작품으로, 작가의 대표작 중 하나입니다.
-                또한 1889년 6월, 고흐가 생활한 프랑스의 생 푸아 지역에서 그려졌습니다.</p>
+            <p id="artworkDescription" class="description"></p>
             <div class="metadata">
-                <p class="author">작가명 빈센트 반 고흐<br>제작연도 1989<br><br><br></p>
+                <p id="artworkAuthor" class="author"></p>
+                <p id="artworkYear" class="year"></p>
             </div>
         </div>
         <div class="actions">
@@ -29,31 +30,130 @@
         </div>
         <p class="copyright">※ 모든 작품과 콘텐츠는 저작권법에 의하여 보호를 받아요. 저작권 사용 동의 없이 무단 복제 및 배포할 수 없어요</p>
         <div class="comments">
-            <div class="comment">
-                <div class="user-icon"><i class="fas fa-circle"></i></div>
-                <div class="username">임건영</div>
-                <div class="comment-text">우와 멋있어요 ~ 작품이 대단하네요</div>
-            </div>
-            <div class="comment">
-                <div class="user-icon"><i class="fas fa-circle"></i></div>
-                <div class="username">김건우</div>
-                <div class="comment-text">우와 멋있어요 ~ 작품이 대단하네요</div>
-            </div>
-            <div class="comment">
-                <div class="user-icon"><i class="fas fa-circle"></i></div>
-                <div class="username">박가현</div>
-                <div class="comment-text">우와 멋있어요 ~ 작품이 대단하네요</div>
-            </div>
+            <!-- Comment section -->
         </div>
         <div class="add-comment">
             <label>
                 <i class="fas fa-smile"></i>
-                <input type="text" placeholder="댓글 달기">
+                <input id="commentInput" type="text" placeholder="댓글 달기">
             </label>
             <button class="post"> 게시</button>
         </div>
+
     </div>
 
 </div>
+
+<script>
+    const API_BASE_URL = "http://tobiasdev.ml/services/artwork/api";
+
+    function getArtwork() {
+        var id = new URL(window.location.href).searchParams.get("id");
+        var artworkUrl = `${API_BASE_URL}/artworks/${id}`;
+
+        $.get(artworkUrl, function(data, status, xhr) {
+            if (status === "success") {
+                $("#artworkImage").attr("src", data.imageUrl);
+                $("#artworkImage").attr("alt", data.title);
+                $("#artworkTitle").text(data.title);
+                $("#artworkDescription").text(data.shortDescription);
+                $("#artworkAuthor").text("작가명 " + data.artistname);
+                $("#artworkYear").text("제작연도 " + data.makingday);
+                getComments(id); // 댓글 조회 API 호출
+            }
+        });
+    }
+
+    // 댓글 조회 함수
+    function getComments(artworkId) {
+        var commentsUrl = `${API_BASE_URL}/comments?artworkId=${artworkId}`;
+
+        $.get(commentsUrl, function(data, status, xhr) {
+            if (status === "success") {
+                $('.comments').html(''); // 기존에 로드된 댓글들을 삭제
+                data.forEach(comment => {
+                    $('.comments').append(`
+                        <div class="comment">
+                            <p class="comment-text">${comment.content}</p>
+                            <p class="comment-text">${comment.name}</p>
+                            <!--TODO: -날짜 추가-->
+                        </div>
+                    `);
+                });
+            }
+        });
+    }
+
+    function postComment() {
+        var commentText = $("#commentInput").val();
+        var id = new URL(window.location.href).searchParams.get("id");
+        const jwtToken = localStorage.getItem('token');
+
+        var commentData = {
+            artwork: {
+                id: id // 해당 아트워크의 id
+            },
+            content: commentText // 댓글 내용
+        };
+
+        $.ajax({
+            url: `${API_BASE_URL}/comments`,
+            type: "POST",
+            headers: {
+                'Authorization': 'Bearer ' + jwtToken
+            },
+            contentType: "application/json",
+            data: JSON.stringify(commentData),
+            success: function(data) {
+                // 댓글을 성공적으로 게시했을 때 수행할 작업
+                // 댓글 목록 새로고침
+                getComments(id);
+                alert("댓글 게시 성공");
+                $("#commentInput").val(''); // 입력된 댓글 내용 초기화
+            },
+            error: function(request, status, error) {
+                alert("댓글 게시 실패");
+            }
+        });
+    }
+
+    function likeArtwork() {
+        var id = new URL(window.location.href).searchParams.get("id");
+        const jwtToken = localStorage.getItem('token');
+
+        var likeData = {
+            artwork: {
+                id: id
+            },
+        };
+
+        $.ajax({
+            url: `${API_BASE_URL}/likes`,
+            type: "POST",
+            headers: {
+                'Authorization': 'Bearer ' + jwtToken
+            },
+            contentType: "application/json",
+            data: JSON.stringify(likeData),
+            success: function(data) {
+                alert("작품 좋아요 성공");
+                $('.like').addClass('liked'); // Add 'liked' class to the like button
+            },
+            error: function(request, status, error) {
+                alert("작품 좋아요 실패");
+            }
+        });
+    }
+
+
+    $(document).ready(getArtwork);
+    $(document).on('click', '.post', postComment);
+    $(document).on('click', '.like', likeArtwork);
+</script>
+
+<script>
+</script>
+
+
 </body>
 </html>
