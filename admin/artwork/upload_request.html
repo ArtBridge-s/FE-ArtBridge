@@ -96,6 +96,11 @@
     $(document).ready(function() {
         fetchPendingArtworkCreations();
 
+        $(".btns li:contains('Refresh list')").click(function() {
+            $(".table tr:gt(0)").remove();  // This removes all table rows except the first (header) row
+            fetchPendingArtworkCreations(); // Calls the function to fetch and populate the table again
+        });
+
         function fetchPendingArtworkCreations() {
             $.ajax({
                 url: 'http://tobiasdev.ml/services/artwork/api/artworks/pending/creates',  // Change this to your actual API endpoint
