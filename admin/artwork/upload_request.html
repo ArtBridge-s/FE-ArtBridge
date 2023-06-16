@@ -89,21 +89,16 @@
                 }
             }
         });
-    });
-</script>
 
-<script>
-    $(document).ready(function() {
         fetchPendingArtworkCreations();
 
-        $(".btns li:contains('Refresh list')").click(function() {
-            $(".table tr:gt(0)").remove();  // This removes all table rows except the first (header) row
-            fetchPendingArtworkCreations(); // Calls the function to fetch and populate the table again
+        $(".btns li:contains('업로드 요청')").click(function() {
+            uploadArtworkRequest();
         });
 
         function fetchPendingArtworkCreations() {
             $.ajax({
-                url: 'http://tobiasdev.ml/services/artwork/api/artworks/pending/creates',  // Change this to your actual API endpoint
+                url: 'http://tobiasdev.ml/services/artwork/api/artworks/pending/creates',
                 type: 'GET',
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
@@ -113,7 +108,7 @@
                 },
                 error: function(xhr, textStatus, error) {
                     console.error("Error: " + xhr.status + " " + xhr.statusText);
-                    alert(`요청이 실패하였습니다. 다시 시도해주세요.`);
+                    alert('요청이 실패하였습니다. 다시 시도해주세요.');
                 }
             });
         }
@@ -121,26 +116,39 @@
         function populateTable(data) {
             data.forEach(function(item) {
                 var row = `
-            <tr>
-                <td>${item.id}</td>
-                <td>${item.title}</td>
-                <td><a href="${item.imageUrl}">${item.imageUrl}</a></td>
-                <td>${item.shortDescription}</td>
-                <td>${item.longDescription}</td>
-                <td>${item.artistname}</td>
-                <td>${item.member$login}</td>
-                <td>${item.createdAt}</td>
-                <td class="center"><button class="selectBtn">선택</button></td>
-            </tr>`;
+                    <tr>
+                        <td>${item.id}</td>
+                        <td>${item.title}</td>
+                        <td><a href="${item.imageUrl}">${item.imageUrl}</a></td>
+                        <td>${item.shortDescription}</td>
+                        <td>${item.longDescription}</td>
+                        <td>${item.artistname}</td>
+                        <td>${item["created by"]}</td>
+                        <td>${item.createdAt}</td>
+                        <td class="center"><button class="selectBtn">선택</button></td>
+                    </tr>`;
                 $('.table').append(row);
             });
         }
 
-    });
-</script>
+        function uploadArtworkRequest() {
+            $.ajax({
+                url: 'http://tobiasdev.ml/services/artwork/api/artworks/upload',
+                type: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+                success: function(data) {
+                    alert('작품 업로드 요청이 성공적으로 이루어졌습니다.');
+                    location.reload();
+                },
+                error: function(xhr, textStatus, error) {
+                    console.error("Error: " + xhr.status + " " + xhr.statusText);
+                    alert('작품 업로드 요청이 실패하였습니다. 다시 시도해주세요.');
+                }
+            });
+        }
 
-<script>
-    $(document).ready(function() {
         $(document).on("click", ".selectBtn", function() {
             const id = $(this).closest('tr').find('td:first').text();
 
@@ -151,16 +159,17 @@
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
                 success: function(data) {
-                    alert(`아티스트 ${id}의 수정 요청이 승인되었습니다.`);
+                    alert(`아티스트 ${id}의 업로드 요청이 승인되었습니다.`);
                     location.reload();
                 },
                 error: function(xhr, textStatus, error) {
                     console.error("Error: " + xhr.status + " " + xhr.statusText);
-                    alert(`요청이 실패하였습니다. 다시 시도해주세요.`);
+                    alert('요청이 실패하였습니다. 다시 시도해주세요.');
                 }
             });
         });
     });
 </script>
+
 </body>
 </html>
