@@ -1,92 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>전시회 정보 리스트 조회</title>
-    <!--.css 연결-->
-    <link rel="stylesheet" href="list.css" />
-    <!--폰트 연결-->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
-      data-tag="font"
-    />
-    <!--파비콘-->
-    <link rel="icon" type="image/png" href="./edit_resource/Favicon.png" />
-    <link rel="stylesheet" href="./edit.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>전시회 정보 리스트 조회</title>
+  <link rel="stylesheet" href="list.css" />
+  <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+          data-tag="font"
+  />
+  <link rel="icon" type="image/png" href="./edit_resource/Favicon.png" />
+  <link rel="stylesheet" href="./edit.css" />
+</head>
 
-  <body>
-    <div class="listContainer">
-      <div class="">
-        <div class="Container-LeftMenu">
-          <span class="BrandName"><span>아트브릿지</span></span>
-          <a href="../index.html">
+<body>
+<div class="listContainer">
+  <div class="">
+    <div class="Container-LeftMenu">
+      <span class="BrandName"><span>아트브릿지</span></span>
+      <a href="../index.html">
+        <img
+                alt="Logo image"
+                src="images/edit/Logo.png"
+                class="ImgLogo"
+                draggable="false"
+        />
+      </a>
+      <span class="HomeMenu"><a href="../index.html">홈</a></span>
+      <span class="ArtworkMenu"
+      ><a href="../artwork/list.html">작품</a></span
+      >
+      <span class="ExhibitionMenu"
+      ><a href="../exhibition/list.html">전시회</a></span
+      >
+      <span class="IntroduceMenu"><span>소개</span></span>
+      <span class="ArtistMenu"
+      ><a href="../artist/list.html">아티스트</a></span
+      >
+    </div>
+    <div class="Container-RightMenu">
+      <div class="GroupLoginLogout">
+            <span class="TextLogin"
+            ><a href="../member/login.html" id="login">LOGIN</a></span
+            >
+        <span class="TextDelimeter">ㅣ</span>
+        <span class="TextLogout"
+        ><a href="../member/logout.html" id="logout">LOGOUT</a></span
+        >
+      </div>
+      <div class="GroupLanguageSelection">
+        <span class="CurrentLanguage"><span>한국어</span></span>
+        <img
+                alt="LanguageSelect image"
+                src="images/edit/icon_LanguageSelect.png"
+                class="LanguageSelectImgBtn"
+                draggable="false"
+        />
+      </div>
+      <div class="BtnUploadArtwork">
+            <span class="BtnTextUploadArtwork"
+            ><a href="../artwork/upload.html">작품 올리기</a></span
+            >
+      </div>
+      <div class="BtnMyPage">
+            <span class="BtnMyPage"
+            ><a href="../member/mypage.html">마이페이지</a></span
+            >
+      </div>
+      <div class="BtnUploadExhibition">
+            <span class="BtnTextUploadExhibition"
+            ><a href="../exhibition/upload.html">전시회 올리기</a></span
+            >
+      </div>
+      <div class="Container-SearchBar">
+        <div class="GroupSearchInputAndButton">
+          <input id="input" placeholder="Search" class="TextSearchInput" />
+          <a id="searchButton" href="#">
             <img
-              alt="Logo image"
-              src="images/edit/Logo.png"
-              class="ImgLogo"
-              draggable="false"
+                    alt="Search Button image"
+                    src="images/edit/icon_Search.svg"
+                    class="BtnSearch"
+                    draggable="false"
             />
           </a>
-          <span class="HomeMenu"><a href="../index.html">홈</a></span>
-          <span class="ArtworkMenu"
-            ><a href="../artwork/list.html">작품</a></span
-          >
-          <span class="ExhibitionMenu"
-            ><a href="../exhibition/list.html">전시회</a></span
-          >
-          <span class="IntroduceMenu"><span>소개</span></span>
-          <span class="ArtistMenu"
-            ><a href="../artist/list.html">아티스트</a></span
-          >
-        </div>
-        <div class="Container-RightMenu">
-          <div class="GroupLoginLogout">
-            <span class="TextLogin"
-              ><a href="../member/login.html" id="login">LOGIN</a></span
-            >
-            <span class="TextDelimeter">ㅣ</span>
-            <span class="TextLogout"
-              ><a href="../member/logout.html" id="logout">LOGOUT</a></span
-            >
-          </div>
-          <div class="GroupLanguageSelection">
-            <span class="CurrentLanguage"><span>한국어</span></span>
-            <img
-              alt="LanguageSelect image"
-              src="images/edit/icon_LanguageSelect.png"
-              class="LanguageSelectImgBtn"
-              draggable="false"
-            />
-          </div>
-          <div class="BtnUploadArtwork">
-            <span class="BtnTextUploadArtwork"
-              ><a href="../artwork/upload.html">작품 올리기</a></span
-            >
-          </div>
-          <div class="BtnUploadExhibition">
-            <span class="BtnTextUploadExhibition"
-              ><a href="../exhibition/upload.html">전시회 올리기</a></span
-            >
-          </div>
-          <div class="Container-SearchBar">
-            <div class="GroupSearchInputAndButton">
-              <input id="input" placeholder="Search" class="TextSearchInput" />
-              <a id="searchButton" href="#">
-                <img
-                  alt="Search Button image"
-                  src="images/edit/icon_Search.svg"
-                  class="BtnSearch"
-                  draggable="false"
-                />
-              </a>
-            </div>
-          </div>
         </div>
       </div>
-      <div id="cards" class="container"></div>
     </div>
+  </div>
+  <div id="cards" class="container"></div>
+</div>
 
     <script>
       const dummy = [

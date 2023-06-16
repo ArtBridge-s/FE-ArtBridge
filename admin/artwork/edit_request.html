@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="edit_request.css">
+     <title>[관리자용] 작품 수정 요청 목록 페이지</title>
+    <link rel="stylesheet" type="text/css" href="upload_request.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-
-    <title>[관리자용] 작품 수정 요청 목록 페이지</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -14,8 +13,8 @@
         <div class="menu-item">Dashboard</div>
 
         <div class="menu-item active">작품 정보 관리 <span class="arrow arrow-down">></span></div>
-        <a href="../artwork/upload_request.html" class="menu-item bullet">• 업로드 요청</a>
-        <a href="../artwork/edit_request.html" class="menu-item bullet" style="background-color: navy">• 수정 요청</a>
+        <a href="../artwork/upload_request.html" class="menu-item bullet" style="background-color: navy">• 업로드 요청</a>
+        <a href="../artwork/edit_request.html" class="menu-item bullet">• 수정 요청</a>
         <a href="../artwork/delete_request.html" class="menu-item bullet">• 삭제 요청</a>
 
         <div class="menu-item">아티스트 프로필 관리 <span class="arrow">></span></div>
@@ -89,6 +88,7 @@
                 }
             }
         });
+
     });
 </script>
 
@@ -136,6 +136,7 @@
             });
         }
 
+
         $(document).on("click", ".selectBtn", function() {
             const id = $(this).closest('tr').find('td:first').text();
 
@@ -146,19 +147,18 @@
                     'Authorization': 'Bearer ' + localStorage.getItem('token')
                 },
                 success: function(data) {
-                    alert(`아티스트 ${id}의 수정 요청이 승인되었습니다.`);
+                    alert(`아티스트 ${id}의 업로드 요청이 승인되었습니다.`);
+
                     location.reload();
                 },
                 error: function(xhr, textStatus, error) {
                     console.error("Error: " + xhr.status + " " + xhr.statusText);
-                    alert(`요청이 실패하였습니다. 다시 시도해주세요.`);
+                    alert('요청이 실패하였습니다. 다시 시도해주세요.');
                 }
             });
         });
-
     });
 </script>
-
 
 </body>
 </html>
