@@ -49,9 +49,9 @@
   </body>
   <script>
     const API_BASE_URL = 'http://tobiasdev.ml/services/artist/api/artists';
+    let id = new URL(window.location.href).searchParams.get('id');
+    let url = `${API_BASE_URL}/${id}`;
     async function getData() {
-      let id = new URL(window.location.href).searchParams.get('id');
-      let url = `${API_BASE_URL}/${id}`;
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -80,9 +80,6 @@
     editButton.addEventListener('click', putData);
 
     async function putData() {
-      let id = new URL(window.location.href).searchParams.get('id');
-      let url = `${API_BASE_URL}/${id}`;
-
       const name = document.getElementById('artistName').value; // Get the value entered by the user
       const realName = document.getElementById('artist-fullName').value;
       const career = document.getElementById('artist-career').value;
