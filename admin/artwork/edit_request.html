@@ -4,72 +4,161 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="edit_request.css">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
     <title>[관리자용] 작품 수정 요청 목록 페이지</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div id="sidebar">
     <div id="menu">
         <div class="menu-item">Dashboard</div>
-        <div class="menu-item">작품 정보 관리 <span class="arrow">></span></div>
-        <div class="menu-item">아티스트 프로필 관리 <span class="arrow"><i class="fas fa-chevron-up fa-xs"></i></span></div>
-        <div class="menu-item bullet">• 업로드 요청</div>
-        <div class="menu-item bullet">• 수정 요청</div>
-        <div class="menu-item bullet">• 삭제 요청</div>
+
+        <div class="menu-item active">작품 정보 관리 <span class="arrow arrow-down">></span></div>
+        <a href="../artwork/upload_request.html" class="menu-item bullet">• 업로드 요청</a>
+        <a href="../artwork/edit_request.html" class="menu-item bullet" style="background-color: navy">• 수정 요청</a>
+        <a href="../artwork/delete_request.html" class="menu-item bullet">• 삭제 요청</a>
+
+        <div class="menu-item">아티스트 프로필 관리 <span class="arrow">></span></div>
+        <a href="../artist/upload_request.html" class="menu-item bullet" hidden>• 업로드 요청</a>
+        <a href="../artist/edit_request.html" class="menu-item bullet" hidden>• 수정 요청</a>
+        <a href="../artist/delete_request.html" class="menu-item bullet" hidden>• 삭제 요청</a>
+
         <div class="menu-item">전시회 정보 관리 <span class="arrow">></span></div>
+        <a href="../exhibition/upload_request.html" class="menu-item bullet" hidden>• 업로드 요청</a>
+        <a href="../exhibition/edit_request.html" class="menu-item bullet" hidden>• 수정 요청</a>
+        <a href="../exhibition/delete_request.html" class="menu-item bullet" hidden>• 삭제 요청</a>
+
     </div>
 </div>
 <div class="content">
     <div class="top_area">
-        <h2>작품 정보<span> 수정</span> 요청</h2>
+        <h2>작품 <span>수정</span> 요청</h2>
         <ul class="btns">
-            <li>수정 요청</li>
+            <li>업로드 요청</li>
             <li>Refresh list</li>
             <li>사용자 생성</li>
         </ul>
     </div>
-    <div class="table">
-        <div class="tr th">
-            <div class="left">ID</div>
-            <div class="left">created member</div>
-            <div class="left">img</div>
-            <div class="left">name</div>
-            <div class="left">real-name</div>
-            <div class="left">phone</div>
-            <div class="left">career</div>
-            <div class="">artworks</div>
-            <div class="">업로드 처리</div>
-        </div>
-        <div class="tr">
-            <div class="">ID</div>
-            <div class="">gun1234</div>
-            <div class="">img</div>
-            <div class="">건영짱</div>
-            <div class="">레오나르도 임건영</div>
-            <div class="">010-1234-5678</div>
-            <div class="">모나리자</div>
-            <div class="center">artworks</div>
-            <div class="center"></div>
-        </div>
-        <div class="tr">
-            <div class="">ID</div>
-            <div class="">wldbs</div>
-            <div class="">img</div>
-            <div class="">지윤짱</div>
-            <div class="">빈센트 김지윤</div>
-            <div class="">010-1111-2222</div>
-            <div class="">뭉크</div>
-            <div class="center">artworks</div>
-            <div class="center">선택</div>
-        </div>
-        <div class="pagination">
-            <div class="pagination-item">1</div>
-            <div class="pagination-item">2</div>
-            <div class="pagination-item">3</div>
-            <div class="pagination-item">4</div>
-            <div class="pagination-item">5</div>
-            <div class="pagination-item">6</div>
-        </div>
+    <table class="table">
+        <tr class="th">
+            <th class="col">ID</th>
+            <th class="col">title</th>
+            <th class="col">img</th>
+            <th class="col">short des</th>
+            <th class="col">long des</th>
+            <th class="col">artist name</th>
+            <th class="col">created by</th>
+            <th class="col">요청 날짜</th>
+            <th class="col center">선택</th>
+        </tr>
+    </table>
+    <div class="pagination">
+        <div class="pagination-item">1</div>
+        <div class="pagination-item">2</div>
+        <div class="pagination-item">3</div>
+        <div class="pagination-item">4</div>
+        <div class="pagination-item">5</div>
+        <div class="pagination-item">6</div>
     </div>
+
 </div>
+
+<script>
+    $(document).ready(function() {
+
+        $(".menu-item").click(function() {
+            $('.menu-item').removeClass('active');
+            // If this is not a bullet item
+            if (!$(this).hasClass('bullet')) {
+                // Find the next bullet items
+                var $bullet = $(this).nextUntil('.menu-item:not(.bullet)');
+                // remove 'arrow-down' class from all arrows
+                $('.arrow').removeClass('arrow-down');
+
+                // If these bullet items are visible, hide them
+                if ($bullet.is(':visible')) {
+                    $bullet.hide();
+                }
+                // If these bullet items are hidden, hide all bullet items and show these
+                else {
+                    $('.menu-item.bullet').hide();
+                    $bullet.show();
+                    $(this).addClass('active');
+                    // add 'arrow-down' class to the clicked menu item's arrow
+                    $(this).find('.arrow').addClass('arrow-down');
+                }
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        fetchPendingArtworkCreations();
+
+        $(".btns li:contains('Refresh list')").click(function() {
+            $(".table tr:gt(0)").remove();  // This removes all table rows except the first (header) row
+            fetchPendingArtworkCreations(); // Calls the function to fetch and populate the table again
+        });
+
+        function fetchPendingArtworkCreations() {
+            $.ajax({
+                url: 'http://tobiasdev.ml/services/artwork/api/artworks/pending/updates',  // Change this to your actual API endpoint
+                type: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+                success: function(data) {
+                    populateTable(data);
+                },
+                error: function(xhr, textStatus, error) {
+                    console.error("Error: " + xhr.status + " " + xhr.statusText);
+                    alert(`요청이 실패하였습니다. 다시 시도해주세요.`);
+                }
+            });
+        }
+
+        function populateTable(data) {
+            data.forEach(function(item) {
+                var row = `
+            <tr>
+                <td>${item.id}</td>
+                <td>${item.title}</td>
+                <td><a href="${item.imageUrl}">${item.imageUrl}</a></td>
+                <td>${item.shortDescription}</td>
+                <td>${item.longDescription}</td>
+                <td>${item.artistname}</td>
+                <td>${item.member$login}</td>
+                <td>${item.createdAt}</td>
+                <td class="center"><button class="selectBtn">선택</button></td>
+            </tr>`;
+                $('.table').append(row);
+            });
+        }
+
+        $(document).on("click", ".selectBtn", function() {
+            const id = $(this).closest('tr').find('td:first').text();
+
+            $.ajax({
+                url: `http://tobiasdev.ml/services/artwork/api/artworks/${id}/authorized/ok`,
+                type: 'PATCH',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                },
+                success: function(data) {
+                    alert(`아티스트 ${id}의 수정 요청이 승인되었습니다.`);
+                    location.reload();
+                },
+                error: function(xhr, textStatus, error) {
+                    console.error("Error: " + xhr.status + " " + xhr.statusText);
+                    alert(`요청이 실패하였습니다. 다시 시도해주세요.`);
+                }
+            });
+        });
+
+    });
+</script>
+
+
 </body>
 </html>
