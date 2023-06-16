@@ -1,681 +1,926 @@
 a {
-    outline: none;
-    cursor: default; /*커서 기본*/
-    text-decoration: none; /* 밑줄 제거 */
-    /* color: black; 링크 색상 지정 */
+  font-size: inherit; /* 링크의 텍스트 크기를 부모 요소로 상속 */
+  color: inherit; /* 링크의 텍스트 색상을 부모 요소로 상속 */
+  outline: none;
+  cursor: default; /*커서 기본*/
+  text-decoration: none; /* 밑줄 제거 */
+  /* color: black; 링크 색상 지정 */
+}
+body {
+  /*페이지 로드시 페이드 인 효과*/
+  animation: fadein 2000ms ease-out;
+  -moz-animation: fadein 2000ms ease-out; /* Firefox */
+  -webkit-animation: fadein 2000ms ease-out; /* Safari and  Chrome */
+  -o-animation: fadein 2000ms ease-out; /* Opera */
+  /*페이지 전체 드래그 막기*/
+  -webkit-user-select: none; /* Chrome, Safari, Opera */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Standard syntax */
+}
+span {
+  cursor: default;
 }
 
-span {
-    cursor: default;
+.Container {
+  width: 100%;
+  height: 190px;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: flex-start;
+  flex-shrink: 0;
+  background-color: rgba(255, 255, 255, 1);
+}
+.Container-MenuBar {
+  width: 100%;
+  display: flex;
+  overflow: hidden;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+.Container-LeftMenu {
+  top: 0;
+  width: 394.59375px;
+  height: 184.3125px;
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  margin-left: 6.6%;
+  margin-right: 3%;
+}
+.BrandName {
+  top: 68px;
+  color: rgba(51, 61, 65, 0.800000011920929);
+  right: 0;
+  height: auto;
+  position: absolute;
+  font-size: 35px;
+  font-style: normal;
+  text-align: center;
+  font-family: NanumMyeongjo, serif;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.ImgLogo {
+  top: 0;
+  left: 0;
+  width: 221px;
+  height: 137px;
+  position: absolute;
+}
+.HomeMenu {
+  left: 0;
+  color: rgba(207, 94, 83, 1);
+  bottom: 0;
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  font-style: normal;
+  text-align: left;
+  font-family: Inter, serif;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 0;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.ArtworkMenu {
+  left: 45px;
+  color: rgba(0, 0, 0, 1);
+  bottom: 0;
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  font-style: normal;
+  text-align: left;
+  font-family: Inter, serif;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 0;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.ExhibitionMenu {
+  left: 110px;
+  color: rgba(0, 0, 0, 1);
+  bottom: 0;
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  font-style: normal;
+  text-align: left;
+  font-family: Inter, serif;
+  font-weight: 400;
+  line-height: normal;
+  margin-left: 0;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.IntroduceMenu {
+  left: 190px;
+  color: rgba(0, 0, 0, 1);
+  bottom: 0;
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  font-style: normal;
+  text-align: left;
+  font-family: Inter, serif;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.ArtistMenu {
+  color: rgba(0, 0, 0, 1);
+  right: 73.390625px;
+  bottom: 0;
+  height: auto;
+  position: absolute;
+  font-size: 20px;
+  font-style: normal;
+  text-align: left;
+  font-family: Inter, serif;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.Container-RightMenu {
+  top: 45.9765625px;
+  right: 0;
+  width: 280px;
+  height: 130.96875px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  margin-left: 3%;
+  margin-right: 6.6%;
+}
+.GroupLoginLogout {
+  top: 0;
+  left: 74px;
+  width: 123px;
+  height: 19px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
+.TextLogin {
+  color: rgba(0, 0, 0, 1);
+  left: 10px;
+  width: 46px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: normal;
+  text-align: left;
+  font-family: Inter, serif;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.TextLogin:hover {
+  color: rgba(207, 94, 83, 1);
+}
+.TextLogout {
+  color: rgba(0, 0, 0, 1);
+  width: 63px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: normal;
+  text-align: left;
+  font-family: Inter, serif;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.TextLogout:hover {
+  color: rgba(207, 94, 83, 1);
+}
+.TextDelimeter {
+  left: 61px;
+  color: rgba(0, 0, 0, 1);
+  width: 14px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.TextMyPage {
+  left: 79px;
+  color: rgba(0, 0, 0, 1);
+  width: 65px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.TextMyPage:hover {
+  color: rgba(207, 94, 83, 1);
+}
+
+/* .GroupLanguageSelection {
+      top: 0;
+      right: 2.6328125px;
+      width: 62px;
+      height: 19px;
+      display: flex;
+      position: absolute;
+      align-items: flex-start;
+      flex-shrink: 1;
+    }
+    .CurrentLanguage {
+      width: 42px;
+      height: auto;
+      position: absolute;
+      font-size: 15px;
+      font-style: normal;
+      text-align: left;
+      font-family: Inter, serif;
+      font-weight: 400;
+      line-height: normal;
+      font-stretch: normal;
+      text-decoration: none;
+    }
+    .LanguageSelectImgBtn {
+      top: 1px;
+      left: 48px;
+      width: 14px;
+      height: 14px;
+      position: absolute;
+    } */
+
+.Container-SearchBar {
+  top: 32px;
+  left: 0;
+  width: 280px;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: rgba(217, 217, 217, 0.28999999165534973);
+  border-width: 1px;
+  border-radius: 30px;
+  background-color: rgba(217, 217, 217, 0.28999999165534973);
+}
+.GroupSearchInputAndButton {
+  top: 10px;
+  left: 8.000003814697266px;
+  width: 246.79998779296875px;
+  height: 23px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
+.TextSearchInput {
+  bottom: 9%;
+  background-color: rgba(0, 0, 0, 0); /*투명*/
+  width: 100%;
+  height: 100%;
+  border: none; /*테두리 없애기*/
+  outline: none; /*파란색 테두리 없애기*/
+  color: rgba(26, 26, 26, 0.699999988079071);
+  position: absolute;
+  font-size: 15px;
+  font-style: normal;
+  text-align: left;
+  font-family: Inter, serif;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.BtnSearch {
+  top: 0;
+  left: 225.33331298828125px;
+  width: 21px;
+  height: 23px;
+  position: absolute;
+}
+.BtnUploadArtwork {
+  left: 5px;
+  width: 130px;
+  bottom: 0;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: rgba(51, 61, 65, 1);
+  border-radius: 8px;
+  background-color: rgba(51, 61, 65, 1);
+}
+.BtnUploadArtwork:hover {
+  background-color: rgba(207, 94, 83, 1);
+}
+.BtnTextUploadArtwork {
+  top: 11px;
+  left: 5px;
+  color: rgba(255, 255, 255, 1);
+  width: 120px;
+  height: auto;
+  position: absolute;
+  font-size: 14px;
+  font-style: normal;
+  text-align: center;
+  font-family: Inter, serif;
+  font-weight: 500;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.BtnUploadExhibition {
+  right: 2.6328125px;
+  width: 130px;
+  bottom: 0;
+  height: 40px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+  border-color: rgba(51, 61, 65, 1);
+  border-radius: 8px;
+  background-color: rgba(51, 61, 65, 1);
+}
+.BtnUploadExhibition:hover {
+  background-color: rgba(207, 94, 83, 1);
+}
+.BtnTextUploadExhibition {
+  top: 11px;
+  left: 4px;
+  color: rgba(255, 255, 255, 1);
+  width: 120px;
+  height: auto;
+  position: absolute;
+  font-size: 14px;
+  font-style: normal;
+  text-align: center;
+  font-family: Inter, serif;
+  font-weight: 500;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.Container-Content {
+  top: 21.48%;
+  width: 100%;
+  height: 78.52%;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+}
+
+.container {
+  left: 26%;
+  width: 1000px;
+  position: relative;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 42px;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.lines {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.combined-line {
+  width: 100%;
+  max-width: 1080px;
+  height: 0;
+  border: 1px solid #c3c3c3;
+}
+
+.rectangle-1943 {
+  width: 8px;
+  height: 59px;
+  background: #000000;
+  margin-right: 20px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 150px;
+}
+
+.field {
+  display: flex;
+  position: relative;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.fields {
+  flex: 1;
+}
+
+label {
+  margin-top: 8px;
+  text-align: center;
+  flex: 0 0 120px;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 27px;
+  color: #000000;
+  white-space: nowrap;
+}
+
+input[type="text"] {
+  font-size: 15px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  padding-left: 10px;
+  background: #ffffff;
+  border: 1px solid #000000;
+  margin-top: 5px;
+}
+
+#introduceField {
+  position: relative;
+}
+
+#introduceTitle {
+  top: 0;
+  left: 0;
+  transform: translate(0px, -320%);
+}
+
+#introduce {
+  font-family: Inter;
+  font-size: 15px;
+  width: 100%;
+  height: 200px;
+  border: 1px solid #000000;
+  transform: translate(0px, 3%);
+  resize: none;
+}
+
+.image-upload {
+  flex: 0.6;
+  height: 300px;
+  background: #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-right: 60px;
+}
+
+.image-upload label {
+  display: flex;
+  align-items: center;
+  font-size: 35px;
+  font-weight: 400;
+  line-height: 42px;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .button {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border-width: 1px;
-    border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 24px;
+  gap: 8px;
+  width: 308px;
+  height: 63px;
+  background: #333d41;
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 10%;
+}
+.button:hover {
+  background: rgba(207, 94, 83, 1);
 }
 
-.input {
-    cursor: auto;
-    padding: 0.5rem 1rem;
-    border-width: 1px;
-    border-radius: 4px;
-}
-
-.textarea {
-    cursor: auto;
-    padding: 0.5rem;
-    border-width: 1px;
-    border-radius: 4px;
-}
-
-.list {
+@media (max-width: 768px) {
+  .container {
     width: 100%;
-    margin: 1em 0 1em 0;
-    display: block;
-    padding: 0 0 0 1.5rem;
-    list-style-type: none;
-    list-style-position: outside;
+    padding: 0 20px;
+    box-sizing: border-box;
+  }
+
+  form {
+    padding: 0;
+  }
+
+  .image-upload {
+    flex: 1;
+    margin-right: 0;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .button:last-child {
+    margin-bottom: 0;
+  }
 }
 
-.list-item {
-    display: list-item;
-}
+@media (max-width: 480px) {
+  h1 {
+    font-size: 30px;
+  }
 
-.teleport-show {
-    display: flex !important;
-    transform: none !important;
-}
+  label {
+    font-size: 18px;
+  }
 
-.Content {
-    font-size: 16px;
-    font-family: Inter;
-    font-weight: 400;
-    line-height: 1.15;
-    text-transform: none;
-    text-decoration: none;
-}
+  input[type="text"] {
+    height: 35px;
+  }
 
-.Heading {
-    font-size: 32px;
-    font-family: Inter;
-    font-weight: 700;
-    line-height: 1.15;
-    text-transform: none;
-    text-decoration: none;
-}
+  .button {
+    height: 50px;
+    font-size: 18px;
+  }
 
-body {
-    /*페이지 로드시 페이드인효과*/
-    animation: fadein 2000ms ease-out;
-    -moz-animation: fadein 2000ms ease-out; /* Firefox */
-    -webkit-animation: fadein 2000ms ease-out; /* Safari and  Chrome */
-    -o-animation: fadein 2000ms ease-out; /* Opera */
-    /*페이지 전체 드래그 막기*/
-    -webkit-user-select: none; /* Chrome, Safari, Opera */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE 10+ */
-    user-select: none; /* Standard syntax */
+  .image-upload label {
+    font-size: 30px;
+  }
 }
-
 @keyframes fadein {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @-moz-keyframes fadein {
-    /* Firefox */
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  /* Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes fadein {
-    /* Safari and Chrome */
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @-o-keyframes fadein {
-    /* Opera */
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  /* Opera */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /*Slide Show*/
 .slider1 {
-    position: absolute;
-    top: 445px;
-    left: 734px;
-    width: 250px;
-    height: 514px;
+  position: absolute;
+  top: 445px;
+  left: 734px;
+  width: 250px;
+  height: 514px;
 }
 
 .slider1 img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 0;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
-    transition: opacity 1s, transform 0.2s ease-in-out,
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 0;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
+  transition: opacity 1s, transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
 }
 
 .slider1 img.active {
-    opacity: 1;
-    z-index: 1;
+  opacity: 1;
+  z-index: 1;
 }
 
 .slider1 img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transform: scale(1.03);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .slider2 {
-    position: absolute;
-    top: 444px;
-    left: 1015px;
-    width: 256px;
-    height: 514px;
+  position: absolute;
+  top: 444px;
+  left: 1015px;
+  width: 256px;
+  height: 514px;
 }
 
 .slider2 img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 0;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
-    transition: opacity 1s, transform 0.2s ease-in-out,
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 0;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
+  transition: opacity 1s, transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
 }
 
 .slider2 img.active {
-    opacity: 1;
-    z-index: 1;
+  opacity: 1;
+  z-index: 1;
 }
 
 .slider2 img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transform: scale(1.03);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .slider3 {
-    position: absolute;
-    top: 444px;
-    left: 1300px;
-    width: 561px;
-    height: 516px;
+  position: absolute;
+  top: 444px;
+  left: 1300px;
+  width: 561px;
+  height: 516px;
 }
 
 .slider3 img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 0;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
-    transition: opacity 1s, transform 0.2s ease-in-out,
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 0;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
+  transition: opacity 1s, transform 0.2s ease-in-out,
     box-shadow 0.2s ease-in-out;
 }
 
 .slider3 img.active {
-    opacity: 1;
-    z-index: 1;
+  opacity: 1;
+  z-index: 1;
 }
 
 .slider3 img:hover {
-    transform: scale(1.03);
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transform: scale(1.03);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .Container {
-    width: 100%;
-    display: flex;
-    min-height: 100vh;
-    align-items: center;
-    flex-direction: column;
-    position: relative;
-}
-
-.Logo {
-    top: 0;
-    left: 198px;
-    width: 221px;
-    height: 137px;
-    position: absolute;
-}
-
-.LogoText {
-    top: 68px;
-    left: 415px;
-    color: rgba(51, 61, 65, 0.800000011920929);
-    height: auto;
-    position: absolute;
-    font-size: 35px;
-    text-align: center;
-    font-family: NanumMyeongjo;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
-}
-
-.CurrentMenu {
-    top: 159px;
-    left: 187px;
-    height: auto;
-    position: absolute;
-    font-size: 20px;
-    text-align: left;
-    font-family: Inter;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-}
-
-.Menu1,
-.Menu2,
-.Menu3,
-.Menu4 {
-    top: 158px;
-    color: rgba(0, 0, 0, 1);
-    height: auto;
-    position: absolute;
-    font-size: 20px;
-    text-align: left;
-    font-family: Inter;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
-}
-
-.CurrentMenu {
-    color: rgba(207, 94, 83, 1);
-    text-decoration: underline;
-    text-underline-offset: 5px;
-}
-
-.Menu1 {
-    left: 240px;
-}
-
-.Menu2 {
-    left: 307px;
-}
-
-.Menu3 {
-    left: 393px;
-}
-
-.Menu4 {
-    left: 460px;
-}
-
-
-.LoginContainer {
-    top: 46px;
-    left: 1652px;
-    width: 46px;
-    height: 19px;
-    display: flex;
-    position: absolute;
-    align-items: flex-start;
-    flex-shrink: 1;
-}
-
-.LoginText {
-    color: rgba(0, 0, 0, 1);
-    width: 46px;
-    height: auto;
-    position: absolute;
-    font-size: 15px;
-    text-align: left;
-    font-family: Inter;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
-}
-
-.LoginText:hover {
-    color: #cf5e53;
-}
-
-.delimiter {
-    top: 46px;
-    left: 1698px;
-    color: rgba(0, 0, 0, 1);
-    width: 14px;
-    height: auto;
-    position: absolute;
-    font-size: 15px;
-    text-align: left;
-    font-family: Inter;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
-}
-
-.LogoutText {
-    top: 46px;
-    left: 1712px;
-    color: rgba(0, 0, 0, 1);
-    width: 63px;
-    height: auto;
-    position: absolute;
-    font-size: 15px;
-    text-align: left;
-    font-family: Inter;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
-}
-
-.LogoutText:hover {
-    color: #cf5e53;
-}
-
-.SearchContainer {
-    top: 78px;
-    left: 1582px;
-    width: 280px;
-    height: 40px;
-    display: flex;
-    position: absolute;
-    align-items: flex-start;
-    flex-shrink: 1;
-    background-color: rgba(217, 217, 217, 0.28999999165534973);
-    border-radius: 50px;
-}
-
-.SearchSubContainer {
-    top: 10px;
-    left: 8.000003814697266px;
-    width: 246.79998779296875px;
-    height: 23px;
-    display: flex;
-    position: absolute;
-    align-items: flex-start;
-    flex-shrink: 1;
-}
-
-.SearchInput {
-    bottom: 0.5px;
-    color: rgba(26, 26, 26, 0.699999988079071);
-    background-color: rgba(0, 0, 0, 0); /*투명*/
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    font-size: 15px;
-    text-align: center;
-    font-family: Inter;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
-    border: none; /*테두리 없애기*/
-    outline: none; /*파란색 테두리 없애기*/
-}
-
-.SearchButton {
-    top: 0;
-    left: 225.33331298828125px;
-    width: 21px;
-    height: 23px;
-    position: absolute;
-}
-
-.UploadContainer {
-    top: 137px;
-    left: 1590px;
-    width: 130px;
-    height: 40px;
-    display: flex;
-    position: absolute;
-    align-items: flex-start;
-    flex-shrink: 1;
-}
-
-.UploadSubContainer {
-    top: 0;
-    left: 0;
-    width: 130px;
-    height: 40px;
-    display: flex;
-    position: absolute;
-    align-items: flex-start;
-    flex-shrink: 1;
-    background-color: rgba(51, 61, 65, 1);
-    border-radius: 6px;
-}
-
-.UploadSubContainer:hover {
-    background: #cf5e53;
-}
-
-.UploadText {
-    top: 12px;
-    left: 5px;
-    color: rgba(255, 255, 255, 1);
-    width: 120px;
-    height: auto;
-    position: absolute;
-    font-size: 14px;
-    text-align: center;
-    font-family: Inter;
-    font-weight: 500;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
-}
-
-.UploadContainer2 {
-    top: 137px;
-    left: 1732px;
-    width: 130px;
-    height: 40px;
-    display: flex;
-    position: absolute;
-    align-items: flex-start;
-    flex-shrink: 1;
-}
-
-.UploadSubContainer2 {
-    top: 0;
-    left: 0;
-    width: 130px;
-    height: 40px;
-    display: flex;
-    position: absolute;
-    align-items: flex-start;
-    flex-shrink: 1;
-    background-color: rgba(51, 61, 65, 1);
-    border-radius: 6px;
-}
-
-.UploadSubContainer2:hover {
-    background: #cf5e53;
-}
-
-.UploadText2 {
-    top: 11px;
-    left: 4px;
-    color: rgba(255, 255, 255, 1);
-    width: 120px;
-    height: auto;
-    position: absolute;
-    font-size: 14px;
-    text-align: center;
-    font-family: Inter;
-    font-weight: 500;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
+  width: 100%;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
 }
 
 .Content1Title {
-    top: 250px;
-    left: 162px;
-    color: rgba(51, 61, 65, 1);
-    height: auto;
-    position: absolute;
-    font-size: 60px;
-    text-align: left;
-    font-family: "Estonia", cursive;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
+  top: 250px;
+  left: 162px;
+  color: rgba(51, 61, 65, 1);
+  height: auto;
+  position: absolute;
+  font-size: 60px;
+  text-align: left;
+  font-family: "Estonia", cursive;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
 }
 
 .imgContent1 {
-    top: 325px;
-    left: 162px;
-    width: 540px;
-    height: 633px;
-    position: absolute;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
+  top: 325px;
+  left: 162px;
+  width: 540px;
+  height: 633px;
+  position: absolute;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
 }
 
 .imgContent1:hover {
-    transform: scale(1.03);
-    transition: transform 0.2s ease-in-out;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transform: scale(1.03);
+  transition: transform 0.2s ease-in-out;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .Content1Text {
-    top: 416px;
-    left: 231px;
-    color: rgba(53, 34, 5, 1);
-    width: 437px;
-    height: auto;
-    position: absolute;
-    font-size: 25px;
-    text-align: left;
-    font-family: Inter;
-    font-weight: 100;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
+  top: 416px;
+  left: 231px;
+  color: rgba(53, 34, 5, 1);
+  width: 437px;
+  height: auto;
+  position: absolute;
+  font-size: 25px;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 100;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
 }
 
 .Copywrite {
-    top: 1025px;
-    left: 910px;
-    color: rgba(51, 61, 65, 1);
-    height: auto;
-    position: fixed;
-    font-size: 11px;
-    text-align: center;
-    font-family: Inter;
-    font-weight: 200;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
+  top: 1025px;
+  left: 910px;
+  color: rgba(51, 61, 65, 1);
+  height: auto;
+  position: fixed;
+  font-size: 11px;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 200;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
 }
 
 .Content2Title {
-    top: 380px;
-    left: 734px;
-    color: rgba(51, 61, 65, 1);
-    width: 256px;
-    height: auto;
-    position: absolute;
-    font-size: 45px;
-    text-align: left;
-    font-family: "Estonia", cursive;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
+  top: 380px;
+  left: 734px;
+  color: rgba(51, 61, 65, 1);
+  width: 256px;
+  height: auto;
+  position: absolute;
+  font-size: 45px;
+  text-align: left;
+  font-family: "Estonia", cursive;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
 }
 
 .imgContent2 {
-    width: 256px;
-    height: 514px;
-    position: absolute;
+  width: 256px;
+  height: 514px;
+  position: absolute;
 }
 
 .Content2More {
-    top: 966px;
-    left: 832px;
-    color: rgba(51, 61, 65, 1);
-    height: auto;
-    position: absolute;
-    font-size: 27px;
-    text-align: left;
-    font-family: "Estonia", cursive;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
+  top: 966px;
+  left: 832px;
+  color: rgba(51, 61, 65, 1);
+  height: auto;
+  position: absolute;
+  font-size: 27px;
+  text-align: left;
+  font-family: "Estonia", cursive;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
 }
 
 .Content3Title {
-    top: 380px;
-    left: 1015px;
-    color: rgba(51, 61, 65, 1);
-    width: 247px;
-    height: auto;
-    position: absolute;
-    font-size: 45px;
-    text-align: left;
-    font-family: "Estonia", cursive;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
+  top: 380px;
+  left: 1015px;
+  color: rgba(51, 61, 65, 1);
+  width: 247px;
+  height: auto;
+  position: absolute;
+  font-size: 45px;
+  text-align: left;
+  font-family: "Estonia", cursive;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
 }
 
 .imgContent3 {
-    width: 250px;
-    height: 514px;
-    position: absolute;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
+  width: 250px;
+  height: 514px;
+  position: absolute;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
 }
 
 .Content3More {
-    top: 966px;
-    left: 1116px;
-    color: rgba(51, 61, 65, 1);
-    height: auto;
-    position: absolute;
-    font-size: 27px;
-    text-align: left;
-    font-family: "Estonia", cursive;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
+  top: 966px;
+  left: 1116px;
+  color: rgba(51, 61, 65, 1);
+  height: auto;
+  position: absolute;
+  font-size: 27px;
+  text-align: left;
+  font-family: "Estonia", cursive;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
 }
 
 .Content4Title {
-    top: 380px;
-    left: 1302px;
-    color: rgba(51, 61, 65, 1);
-    width: 367px;
-    height: auto;
-    position: absolute;
-    font-size: 45px;
-    text-align: left;
-    font-family: "Estonia", cursive;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
+  top: 380px;
+  left: 1302px;
+  color: rgba(51, 61, 65, 1);
+  width: 367px;
+  height: auto;
+  position: absolute;
+  font-size: 45px;
+  text-align: left;
+  font-family: "Estonia", cursive;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
 }
 
 .imgContent4 {
-    /* top: 444px;
-    left: 1300px; */
-    bottom: 50px;
-    width: 561px;
-    height: 516px;
-    position: absolute;
-    align-self: flex-end;
-    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
+  /* top: 444px;
+      left: 1300px; */
+  bottom: 50px;
+  width: 561px;
+  height: 516px;
+  position: absolute;
+  align-self: flex-end;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
 }
 
 .Content4More {
-    top: 966px;
-    left: 1555px;
-    color: rgba(51, 61, 65, 1);
-    height: auto;
-    position: absolute;
-    font-size: 27px;
-    text-align: left;
-    font-family: "Estonia", cursive;
-    font-weight: 400;
-    line-height: normal;
-    font-stretch: normal;
-    text-decoration: none;
-    white-space: nowrap;
+  top: 966px;
+  left: 1555px;
+  color: rgba(51, 61, 65, 1);
+  height: auto;
+  position: absolute;
+  font-size: 27px;
+  text-align: left;
+  font-family: "Estonia", cursive;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+  white-space: nowrap;
 }
-

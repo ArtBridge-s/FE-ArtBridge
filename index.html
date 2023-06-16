@@ -19,103 +19,81 @@
     <link rel="stylesheet" href="index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
-    <!--Reset Style-->
-    <style data-tag="reset-style-sheet">
-      html {
-        scroll-behavior: smooth;
-      }
-      a {
-        color: inherit;
-        text-decoration: inherit;
-      }
-      input {
-        padding: 2px 4px;
-      }
-    </style>
-    <!--Default Style-->
-    <style data-tag="default-style-sheet">
-      html {
-        font-family: Inter;
-        font-size: 16px;
-      }
-      body {
-        font-weight: 400;
-        font-style: normal;
-        text-decoration: none;
-        text-transform: none;
-        letter-spacing: normal;
-      }
-    </style>
+    <!--파비콘-->
+    <link rel="icon" type="image/png" href="images/Favicon.png" />
   </head>
   <body>
-    <div>
-      <div class="Container">
-        <!--Logo and Main Menus-->
-        <a href="./index.html">
-          <img src="images/Logo.png" alt="Logo image" class="Logo" />
-        </a>
-        <span class="LogoText">
-          <span>아트브릿지</span>
-        </span>
-        <span class="CurrentMenu">
-          <span>홈</span>
-        </span>
-        <span class="Menu1">
-          <a href="domain/artwork/list.html">작품</a>
-        </span>
-        <span class="Menu2">
-          <a href="domain/exhibition/list.html">전시회</a>
-        </span>
-        <span class="Menu3">
-          <span>소개</span>
-        </span>
-        <span class="Menu4">
-          <a href="domain/artist/list.html">아티스트</a>
-        </span>
-
-        <!--Components in Right Corner-->
-        <div class="LoginContainer">
-          <span class="LoginText">
-            <a href="domain/member/login.html">LOGIN</a>
-          </span>
+    <div class="Container">
+      <div class="Container-MenuBar">
+        <div class="Container-LeftMenu">
+          <span class="BrandName"><span>아트브릿지</span></span>
+          <a href="../index.html">
+            <img
+              alt="Logo image"
+              src="images/Logo.png"
+              class="ImgLogo"
+              draggable="false"
+            />
+          </a>
+          <span class="HomeMenu"><a href="/index.html">홈</a></span>
+          <span class="ArtworkMenu"
+            ><a href="/domain/artwork/list.html">작품</a></span
+          >
+          <span class="ExhibitionMenu"
+            ><a href="/domain/exhibition/list.html">전시회</a></span
+          >
+          <span class="IntroduceMenu"><span>소개</span></span>
+          <span class="ArtistMenu"
+            ><a href="/domain/artist/list.html">아티스트</a></span
+          >
         </div>
-        <span class="LogoutText">
-          <a href="">LOGOUT</a>
-        </span>
-        <img src="images/SearchIcon.svg" alt="Search Icon" class="SearchButton" />
-
-        <!--Search Bar-->
-        <div class="SearchContainer">
-          <div class="SearchSubContainer">
-            <input id="input" placeholder="Search" class="SearchInput" />
-            <a id="searchButton" href="#">
-              <img
-                src="images/SearchIcon.svg"
-                alt="Search Icon"
-                class="SearchButton"
-              />
-            </a>
+        <div class="Container-RightMenu">
+          <div class="GroupLoginLogout">
+            <span class="TextLogin"
+              ><a href="/domain/member/login.html" id="login">LOGIN</a></span
+            >
+            <span class="TextLogout"
+              ><a href="/domain/member/logout.html" id="logout">LOGOUT</a></span
+            >
+            <span class="TextDelimeter">ㅣ</span>
+            <span class="TextMyPage"
+              ><a href="/domain/member/mypage.html" id="mypage"
+                >마이페이지</a
+              ></span
+            >
           </div>
-        </div>
-        <div class="UploadContainer">
-          <div class="UploadSubContainer">
-            <span class="UploadText">
-              <a href="domain/artwork/upload.html">작품 올리기</a>
-            </span>
+          <div class="BtnUploadArtwork">
+            <span class="BtnTextUploadArtwork"
+              ><a href="/domain/artwork/upload.html">작품 올리기</a></span
+            >
           </div>
-        </div>
-        <div class="UploadContainer2">
-          <div class="UploadSubContainer2">
-            <span class="UploadText2">
-              <a href="domain/exhibition/upload.html">전시회 올리기</a>
-            </span>
+          <div class="BtnUploadExhibition">
+            <span class="BtnTextUploadExhibition"
+              ><a href="/domain/exhibition/upload.html">전시회 올리기</a></span
+            >
+          </div>
+          <div class="Container-SearchBar">
+            <div class="GroupSearchInputAndButton">
+              <input id="input" placeholder="Search" class="TextSearchInput" />
+              <a id="searchButton" href="#">
+                <img
+                  alt="Search Button image"
+                  src="images/icon_Search.svg"
+                  class="BtnSearch"
+                  draggable="false"
+                />
+              </a>
+            </div>
           </div>
         </div>
       </div>
-
       <!--Main Contents-->
       <span class="Content1Title"><span>About ArtBridge</span></span>
-      <img src="images/Introduce.png" alt="Introduce Image" class="imgContent1"/>
+      <img
+        src="images/Introduce.png"
+        alt="Introduce Image"
+        class="imgContent1"
+      />
       <span class="Content1Text">
         <span>
           아트브릿지는 비영리 예술 커뮤니케이션 서비스입니다. 공유하고 싶은
@@ -134,11 +112,22 @@
         <span>Popular Artworks</span>
       </span>
       <div class="slider1">
-        <img src="images/Artwork3.jpg" alt="Artwork3 Image" class="imgContent2 active" />
+        <img
+          src="images/Artwork3.jpg"
+          alt="Artwork3 Image"
+          class="imgContent2 active"
+        />
         <img src="images/Artwork.png" alt="Artwork Image" class="imgContent2" />
-        <img src="images/Artwork2.jpg" alt="Artwork2 Image" class="imgContent2" />
-        <img src="images/Artwork4.jpg" alt="Artwork4 Image" class="imgContent2" />
-
+        <img
+          src="images/Artwork2.jpg"
+          alt="Artwork2 Image"
+          class="imgContent2"
+        />
+        <img
+          src="images/Artwork4.jpg"
+          alt="Artwork4 Image"
+          class="imgContent2"
+        />
       </div>
       <div class="Content2More">
         <a href="domain/artwork/list.html">see more</a>
@@ -147,10 +136,14 @@
         <span>Today's Artists</span>
       </span>
       <div class="slider2">
-        <img src="images/Artist.png" alt="Artist Image" class="imgContent3 active" />
+        <img
+          src="images/Artist.png"
+          alt="Artist Image"
+          class="imgContent3 active"
+        />
         <img src="images/Artist2.jpg" alt="Artist2 Image" class="imgContent3" />
         <img src="images/Artist3.jpg" alt="Artist3 Image" class="imgContent3" />
-        <img src="images/Artist4.jpg" alt="Artist4 Image" class="imgContent3"/>
+        <img src="images/Artist4.jpg" alt="Artist4 Image" class="imgContent3" />
       </div>
       <span class="Content3More">
         <a href="domain/artist/list.html">see more</a>
@@ -159,9 +152,21 @@
         <span>Current Exhibitions</span>
       </span>
       <div class="slider3">
-        <img src="images/Exhibition.png" alt="Exhibition Image" class="imgContent4 active"/>
-        <img src="images/Exhibition2.jpg" alt="Exhibition2 Image" class="imgContent4"/>
-        <img src="images/Exhibition3.jpg" alt="Exhibition3 Image" class="imgContent4"/>
+        <img
+          src="images/Exhibition.png"
+          alt="Exhibition Image"
+          class="imgContent4 active"
+        />
+        <img
+          src="images/Exhibition2.jpg"
+          alt="Exhibition2 Image"
+          class="imgContent4"
+        />
+        <img
+          src="images/Exhibition3.jpg"
+          alt="Exhibition3 Image"
+          class="imgContent4"
+        />
       </div>
       <span class="Content4More">
         <a href="domain/exhibition/list.html">see more</a>
@@ -183,27 +188,16 @@
         }
       });
     </script>
-
-    <!--검색창 기능-->
-    <script>
-      let link = document.getElementById("searchButton");
-      let input = document.getElementById("input");
-      // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
-      link.addEventListener("click", (e) => {
-        let searchText = input.value;
-        e.preventDefault();
-        let url = "search/?q=" + encodeURIComponent(searchText);
-        window.location.href = url;
-      });
-    </script>
-
     <!--Silde show-->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const sliders = [
           { images: document.querySelectorAll(".slider1 img"), interval: 6000 },
           { images: document.querySelectorAll(".slider2 img"), interval: 9000 },
-          { images: document.querySelectorAll(".slider3 img"), interval: 14000 },
+          {
+            images: document.querySelectorAll(".slider3 img"),
+            interval: 14000,
+          },
         ];
 
         sliders.forEach((slider) => {
@@ -221,26 +215,27 @@
       });
     </script>
 
-
     <!--관리자이면 관리자 페이지로 이동하기 버튼 추가-->
     <script>
-      window.addEventListener('DOMContentLoaded', (event) => {
-        const auth = JSON.parse(atob(localStorage.getItem('token').split('.')[1])).auth;
+      window.addEventListener("DOMContentLoaded", (event) => {
+        const auth = JSON.parse(
+          atob(localStorage.getItem("token").split(".")[1])
+        ).auth;
 
-        if (auth.includes('ROLE_ADMIN')) {
-          const uploadContainer2 = document.querySelector('.UploadContainer2');
-          const adminButtonContainer = document.createElement('div');
-          adminButtonContainer.classList.add('AdminButtonContainer');
+        if (auth.includes("ROLE_ADMIN")) {
+          const uploadContainer2 = document.querySelector(".UploadContainer2");
+          const adminButtonContainer = document.createElement("div");
+          adminButtonContainer.classList.add("AdminButtonContainer");
 
-          const adminButtonSubContainer = document.createElement('div');
-          adminButtonSubContainer.classList.add('AdminButtonSubContainer');
+          const adminButtonSubContainer = document.createElement("div");
+          adminButtonSubContainer.classList.add("AdminButtonSubContainer");
 
-          const adminButtonText = document.createElement('span');
-          adminButtonText.classList.add('AdminButtonText');
+          const adminButtonText = document.createElement("span");
+          adminButtonText.classList.add("AdminButtonText");
 
-          const adminButtonLink = document.createElement('a');
-          adminButtonLink.href = 'admin/artwork/upload_request.html';
-          adminButtonLink.innerText = '>> 관리자 페이지로 이동하기';
+          const adminButtonLink = document.createElement("a");
+          adminButtonLink.href = "admin/artwork/upload_request.html";
+          adminButtonLink.innerText = ">> 관리자 페이지로 이동하기";
 
           adminButtonText.appendChild(adminButtonLink);
           adminButtonSubContainer.appendChild(adminButtonText);
@@ -249,25 +244,38 @@
         }
       });
     </script>
-
-    <!--로그인 상태에 따라 로그인/로그아웃 버튼 보이기-->
+    <!--검색창 기능-->
     <script>
-      window.addEventListener('DOMContentLoaded', (event) => {
-        if(localStorage.getItem('token')) {
-          document.querySelector('.LoginContainer').style.display = 'none';
-        } else {
-          document.querySelector('.LogoutText').style.display = 'none';
-        }
+      let link = document.getElementById("searchButton");
+      let input = document.getElementById("input");
+      // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
+      link.addEventListener("click", (e) => {
+        let searchText = input.value;
+        e.preventDefault();
+        let url = "search/?q=" + encodeURIComponent(searchText);
+        window.location.href = url;
       });
     </script>
-
-
-    <!--로그아웃 버튼 클릭시 로컬스토리지에서 토큰 삭제-->
+    <!--로그인 상태에 따라 로그인/로그아웃 버튼 보이기-->
     <script>
-      document.querySelector('.LogoutText').addEventListener('click', (event) => {
-        event.preventDefault();
-        localStorage.removeItem('token');
-        location.reload();
+      window.addEventListener("DOMContentLoaded", (event) => {
+        if (localStorage.getItem("token")) {
+          document.querySelector(".TextLogin").style.display = "none";
+        } else {
+          document.querySelector(".TextLogout").style.display = "none";
+        }
+      });
+      // 마이페이지 버튼 클릭시 로그인 상태 확인 후 이동 처리
+      document.querySelector(".TextMyPage").addEventListener("click", (e) => {
+        e.preventDefault();
+        if (localStorage.getItem("token")) {
+          // 로그인 토큰이 있는 경우 마이페이지로 이동
+          window.location.href = "../domain/member/mypage.html";
+        } else {
+          // 로그인 토큰이 없는 경우 로그인 페이지로 이동
+          window.alert("먼저 로그인 해주세요");
+          window.location.href = "../domain/member/login.html";
+        }
       });
     </script>
   </body>
