@@ -15,11 +15,18 @@
     <link rel="icon" type="image/png" href="images/upload/Favicon.png" />
     <!--.css 연결-->
     <link rel="stylesheet" href="upload.css" />
+    <!--Check logged in-->
+    <script>
+      let jwtToken = localStorage.getItem("token"); // Check if user is logged in
+      if (!jwtToken) {
+        window.location.href = "../../index.html"; // If user is not logged in, redirect to index.html
+      }
+    </script>
   </head>
   <body>
     <!--전체 영역-->
     <div class="Container">
-      <!--상단 기본 메뉴 영역-->
+      <!-- 상단 기본 메뉴 영역
       <div class="Container-MenuBar">
         <div class="Container-LeftMenu">
           <span class="BrandName"><span>아트브릿지</span></span>
@@ -88,7 +95,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <!--본문 영역-->
       <div class="Container-Content">
         <!--아래부터 컨텐츠 작성-->
@@ -101,7 +108,6 @@
           <div class="lines">
             <hr class="combined-line" />
           </div>
-
           <form>
             <div class="image-upload">
               <label for="image">사진</label>
@@ -118,12 +124,28 @@
                 <input type="text" id="name" name="name" />
               </div>
               <div class="field">
-                <label for="period">기간</label>
-                <input type="text" id="period" name="period" />
+                <label for="artist">작가 이름</label>
+                <input type="text" id="artist" name="artist" />
               </div>
               <div class="field">
                 <label for="place">장소</label>
                 <input type="text" id="place" name="place" />
+              </div>
+              <div class="field">
+                <label for="period">기간</label>
+                <input type="text" id="period" name="period" />
+              </div>
+              <div class="field">
+                <label for="time">시간</label>
+                <input type="text" id="time" name="time" />
+              </div>
+              <div class="field">
+                <label for="fee">관람료</label>
+                <input type="text" id="fee" name="fee" />
+              </div>
+              <div class="field">
+                <label for="contact">문의 연락처</label>
+                <input type="text" id="contact" name="contact" />
               </div>
               <div class="field" id="introduceField">
                 <label for="introduce" id="introduceTitle">소개</label>
@@ -143,7 +165,7 @@
       </div>
     </div>
     <!--검색창 기능-->
-    <script>
+    <!-- <script>
       let link = document.getElementById("searchButton");
       let input = document.getElementById("input");
       // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
@@ -153,7 +175,7 @@
         let url = "search/?q=" + encodeURIComponent(searchText);
         window.location.href = url;
       });
-    </script>
+    </script> -->
     <!-- 이미지 미리보기 -->
     <script>
       function previewImage(input) {

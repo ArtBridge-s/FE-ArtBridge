@@ -15,6 +15,7 @@
     />
     <!--.css 연결-->
     <link rel="stylesheet" href="detail.css" />
+    <link rel="stylesheet" href="menubar.css"/>
     <!--좋아요 관련 JS-->
     <script>
       window.addEventListener('load', function() {
@@ -28,9 +29,9 @@
       // 이미지 변경하는 메소드
       function changeImage() {
         if (isLiked) {
-          image.src = './detail_resource/icon_FilledHeart.png';
+          image.src = 'images/detail/icon_FilledHeart.png';
         } else {
-          image.src = './detail_resource/icon_Heart.png';
+          image.src = 'images/detail/icon_Heart.png';
         }
       }
       // 페이지 로드시 isLiked 값을 서버에서 받아온 뒤 이미지를 변경
@@ -49,55 +50,64 @@
     <!--전체 영역-->
     <div class="Container">
       <!--상단 기본 메뉴 영역-->
+      <!--상단 기본 메뉴 영역-->
       <div class="Container-MenuBar">
         <div class="Container-LeftMenu">
           <span class="BrandName"><span>아트브릿지</span></span>
           <a href="../../index.html">
             <img
               alt="Logo image"
-              src="images/detail/Logo.png"
+              src="images/upload/Logo.png"
               class="ImgLogo"
               draggable="false"
             />
           </a>
-            <span class="HomeMenu"><a href="../../index.html">홈</a></span>
-            <span class="ArtworkMenu"><a href="../artwork/list.html">작품</a></span>
-            <span class="ExhibitionMenu"><a href="list.html">전시회</a></span>
-            <span class="IntroduceMenu"><span>소개</span></span>
-            <span class="ArtistMenu"><a href="../artist/list.html">아티스트</a></span>
+          <span class="HomeMenu"><a href="../../index.html">홈</a></span>
+          <span class="ArtworkMenu"
+            ><a href="../artwork/list.html">작품</a></span
+          >
+          <span class="ExhibitionMenu"
+            ><a href="../exhibition/list.html">전시회</a></span
+          >
+          <span class="IntroduceMenu"><span>소개</span></span>
+          <span class="ArtistMenu"
+            ><a href="../artist/list.html">아티스트</a></span
+          >
         </div>
         <div class="Container-RightMenu">
           <div class="GroupLoginLogout">
-            <span class="TextLogin"><a href="../member/login.html" id="login">LOGIN</a></span>
+            <span class="TextLogin"
+              ><a href="../member/login.html" id="login">LOGIN</a></span
+            >
+            <span class="TextLogout"
+              ><a href="../member/logout.html" id="logout">LOGOUT</a></span
+            >
             <span class="TextDelimeter">ㅣ</span>
-            <span class="TextLogout"><a href="../member/logout.html" id="logout">LOGOUT</a></span> 
-          </div>
-          <div class="GroupLanguageSelection">
-            <span class="CurrentLanguage"><span>한국어</span></span>
-            <img
-              alt="LanguageSelect image"
-              src="images/detail/icon_LanguageSelect.png"
-              class="LanguageSelectImgBtn"
-              draggable="false"
-            />
+            <span class="TextMyPage"
+              ><a href="../member/mypage.html" id="mypage">마이페이지</a></span
+            >
           </div>
           <div class="BtnUploadArtwork">
-            <span class="BtnTextUploadArtwork"><a href="../artwork/upload.html">작품 올리기</a></span>
+            <span class="BtnTextUploadArtwork"
+              ><a href="../artwork/upload.html">작품 올리기</a></span
+            >
           </div>
           <div class="BtnUploadExhibition">
-            <span class="BtnTextUploadExhibition"><a href="upload.html">전시회 올리기</a></span>
+            <span class="BtnTextUploadExhibition"
+              ><a href="../exhibition/upload.html">전시회 올리기</a></span
+            >
           </div>
           <div class="Container-SearchBar">
             <div class="GroupSearchInputAndButton">
-              <input id="input" placeholder="Search" class="TextSearchInput"/>
+              <input id="input" placeholder="Search" class="TextSearchInput" />
               <a id="searchButton" href="#">
-              <img
-                alt="Search Button image"
-                src="images/detail/icon_Search.svg"
-                class="BtnSearch"
-                draggable="false"
-              />
-            </a>
+                <img
+                  alt="Search Button image"
+                  src="images/upload/icon_Search.svg"
+                  class="BtnSearch"
+                  draggable="false"
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -108,10 +118,10 @@
           <span class="ExhibitionName">
             <span id = "exhibitionName">김건우 개인전</span>
           </span>
-          <div class="ExhibitionPlaceCity">
-            <span id = "place">아트브릿지</span>
-            <span> / </span>
-            <span id = "city">서울</span>
+          <div class="Conatainer-Uploader">
+            <span id = "writterTitle">작성자</span>
+            <span> : </span>
+            <span id = "username">신짱구</span>
           </span>
           <img
             alt="Exibition Poster image"
@@ -216,5 +226,37 @@
         });
       });
     </script>
+        <!--로그인 상태에 따라 로그인/로그아웃 버튼 보이기-->
+        <script>
+          window.addEventListener("DOMContentLoaded", (event) => {
+            if (localStorage.getItem("token")) {
+              document.querySelector(".TextLogin").style.display = "none";
+            } else {
+              document.querySelector(".TextLogout").style.display = "none";
+            }
+          });
+          //마이페이지 버튼 클릭시 로그인 상태 확인 후 이동 처리
+          document.querySelector(".TextMyPage").addEventListener("click", (e) => {
+            e.preventDefault();
+            if (localStorage.getItem("token")) {
+              // 로그인 토큰이 있는 경우 마이페이지로 이동
+              window.location.href = "../member/mypage.html";
+            } else {
+              // 로그인 토큰이 없는 경우 로그인 페이지로 이동
+              window.alert("먼저 로그인 해주세요");
+              window.location.href = "../member/login.html";
+            }
+          });
+        </script>
+        <!--로그아웃 버튼 클릭시 로컬스토리지에서 토큰 삭제-->
+        <script>
+          document
+            .querySelector(".TextLogout")
+            .addEventListener("click", (event) => {
+              event.preventDefault();
+              localStorage.removeItem("token");
+              location.reload();
+            });
+        </script>
   </body>
 </html>
