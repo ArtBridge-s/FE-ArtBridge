@@ -1,72 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta property="twitter:card" content="summary_large_image"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="twitter:card" content="summary_large_image" />
     <title>Title</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" data-tag="font"/>
-    <link rel="icon" type="image/png" href="images/header/Favicon.png"/>
-    <link rel="stylesheet" href="header.css"/>
-</head>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link rel="icon" type="image/png" href="images/header/Favicon.png" />
+    <link rel="stylesheet" href="header.css" />
+  </head>
 
-<body>
-<!--전체 영역-->
-<div class="Container">
-    <!--상단 기본 메뉴 영역-->
-    <div class="Container-MenuBar">
+  <body>
+    <!--전체 영역-->
+    <div class="Container">
+      <!--상단 기본 메뉴 영역-->
+      <div class="Container-MenuBar">
         <div class="Container-LeftMenu">
-            <span class="BrandName"><span>아트브릿지</span></span>
-            <a href="../index.html">
-                <img alt="Logo image" src="images/header/Logo.png" class="ImgLogo" draggable="false"/>
-            </a>
-            <span class="HomeMenu"><a href="../index.html">홈</a></span>
-            <span class="ArtworkMenu"><a href="../domain/artwork/list.html">작품</a></span>
-            <span class="ExhibitionMenu"><a href="../domain/exhibition/list.html">전시회</a></span>
-            <span class="IntroduceMenu"><span>소개</span></span>
-            <span class="ArtistMenu"><a href="../domain/artist/list.html">아티스트</a></span>
+          <span class="BrandName"><span>아트브릿지</span></span>
+          <a href="../index.html">
+            <img
+              alt="Logo image"
+              src="images/header/Logo.png"
+              class="ImgLogo"
+              draggable="false"
+            />
+          </a>
+          <span class="HomeMenu"><a href="../index.html">홈</a></span>
+          <span class="ArtworkMenu"
+            ><a href="../domain/artwork/list.html">작품</a></span
+          >
+          <span class="ExhibitionMenu"
+            ><a href="../domain/exhibition/list.html">전시회</a></span
+          >
+          <span class="IntroduceMenu"><span>소개</span></span>
+          <span class="ArtistMenu"
+            ><a href="../domain/artist/list.html">아티스트</a></span
+          >
         </div>
         <div class="Container-RightMenu">
-            <div class="GroupLoginLogout">
-                <span class="TextLogin"><a href="../domain/member/login.html" id="login">LOGIN</a></span>
-                <span class="TextDelimeter">ㅣ</span>
-                <span class="TextLogout"><a href="../domain/member/logout.html" id="logout">LOGOUT</a></span>
-            </div>
-            <div class="GroupLanguageSelection">
+          <div class="GroupLoginLogout">
+            <span class="TextLogin"
+              ><a href="../domain/member/login.html" id="login">LOGIN</a></span
+            >
+            <!-- <span class="TextDelimeter">ㅣ</span> -->
+            <span class="TextLogout"
+              ><a href="../domain/member/logout.html" id="logout"
+                >LOGOUT</a
+              ></span
+            >
+          </div>
+          <!-- <div class="GroupLanguageSelection">
                 <span class="CurrentLanguage"><span>한국어</span></span>
                 <img alt="LanguageSelect image" src="images/header/icon_LanguageSelect.png" class="LanguageSelectImgBtn" draggable="false"/>
+            </div> -->
+          <div class="BtnUploadArtwork">
+            <span class="BtnTextUploadArtwork"
+              ><a href="../domain/artwork/upload.html">작품 올리기</a></span
+            >
+          </div>
+          <div class="BtnUploadExhibition">
+            <span class="BtnTextUploadExhibition"
+              ><a href="../domain/exhibition/upload.html"
+                >전시회 올리기</a
+              ></span
+            >
+          </div>
+          <div class="Container-SearchBar">
+            <div class="GroupSearchInputAndButton">
+              <input id="input" placeholder="Search" class="TextSearchInput" />
+              <a id="searchButton" href="#">
+                <img
+                  alt="Search Button image"
+                  src="images/header/icon_Search.svg"
+                  class="BtnSearch"
+                  draggable="false"
+                />
+              </a>
             </div>
-            <div class="BtnUploadArtwork">
-                <span class="BtnTextUploadArtwork"><a href="../domain/artwork/upload.html">작품 올리기</a></span>
-            </div>
-            <div class="BtnUploadExhibition">
-                <span class="BtnTextUploadExhibition"><a href="../domain/exhibition/upload.html">전시회 올리기</a></span>
-            </div>
-            <div class="Container-SearchBar">
-                <div class="GroupSearchInputAndButton">
-                    <input id="input" placeholder="Search" class="TextSearchInput"/>
-                    <a id="searchButton" href="#">
-                        <img alt="Search Button image" src="images/header/icon_Search.svg" class="BtnSearch" draggable="false"/>
-                    </a>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
-
-<!--검색창 기능-->
-<script>
-    let link = document.getElementById("searchButton");
-    let input = document.getElementById("input");
-    // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
-    link.addEventListener("click", (e) => {
+    <!--검색창 기능-->
+    <script>
+      let link = document.getElementById("searchButton");
+      let input = document.getElementById("input");
+      // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
+      link.addEventListener("click", (e) => {
         let searchText = input.value;
         e.preventDefault();
         let url = "search/?q=" + encodeURIComponent(searchText);
         window.location.href = url;
-    });
-</script>
-
-</body>
+      });
+    </script>
+    <!--로그인 상태에 따라 로그인/로그아웃 버튼 보이기-->
+    <script>
+      window.addEventListener("DOMContentLoaded", (event) => {
+        if (localStorage.getItem("token")) {
+          document.querySelector(".TextLogin").style.display = "none";
+        } else {
+          document.querySelector(".TextLogout").style.display = "none";
+        }
+      });
+    </script>
+  </body>
 </html>

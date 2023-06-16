@@ -161,6 +161,7 @@ span {
 }
 .TextLogin {
   color: rgba(0, 0, 0, 1);
+  left: 40px;
   width: 46px;
   height: auto;
   position: absolute;
@@ -176,7 +177,7 @@ span {
 .TextLogin:hover {
   color: rgba(207, 94, 83, 1);
 }
-.TextDelimeter {
+/* .TextDelimeter {
   left: 46px;
   color: rgba(0, 0, 0, 1);
   width: 14px;
@@ -190,9 +191,9 @@ span {
   line-height: normal;
   font-stretch: normal;
   text-decoration: none;
-}
+} */
 .TextLogout {
-  left: 60px;
+  left: 41px;
   color: rgba(0, 0, 0, 1);
   width: 63px;
   height: auto;
@@ -210,7 +211,7 @@ span {
   color: rgba(207, 94, 83, 1);
 }
 
-.GroupLanguageSelection {
+/* .GroupLanguageSelection {
   top: 0;
   right: 2.6328125px;
   width: 62px;
@@ -239,7 +240,7 @@ span {
   width: 14px;
   height: 14px;
   position: absolute;
-}
+} */
 
 .Container-SearchBar {
   top: 32px;
@@ -354,4 +355,3 @@ span {
   font-stretch: normal;
   text-decoration: none;
 }
-
