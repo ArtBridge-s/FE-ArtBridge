@@ -161,7 +161,7 @@ span {
 }
 .TextLogin {
   color: rgba(0, 0, 0, 1);
-  left: 40px;
+  left: 10px;
   width: 46px;
   height: auto;
   position: absolute;
@@ -177,23 +177,7 @@ span {
 .TextLogin:hover {
   color: rgba(207, 94, 83, 1);
 }
-/* .TextDelimeter {
-  left: 46px;
-  color: rgba(0, 0, 0, 1);
-  width: 14px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: normal;
-  text-align: left;
-  font-family: Inter, serif;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-} */
 .TextLogout {
-  left: 41px;
   color: rgba(0, 0, 0, 1);
   width: 63px;
   height: auto;
@@ -208,6 +192,40 @@ span {
   text-decoration: none;
 }
 .TextLogout:hover {
+  color: rgba(207, 94, 83, 1);
+}
+.TextDelimeter {
+  left: 61px;
+  color: rgba(0, 0, 0, 1);
+  width: 14px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.TextMyPage {
+  left: 79px;
+  color: rgba(0, 0, 0, 1);
+  width: 65px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+
+.TextMyPage:hover {
   color: rgba(207, 94, 83, 1);
 }
 

@@ -16,71 +16,70 @@
 
   <body>
     <!--전체 영역-->
-    <div class="Container">
-      <!--상단 기본 메뉴 영역-->
-      <div class="Container-MenuBar">
-        <div class="Container-LeftMenu">
-          <span class="BrandName"><span>아트브릿지</span></span>
-          <a href="../index.html">
-            <img
-              alt="Logo image"
-              src="images/header/Logo.png"
-              class="ImgLogo"
-              draggable="false"
-            />
-          </a>
-          <span class="HomeMenu"><a href="../index.html">홈</a></span>
-          <span class="ArtworkMenu"
-            ><a href="../domain/artwork/list.html">작품</a></span
+    <!--상단 기본 메뉴 영역-->
+    <div class="Container-MenuBar">
+      <div class="Container-LeftMenu">
+        <span class="BrandName"><span>아트브릿지</span></span>
+        <a href="../index.html">
+          <img
+            alt="Logo image"
+            src="images/header/Logo.png"
+            class="ImgLogo"
+            draggable="false"
+          />
+        </a>
+        <span class="HomeMenu"><a href="../index.html">홈</a></span>
+        <span class="ArtworkMenu"
+          ><a href="../domain/artwork/list.html">작품</a></span
+        >
+        <span class="ExhibitionMenu"
+          ><a href="../domain/exhibition/list.html">전시회</a></span
+        >
+        <span class="IntroduceMenu"><span>소개</span></span>
+        <span class="ArtistMenu"
+          ><a href="../domain/artist/list.html">아티스트</a></span
+        >
+      </div>
+      <div class="Container-RightMenu">
+        <div class="GroupLoginLogout">
+          <span class="TextLogin"
+            ><a href="../domain/member/login.html" id="login">LOGIN</a></span
           >
-          <span class="ExhibitionMenu"
-            ><a href="../domain/exhibition/list.html">전시회</a></span
+          <span class="TextLogout"
+            ><a href="../domain/member/logout.html" id="logout">LOGOUT</a></span
           >
-          <span class="IntroduceMenu"><span>소개</span></span>
-          <span class="ArtistMenu"
-            ><a href="../domain/artist/list.html">아티스트</a></span
+          <span class="TextDelimeter">ㅣ</span>
+          <span class="TextMyPage"
+            ><a href="../domain/member/mypage.html" id="mypage"
+              >마이페이지</a
+            ></span
           >
         </div>
-        <div class="Container-RightMenu">
-          <div class="GroupLoginLogout">
-            <span class="TextLogin"
-              ><a href="../domain/member/login.html" id="login">LOGIN</a></span
-            >
-            <!-- <span class="TextDelimeter">ㅣ</span> -->
-            <span class="TextLogout"
-              ><a href="../domain/member/logout.html" id="logout"
-                >LOGOUT</a
-              ></span
-            >
-          </div>
-          <!-- <div class="GroupLanguageSelection">
+        <!-- <div class="GroupLanguageSelection">
                 <span class="CurrentLanguage"><span>한국어</span></span>
                 <img alt="LanguageSelect image" src="images/header/icon_LanguageSelect.png" class="LanguageSelectImgBtn" draggable="false"/>
             </div> -->
-          <div class="BtnUploadArtwork">
-            <span class="BtnTextUploadArtwork"
-              ><a href="../domain/artwork/upload.html">작품 올리기</a></span
-            >
-          </div>
-          <div class="BtnUploadExhibition">
-            <span class="BtnTextUploadExhibition"
-              ><a href="../domain/exhibition/upload.html"
-                >전시회 올리기</a
-              ></span
-            >
-          </div>
-          <div class="Container-SearchBar">
-            <div class="GroupSearchInputAndButton">
-              <input id="input" placeholder="Search" class="TextSearchInput" />
-              <a id="searchButton" href="#">
-                <img
-                  alt="Search Button image"
-                  src="images/header/icon_Search.svg"
-                  class="BtnSearch"
-                  draggable="false"
-                />
-              </a>
-            </div>
+        <div class="BtnUploadArtwork">
+          <span class="BtnTextUploadArtwork"
+            ><a href="../domain/artwork/upload.html">작품 올리기</a></span
+          >
+        </div>
+        <div class="BtnUploadExhibition">
+          <span class="BtnTextUploadExhibition"
+            ><a href="../domain/exhibition/upload.html">전시회 올리기</a></span
+          >
+        </div>
+        <div class="Container-SearchBar">
+          <div class="GroupSearchInputAndButton">
+            <input id="input" placeholder="Search" class="TextSearchInput" />
+            <a id="searchButton" href="#">
+              <img
+                alt="Search Button image"
+                src="images/header/icon_Search.svg"
+                class="BtnSearch"
+                draggable="false"
+              />
+            </a>
           </div>
         </div>
       </div>
@@ -107,6 +106,19 @@
           document.querySelector(".TextLogout").style.display = "none";
         }
       });
+       // 마이페이지 버튼 클릭시 로그인 상태 확인 후 이동 처리
+       document.querySelector(".TextMyPage").addEventListener("click", (e) => {
+        e.preventDefault();
+        if (localStorage.getItem("token")) {
+          // 로그인 토큰이 있는 경우 마이페이지로 이동
+          window.location.href = "../domain/member/mypage.html";
+        } else {
+          // 로그인 토큰이 없는 경우 로그인 페이지로 이동
+          window.alert("먼저 로그인 해주세요");
+          window.location.href = "../domain/member/login.html";
+        }
+      });
+    </script>
     </script>
   </body>
 </html>
