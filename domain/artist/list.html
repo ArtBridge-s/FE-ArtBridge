@@ -34,13 +34,18 @@
 </div>
 
 <script>
+
+    $(document).ready(function() {
+        loadArtworks(0);
+    });
+
     const ITEMS_PER_PAGE = 5;
 
     function createProfileElement(artwork) {
         return (
             '<div class="profile">' +
-            '<img src="' + artwork.imageUrl + '" class="profile-img" alt="Artwork ' + artwork.title + '">' +
-            '<h3>' + artwork.title + '</h3>' +
+            '<img src="' + artwork.imgUrl + '" class="profile-img" alt="Artwork ' + artwork.title + '">' +
+            '<h3>' + artwork.name + '</h3>' +
             '</div>'
         );
     }
@@ -64,7 +69,7 @@
             var totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE) - 1;
 
             $('#pagination').empty();
-            for (var i = 1; i <= totalPages; i++) {
+            for (var i = 0; i <= totalPages; i++) {
                 $('#pagination').append(createPaginationElement(i, page));
             }
         });
