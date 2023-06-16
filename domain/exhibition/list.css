@@ -1,6 +1,6 @@
 .card {
   width: 15.5rem;
-  height: 11rem;
+  height: 13rem;
   border: 1px solid #ebebeb;
   background: #ffffff;
   box-shadow: 0.625rem 0.625rem 1.875rem rgb(0, 0, 0, 0.1);
@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 3rem;
+  padding-bottom: 4.5rem;
   display: flex;
 }
 .card:hover {
@@ -46,30 +47,29 @@
 .listContainer {
   display: flex;
   flex-direction: column;
-  margin-right: 40rem;
+  margin-left: 8rem;
 }
 
 /* 추가된 '작품 올리기' 버튼 스타일 */
-.uploadArtworkButton {
+/* .uploadArtworkButton {
   display: inline-block;
   padding: 10px 20px;
   font-size: 1rem;
   text-align: center;
   color: #ffffff;
-  background-color: #007BFF;
+  background-color: #007bff;
   border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.3s ease;
   margin-left: 20px; /* 기존 버튼과의 간격 조정 */
-}
+/* }
 .BtnMyPage {
   /* 기존 스타일 */
-  display: block; /* 요소를 블록 요소로 만들어 새로운 줄에서 시작하게 함 */
-  margin-left: -10px; /* 왼쪽으로 이동. 값은 적절히 조정 */
-  margin-top: 1px;  /* 상단으로 이동. 값은 적절히 조정 */
-}
+/* display: block; /* 요소를 블록 요소로 만들어 새로운 줄에서 시작하게 함 */
+/* margin-left: -10px; /* 왼쪽으로 이동. 값은 적절히 조정 */
+/* margin-top: 1px; 상단으로 이동. 값은 적절히 조정 */
+/*} */
 
-
-.uploadArtworkButton:hover {
+/* .uploadArtworkButton:hover {
   background-color: #0056b3;
-}
+}  */
