@@ -80,7 +80,7 @@
           </span>
         </div>
         <span class="LogoutText">
-          <a href="domain/member/delete.html">LOGOUT</a>
+          <a href="">LOGOUT</a>
         </span>
         <img src="images/SearchIcon.svg" alt="Search Icon" class="SearchButton" />
 
@@ -261,5 +261,14 @@
       });
     </script>
 
+
+    <!--로그아웃 버튼 클릭시 로컬스토리지에서 토큰 삭제-->
+    <script>
+      document.querySelector('.LogoutText').addEventListener('click', (event) => {
+        event.preventDefault();
+        localStorage.removeItem('token');
+        location.reload();
+      });
+    </script>
   </body>
 </html>
