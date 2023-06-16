@@ -2,6 +2,12 @@
 <html lang="en">
   <head>
     <title>ArtBridge</title>
+    <!--일반 폰트-->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
     <!--필기체 폰트-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -9,12 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Estonia&display=swap"
       rel="stylesheet"
     />
-    <!--일반 폰트-->
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
-      data-tag="font"
-    />
+
     <!--Style.css 연결-->
     <link rel="stylesheet" href="index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -50,10 +51,9 @@
         <div class="Container-RightMenu">
           <div class="GroupLoginLogout">
             <span class="TextLogin"
-              ><a href="domain/member/login.html" id="login">LOGIN</a></span>
-            <span class="TextLogout"
-              ><a href="" id="logout">LOGOUT</a></span
+              ><a href="domain/member/login.html" id="login">LOGIN</a></span
             >
+            <span class="TextLogout"><a href="" id="logout">LOGOUT</a></span>
             <span class="TextDelimeter">ㅣ</span>
             <span class="TextMyPage"
               ><a href="/domain/member/mypage.html" id="mypage"
@@ -279,14 +279,15 @@
         }
       });
     </script>
-
     <!--로그아웃 버튼 클릭시 로컬스토리지에서 토큰 삭제-->
     <script>
-      document.querySelector('.TextLogout').addEventListener('click', (event) => {
-        event.preventDefault();
-        localStorage.removeItem('token');
-        location.reload();
-      });
+      document
+        .querySelector(".TextLogout")
+        .addEventListener("click", (event) => {
+          event.preventDefault();
+          localStorage.removeItem("token");
+          location.reload();
+        });
     </script>
   </body>
 </html>
