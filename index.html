@@ -216,33 +216,31 @@
 
     <!--관리자이면 관리자 페이지로 이동하기 버튼 추가-->
     <script>
-      window.addEventListener("DOMContentLoaded", (event) => {
-        const auth = JSON.parse(
-          atob(localStorage.getItem("token").split(".")[1])
-        ).auth;
+      document.addEventListener("DOMContentLoaded", function () {
+        const token = localStorage.getItem("token");
+        if (token) {
+          const auth = JSON.parse(atob(token.split(".")[1])).auth;
+          if (auth.includes("ROLE_ADMIN")) {
+            const uploadContainer2 = document.querySelector(".Container-RightMenu");
+            const adminButtonContainer = document.createElement("div");
 
-        if (auth.includes("ROLE_ADMIN")) {
-          const uploadContainer2 = document.querySelector(".UploadContainer2");
-          const adminButtonContainer = document.createElement("div");
-          adminButtonContainer.classList.add("AdminButtonContainer");
+            const adminButtonSubContainer = document.createElement("div");
 
-          const adminButtonSubContainer = document.createElement("div");
-          adminButtonSubContainer.classList.add("AdminButtonSubContainer");
+            const adminButtonText = document.createElement("span");
 
-          const adminButtonText = document.createElement("span");
-          adminButtonText.classList.add("AdminButtonText");
+            const adminButtonLink = document.createElement("a");
+            adminButtonLink.href = "admin/artwork/upload_request.html";
+            adminButtonLink.innerText = ">> Go to Admin Page";
 
-          const adminButtonLink = document.createElement("a");
-          adminButtonLink.href = "admin/artwork/upload_request.html";
-          adminButtonLink.innerText = ">> 관리자 페이지로 이동하기";
-
-          adminButtonText.appendChild(adminButtonLink);
-          adminButtonSubContainer.appendChild(adminButtonText);
-          adminButtonContainer.appendChild(adminButtonSubContainer);
-          uploadContainer2.after(adminButtonContainer);
+            adminButtonText.appendChild(adminButtonLink);
+            adminButtonSubContainer.appendChild(adminButtonText);
+            adminButtonContainer.appendChild(adminButtonSubContainer);
+            uploadContainer2.after(adminButtonContainer);
+          }
         }
       });
     </script>
+
 
     <!--검색창 기능-->
     <script>
