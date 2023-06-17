@@ -103,6 +103,7 @@ span {
 
 .input.input-large {
     height: 120px;
+    border: 1px solid #000000;
 }
 
 .btn {
