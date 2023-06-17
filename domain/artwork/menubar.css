@@ -8,6 +8,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
+  zoom: 90%;
   font-weight: 400;
   letter-spacing: normal;
   line-height: 1.15;
@@ -62,13 +63,13 @@ span {
 .BrandName {
   top: 68px;
   color: rgba(51, 61, 65, 0.800000011920929);
-  right: 0px;
+  right: 0;
   height: auto;
   position: absolute;
   font-size: 35px;
-  font-style: Regular;
+  font-style: normal;
   text-align: center;
-  font-family: NanumMyeongjo;
+  font-family: NanumMyeongjo, serif;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
@@ -174,7 +175,7 @@ span {
 .GroupLoginLogout {
   top: 0px;
   left: 74px;
-  width: 123px;
+  width: 160px;
   height: 19px;
   display: flex;
   position: absolute;
@@ -234,7 +235,7 @@ span {
 .TextMyPage {
   left: 79px;
   color: rgba(0, 0, 0, 1);
-  width: 65px;
+  width: 75px;
   height: auto;
   position: absolute;
   font-size: 15px;
