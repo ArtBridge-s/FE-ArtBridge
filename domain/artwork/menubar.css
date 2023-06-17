@@ -382,7 +382,7 @@ span {
   height: 78.52%;
   display: flex;
   position: absolute;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .container {
