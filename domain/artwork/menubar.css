@@ -34,7 +34,6 @@ span {
 
 .Container {
   width: 100%;
-  height: 1024px;
   display: flex;
   overflow: hidden;
   position: auto;
