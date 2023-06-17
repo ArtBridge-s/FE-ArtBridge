@@ -67,10 +67,10 @@
             <label for="fileUpload" class="fileUpload">파일 선택</label>
         </div>
         <input type="text" class="input" name="artworkName" placeholder="작품 명을 입력해주세요" required>
-        <textarea class="input input-large" placeholder="작품 소개를 입력해주세요 (글자수 100자 제한)" required maxlength="100"></textarea>
-        <input type="text" class="input" placeholder="가격을 입력해주세요" required>
-        <input type="text" class="input" placeholder="작가를 입력해주세요" required>
-        <textarea class="input input-large" placeholder="작품 설명을 해주세요" required></textarea>
+        <textarea class="input input-large" name="artworkDescription" placeholder="작품 소개를 입력해주세요 (글자수 100자 제한)" required maxlength="100"></textarea>
+        <input type="text" class="input" name="makingday" placeholder="작품 제작 연도를 입력해 주세요" required>
+        <input type="text" class="input" name="artworkAuthor" placeholder="작가를 입력해주세요" required>
+        <textarea class="input input-large" name="artworkLongDescription" placeholder="작품 설명을 해주세요" required></textarea>
         <div class="button-group">
             <button type="submit" class="btn btn-small" id="submitBtn">등록</button>
             <button type="reset" class="btn btn-small">취소</button>
@@ -122,14 +122,14 @@
         let artworkDTO = {
             title: $("input[name='artworkName']").val(),
             shortDescription: $("textarea[name='artworkDescription']").val(),
-            artistname: $("input[name='artworkAuthor']").val(),
             longDescription: $("textarea[name='artworkLongDescription']").val(),
+            artistname: $("textarea[name='artworkAuthor']").val(),
+            makingday: $("textarea[name='makingday']").val(),
         };
         formData.append('artworkDTO', JSON.stringify(artworkDTO));
         formData.append('image', $('#fileUpload')[0].files[0]);
         return formData;
     }
-
     // JWT 토큰 가져오기
     function getJwtToken() {
         return localStorage.getItem('token');
