@@ -4,66 +4,182 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="detail.css" />
+    <link rel="stylesheet" href="menubar.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <!--파비콘-->
+    <link rel="icon" type="image/png" href="images/Favicon.png" />
     <title>아티스트 프로필 상세조회 페이지</title>
   </head>
 
   <body>
-    <div class="container">
-      <h1 class="title">아티스트</h1>
-      <hr class="divider" />
-      <div class="artist-info">
-        <img
-          class="artist-image"
-          src="https://namu.wiki/w/%ED%8C%8C%EC%9D%BC:VanGogh_1887.jpg"
-          alt="Artist Image"
-        />
-        <div class="artist-description">
-          <h2 class="artist-name" id="artistName">고흐</h2>
-          <div class="artist-details">
-            <p><strong>본명</strong></p>
-            <p id="artist-fullName">
-              빈센트 빌럼 반 고흐 / Vincent Willem van Gogh
-            </p>
-            <p><strong>경력</strong></p>
-            <p id="artist-career">
-              서울 갤러리 아트브릿지 단체전 2023 1.16-1.30 개인전
-              2023.11.21-11.30
-            </p>
+    <div class="Container">
+      <!--상단 기본 메뉴 영역-->
+      <div class="Container-MenuBar">
+        <div class="Container-LeftMenu">
+          <span class="BrandName"><span>아트브릿지</span></span>
+          <a href="../../index.html">
+            <img
+              alt="Logo image"
+              src="images/Logo.png"
+              class="ImgLogo"
+              draggable="false"
+            />
+          </a>
+          <span class="HomeMenu"><a href="../../index.html">홈</a></span>
+          <span class="ArtworkMenu"
+            ><a href="../artwork/list.html">작품</a></span
+          >
+          <span class="ExhibitionMenu"
+            ><a href="../exhibition/list.html">전시회</a></span
+          >
+          <span class="IntroduceMenu"><span>소개</span></span>
+          <span class="ArtistMenu"
+            ><a href="../artist/list.html">아티스트</a></span
+          >
+        </div>
+        <div class="Container-RightMenu">
+          <div class="GroupLoginLogout">
+            <span class="TextLogin"
+              ><a href="../member/login.html" id="login">LOGIN</a></span
+            >
+            <span class="TextLogout"
+              ><a href="../member/logout.html" id="logout">LOGOUT</a></span
+            >
+            <span class="TextDelimeter">ㅣ</span>
+            <span class="TextMyPage"
+              ><a href="../member/mypage.html" id="mypage">마이페이지</a></span
+            >
+          </div>
+          <div class="BtnUploadArtwork">
+            <span class="BtnTextUploadArtwork"
+              ><a href="../artwork/upload.html">작품 올리기</a></span
+            >
+          </div>
+          <div class="BtnUploadExhibition">
+            <span class="BtnTextUploadExhibition"
+              ><a href="../exhibition/upload.html">전시회 올리기</a></span
+            >
+          </div>
+          <div class="Container-SearchBar">
+            <div class="GroupSearchInputAndButton">
+              <input id="input" placeholder="Search" class="TextSearchInput" />
+              <a id="searchButton" href="#">
+                <img
+                  alt="Search Button image"
+                  src="images/icon_Search.svg"
+                  class="BtnSearch"
+                  draggable="false"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="Container-Content">
+        <div class="container">
+          <h1 class="title">아티스트</h1>
+          <hr class="divider" />
+          <div class="artist-info">
+            <img
+              class="artist-image"
+              src="https://namu.wiki/w/%ED%8C%8C%EC%9D%BC:VanGogh_1887.jpg"
+              alt="Artist Image"
+            />
+            <div class="artist-description">
+              <h2 class="artist-name" id="artistName">고흐</h2>
+              <div class="artist-details">
+                <p><strong>본명</strong></p>
+                <p id="artist-fullName">
+                  빈센트 빌럼 반 고흐 / Vincent Willem van Gogh
+                </p>
+                <p><strong>경력</strong></p>
+                <p id="artist-career">
+                  서울 갤러리 아트브릿지 단체전 2023 1.16-1.30 개인전
+                  2023.11.21-11.30
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </body>
   <script>
-    const API_BASE_URL = 'http://tobiasdev.ml/services/artist/api/artists';
+    const API_BASE_URL = "http://tobiasdev.ml/services/artist/api/artists";
 
     async function getData() {
-      let id = new URL(window.location.href).searchParams.get('id');
+      let id = new URL(window.location.href).searchParams.get("id");
       let url = `${API_BASE_URL}/${id}`;
       const response = await fetch(url, {
-        method: 'GET',
+        method: "GET",
         headers: {
-          'Content-Type': '*/*',
+          "Content-Type": "*/*",
         },
       });
       return response.json();
     }
 
     getData().then((data) => {
-      const name = document.getElementById('artistName');
-      const fullName = document.getElementById('artist-fullName');
-      const career = document.getElementById('artist-career');
-      const img = document.getElementsByClassName('artist-image');
+      const name = document.getElementById("artistName");
+      const fullName = document.getElementById("artist-fullName");
+      const career = document.getElementById("artist-career");
+      const img = document.getElementsByClassName("artist-image");
       console.log(data.name);
       img.src =
         data?.imgUrl === undefined
-          ? 'https://namu.wiki/w/%ED%8C%8C%EC%9D%BC:VanGogh_1887.jpg'
+          ? "https://namu.wiki/w/%ED%8C%8C%EC%9D%BC:VanGogh_1887.jpg"
           : data.imgUrl;
-      name.textContent = data?.name === undefined ? '알 수 없음' : data.name;
+      name.textContent = data?.name === undefined ? "알 수 없음" : data.name;
       fullName.textContent =
-        data?.realName === undefined ? '알 수 없음' : data.realName;
+        data?.realName === undefined ? "알 수 없음" : data.realName;
       career.textContent =
-        data?.career === undefined ? '알 수 없음' : data.career;
+        data?.career === undefined ? "알 수 없음" : data.career;
+    });
+  </script>
+  <!--검색창 기능-->
+  <script>
+    let link = document.getElementById("searchButton");
+    let input = document.getElementById("input");
+    // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
+    link.addEventListener("click", (e) => {
+      let searchText = input.value;
+      e.preventDefault();
+      let url = "search/?q=" + encodeURIComponent(searchText);
+      window.location.href = url;
+    });
+  </script>
+  <!--로그인 상태에 따라 로그인/로그아웃 버튼 보이기-->
+  <script>
+    window.addEventListener("DOMContentLoaded", (event) => {
+      if (localStorage.getItem("token")) {
+        document.querySelector(".TextLogin").style.display = "none";
+      } else {
+        document.querySelector(".TextLogout").style.display = "none";
+      }
+    });
+    //마이페이지 버튼 클릭시 로그인 상태 확인 후 이동 처리
+    document.querySelector(".TextMyPage").addEventListener("click", (e) => {
+      e.preventDefault();
+      if (localStorage.getItem("token")) {
+        // 로그인 토큰이 있는 경우 마이페이지로 이동
+        window.location.href = "../member/mypage.html";
+      } else {
+        // 로그인 토큰이 없는 경우 로그인 페이지로 이동
+        window.alert("먼저 로그인 해주세요");
+        window.location.href = "../member/login.html";
+      }
+    });
+  </script>
+  <!--로그아웃 버튼 클릭시 로컬스토리지에서 토큰 삭제-->
+  <script>
+    document.querySelector(".TextLogout").addEventListener("click", (event) => {
+      event.preventDefault();
+      localStorage.removeItem("token");
+      location.reload();
     });
   </script>
 </html>

@@ -1,187 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>작품 업로드 페이지</title>
-    <link rel="stylesheet" type="text/css" href="upload.css">
+    <link rel="stylesheet" type="text/css" href="upload.css" />
     <link rel="stylesheet" type="text/css" href="menubar.css" />
+    <!--파비콘-->
+    <link rel="icon" type="image/png" href="images/header/Favicon.png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-<body>
-<div class="artwork-info">
-    <h1>작품정보를 작성해주세요</h1>
-    <form class="form">
+  </head>
+  <body>
+    <div class="artwork-info">
+      <h1>작품정보를 작성해주세요</h1>
+      <form class="form">
         <p class="recommended-size">권장 사이즈 400X250</p>
         <div class="input-group">
-            <input type="text" class="input input-upload" placeholder="이미지 첨부" disabled>
-            <input type="file" class="btn upload" id="fileUpload" required>
-            <label for="fileUpload" class="fileUpload">파일 선택</label>
+          <input
+            type="text"
+            class="input input-upload"
+            placeholder="이미지 첨부"
+            disabled
+          />
+          <input type="file" class="btn upload" id="fileUpload" required />
+          <label for="fileUpload" class="fileUpload">파일 선택</label>
         </div>
-        <input type="text" class="input" name="title" placeholder="작품 명을 입력해주세요" required>
-        <textarea class="input input-large" name="shortDescription" placeholder="작품 소개를 입력해주세요 (글자수 100자 제한)" required maxlength="100"></textarea>
-        <input type="text" class="input" name="makingday" placeholder="작품 제작 연도를 입력해 주세요" required>
-        <input type="text" class="input" name="artistname" placeholder="작가를 입력해주세요" required>
-        <textarea class="input input-large" name="artworkLongDescription" placeholder="작품 설명을 해주세요" required></textarea>
+        <input
+          type="text"
+          class="input"
+          name="title"
+          placeholder="작품 명을 입력해주세요"
+          required
+        />
+        <textarea
+          class="input input-large"
+          name="shortDescription"
+          placeholder="작품 소개를 입력해주세요 (글자수 100자 제한)"
+          required
+          maxlength="100"
+        ></textarea>
+        <input
+          type="text"
+          class="input"
+          name="makingday"
+          placeholder="작품 제작 연도를 입력해 주세요"
+          required
+        />
+        <input
+          type="text"
+          class="input"
+          name="artistname"
+          placeholder="작가를 입력해주세요"
+          required
+        />
+        <textarea
+          class="input input-large"
+          name="artworkLongDescription"
+          placeholder="작품 설명을 해주세요"
+          required
+        ></textarea>
         <div class="button-group">
-            <button type="submit" class="btn btn-small" id="submitBtn">등록</button>
-            <button type="reset" class="btn btn-small">취소</button>
+          <button type="submit" class="btn btn-small" id="submitBtn">
+            등록
+          </button>
+          <button type="reset" class="btn btn-small">취소</button>
         </div>
-    </form>
-</div>
+      </form>
+    </div>
 
-<div id="loading" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-    <img src="images/loading.gif" alt="">  <!-- Replace with your loading gif -->
-</div>
+    <div
+      id="loading"
+      style="
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      "
+    >
+      <img src="images/loading.gif" alt="" />
+      <!-- Replace with your loading gif -->
+    </div>
 
-<!--파일 선택 시 파일명 텍스트 필드에 표시-->
-<script>
-    document.getElementById("fileUpload").onchange = function() {
+    <!--파일 선택 시 파일명 텍스트 필드에 표시-->
+    <script>
+      document.getElementById("fileUpload").onchange = function () {
         document.querySelector(".input-upload").value = this.files[0].name;
-    };
-</script>
+      };
+    </script>
 
-<!--등록 버튼 클릭 시-->
-<script>
-    $(document).ready(function () {
+    <!--등록 버튼 클릭 시-->
+    <script>
+      $(document).ready(function () {
         // 폼 제출 이벤트 핸들러 등록
-        $(".form").on('submit', function (event) {
-            event.preventDefault(); // 일반적인 폼 제출 방지
+        $(".form").on("submit", function (event) {
+          event.preventDefault(); // 일반적인 폼 제출 방지
 
-            disableSubmitButton(); // 제출 버튼 비활성화
-            showLoadingIndicator(); // 로딩 표시기 표시
+          disableSubmitButton(); // 제출 버튼 비활성화
+          showLoadingIndicator(); // 로딩 표시기 표시
 
-            let formData = buildFormData(); // 폼 데이터 구성
-            let jwtToken = getJwtToken(); // JWT 토큰 가져오기
+          let formData = buildFormData(); // 폼 데이터 구성
+          let jwtToken = getJwtToken(); // JWT 토큰 가져오기
 
-            uploadArtwork(formData, jwtToken); // 작품 업로드
+          uploadArtwork(formData, jwtToken); // 작품 업로드
         });
-    });
+      });
 
-    // 제출 버튼 비활성화
-    function disableSubmitButton() {
+      // 제출 버튼 비활성화
+      function disableSubmitButton() {
         $("#submitBtn").prop("disabled", true);
-    }
+      }
 
-    // 로딩 표시기 표시
-    function showLoadingIndicator() {
+      // 로딩 표시기 표시
+      function showLoadingIndicator() {
         $("#loading").show();
-    }
+      }
 
-    // 폼 데이터 구성
-    function buildFormData() {
+      // 폼 데이터 구성
+      function buildFormData() {
         let formData = new FormData($(".form")[0]);
         let artworkDTO = {
-            title: $("input[name='title']").val(),
-            shortDescription: $("textarea[name='shortDescription']").val(),
-            longDescription: $("textarea[name='artworkLongDescription']").val(),
-            artistname: $("input[name='artistname']").val(),
-            makingday: $("input[name='makingday']").val(),
+          title: $("input[name='title']").val(),
+          shortDescription: $("textarea[name='shortDescription']").val(),
+          longDescription: $("textarea[name='artworkLongDescription']").val(),
+          artistname: $("input[name='artistname']").val(),
+          makingday: $("input[name='makingday']").val(),
         };
-        formData.append('artworkDTO', JSON.stringify(artworkDTO));
-        formData.append('image', $('#fileUpload')[0].files[0]);
+        formData.append("artworkDTO", JSON.stringify(artworkDTO));
+        formData.append("image", $("#fileUpload")[0].files[0]);
         return formData;
-    }
-    // JWT 토큰 가져오기
-    function getJwtToken() {
-        return localStorage.getItem('token');
-    }
+      }
+      // JWT 토큰 가져오기
+      function getJwtToken() {
+        return localStorage.getItem("token");
+      }
 
-    // 작품 업로드
-    function uploadArtwork(formData, jwtToken) {
+      // 작품 업로드
+      function uploadArtwork(formData, jwtToken) {
         $.ajax({
-            url: 'http://tobiasdev.ml/services/artwork/api/artworks',
-            type: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + jwtToken
-            },
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            xhrFields: {
-                withCredentials: true
-            },
-            success: function (data, textStatus, xhr) {
-                if (xhr.status === 201) {
-                    console.log("Artwork successfully uploaded.");
-                    console.log(xhr.responseText);
-                    enableSubmitButton(); // 제출 버튼 활성화
-                    hideLoadingIndicator(); // 로딩 표시기 숨김
-                    alert(`작품 업로드 요청 완료되었습니다.`);
-                    window.location.href = '../../index.html';
-                }
-            },
-            error: function (xhr, textStatus, error) {
-                console.error("Upload error: " + xhr.status + " " + xhr.statusText);
-                if (xhr.status === 401) {
-                    alert(`로그인 먼저해주세요.`);
-                    window.location.href = '../member/login.html';
-                } else {
-                    alert(`작품 업로드 요청이 실패하였습니다. 다시 시도해주세요.`);
-                }
-                enableSubmitButton(); // 제출 버튼 활성화
-                hideLoadingIndicator(); // 로딩 표시기 숨김
+          url: "http://tobiasdev.ml/services/artwork/api/artworks",
+          type: "POST",
+          headers: {
+            Authorization: "Bearer " + jwtToken,
+          },
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          xhrFields: {
+            withCredentials: true,
+          },
+          success: function (data, textStatus, xhr) {
+            if (xhr.status === 201) {
+              console.log("Artwork successfully uploaded.");
+              console.log(xhr.responseText);
+              enableSubmitButton(); // 제출 버튼 활성화
+              hideLoadingIndicator(); // 로딩 표시기 숨김
+              alert(`작품 업로드 요청 완료되었습니다.`);
+              window.location.href = "../../index.html";
             }
+          },
+          error: function (xhr, textStatus, error) {
+            console.error("Upload error: " + xhr.status + " " + xhr.statusText);
+            if (xhr.status === 401) {
+              alert(`로그인 먼저해주세요.`);
+              window.location.href = "../member/login.html";
+            } else {
+              alert(`작품 업로드 요청이 실패하였습니다. 다시 시도해주세요.`);
+            }
+            enableSubmitButton(); // 제출 버튼 활성화
+            hideLoadingIndicator(); // 로딩 표시기 숨김
+          },
         });
+      }
 
-    }
-
-
-    // 제출 버튼 활성화
-    function enableSubmitButton() {
+      // 제출 버튼 활성화
+      function enableSubmitButton() {
         $("#submitBtn").prop("disabled", false);
-    }
+      }
 
-    // 로딩 표시기 숨김
-    function hideLoadingIndicator() {
+      // 로딩 표시기 숨김
+      function hideLoadingIndicator() {
         $("#loading").hide();
-    }
-</script>
+      }
+    </script>
 
-<!--검색창 기능-->
-<script>
-    let link = document.getElementById("searchButton");
-    let input = document.getElementById("input");
-    // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
-    link.addEventListener("click", (e) => {
+    <!--검색창 기능-->
+    <script>
+      let link = document.getElementById("searchButton");
+      let input = document.getElementById("input");
+      // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
+      link.addEventListener("click", (e) => {
         let searchText = input.value;
         e.preventDefault();
         let url = "search/?q=" + encodeURIComponent(searchText);
         window.location.href = url;
-    });
-</script>
-<!--로그인 상태에 따라 로그인/로그아웃 버튼 보이기-->
-<script>
-    window.addEventListener("DOMContentLoaded", (event) => {
+      });
+    </script>
+    <!--로그인 상태에 따라 로그인/로그아웃 버튼 보이기-->
+    <script>
+      window.addEventListener("DOMContentLoaded", (event) => {
         if (localStorage.getItem("token")) {
-            document.querySelector(".TextLogin").style.display = "none";
+          document.querySelector(".TextLogin").style.display = "none";
         } else {
-            document.querySelector(".TextLogout").style.display = "none";
+          document.querySelector(".TextLogout").style.display = "none";
         }
-    });
-    //마이페이지 버튼 클릭시 로그인 상태 확인 후 이동 처리
-    document.querySelector(".TextMyPage").addEventListener("click", (e) => {
+      });
+      //마이페이지 버튼 클릭시 로그인 상태 확인 후 이동 처리
+      document.querySelector(".TextMyPage").addEventListener("click", (e) => {
         e.preventDefault();
         if (localStorage.getItem("token")) {
-            // 로그인 토큰이 있는 경우 마이페이지로 이동
-            window.location.href = "../member/mypage.html";
+          // 로그인 토큰이 있는 경우 마이페이지로 이동
+          window.location.href = "../member/mypage.html";
         } else {
-            // 로그인 토큰이 없는 경우 로그인 페이지로 이동
-            window.alert("먼저 로그인 해주세요");
-            window.location.href = "../member/login.html";
+          // 로그인 토큰이 없는 경우 로그인 페이지로 이동
+          window.alert("먼저 로그인 해주세요");
+          window.location.href = "../member/login.html";
         }
-    });
-</script>
-<!--로그아웃 버튼 클릭시 로컬스토리지에서 토큰 삭제-->
-<script>
-    document
+      });
+    </script>
+    <!--로그아웃 버튼 클릭시 로컬스토리지에서 토큰 삭제-->
+    <script>
+      document
         .querySelector(".TextLogout")
         .addEventListener("click", (event) => {
-            event.preventDefault();
-            localStorage.removeItem("token");
-            location.reload();
+          event.preventDefault();
+          localStorage.removeItem("token");
+          location.reload();
         });
-</script>
-</body>
+    </script>
+  </body>
 </html>
-
