@@ -47,7 +47,6 @@
 .listContainer {
   display: flex;
   flex-direction: column;
-  margin-left: 8rem;
 }
 
 /* 추가된 '작품 올리기' 버튼 스타일 */
