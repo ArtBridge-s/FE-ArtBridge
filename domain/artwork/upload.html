@@ -66,10 +66,10 @@
             <input type="file" class="btn upload" id="fileUpload" required>
             <label for="fileUpload" class="fileUpload">파일 선택</label>
         </div>
-        <input type="text" class="input" name="artworkName" placeholder="작품 명을 입력해주세요" required>
-        <textarea class="input input-large" name="artworkDescription" placeholder="작품 소개를 입력해주세요 (글자수 100자 제한)" required maxlength="100"></textarea>
+        <input type="text" class="input" name="title" placeholder="작품 명을 입력해주세요" required>
+        <textarea class="input input-large" name="shortDescription" placeholder="작품 소개를 입력해주세요 (글자수 100자 제한)" required maxlength="100"></textarea>
         <input type="text" class="input" name="makingday" placeholder="작품 제작 연도를 입력해 주세요" required>
-        <input type="text" class="input" name="artworkAuthor" placeholder="작가를 입력해주세요" required>
+        <input type="text" class="input" name="artistname" placeholder="작가를 입력해주세요" required>
         <textarea class="input input-large" name="artworkLongDescription" placeholder="작품 설명을 해주세요" required></textarea>
         <div class="button-group">
             <button type="submit" class="btn btn-small" id="submitBtn">등록</button>
@@ -120,11 +120,11 @@
     function buildFormData() {
         let formData = new FormData($(".form")[0]);
         let artworkDTO = {
-            title: $("input[name='artworkName']").val(),
-            shortDescription: $("textarea[name='artworkDescription']").val(),
+            title: $("input[name='title']").val(),
+            shortDescription: $("textarea[name='shortDescription']").val(),
             longDescription: $("textarea[name='artworkLongDescription']").val(),
-            artistname: $("textarea[name='artworkAuthor']").val(),
-            makingday: $("textarea[name='makingday']").val(),
+            artistname: $("input[name='artistname']").val(),
+            makingday: $("input[name='makingday']").val(),
         };
         formData.append('artworkDTO', JSON.stringify(artworkDTO));
         formData.append('image', $('#fileUpload')[0].files[0]);
@@ -157,12 +157,17 @@
                     enableSubmitButton(); // 제출 버튼 활성화
                     hideLoadingIndicator(); // 로딩 표시기 숨김
                     alert(`작품 업로드 요청 완료되었습니다.`);
-                    window.location.href = '../../index.html'; // 성공적으로 로그인한 후 이동할 페이지
+                    window.location.href = '../../index.html';
                 }
             },
             error: function (xhr, textStatus, error) {
                 console.error("Upload error: " + xhr.status + " " + xhr.statusText);
-                alert(`작품 업로드 요청이 실패하였습니다. 다시 시도해주세요.`);
+                if (xhr.status === 401) {
+                    alert(`로그인 먼저해주세요.`);
+                    window.location.href = '../member/login.html';
+                } else {
+                    alert(`작품 업로드 요청이 실패하였습니다. 다시 시도해주세요.`);
+                }
                 enableSubmitButton(); // 제출 버튼 활성화
                 hideLoadingIndicator(); // 로딩 표시기 숨김
             }
