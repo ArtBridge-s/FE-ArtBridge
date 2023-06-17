@@ -1,159 +1,275 @@
 <!DOCTYPE html>
 <html lang="ko">
-<meta charset="UTF-8">
-<head>
-    <link rel="stylesheet" type="text/css" href="detail.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <meta charset="UTF-8" />
+  <head>
+    <!--파비콘-->
+    <link rel="icon" type="image/png" href="images/detail/Favicon.png" />
+    <!--폰트 연결-->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="detail.css" />
+    <link rel="stylesheet" href="./menubar.css" />
     <title>작품 상세 조회 페이지</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-<div class="container">
-    <div class="image">
-        <img id="artworkImage" src="" alt="">
-    </div>
-    <div class="info">
-        <h1 id="artworkTitle"></h1>
-        <div class="description-metadata">
+  </head>
+  <body>
+    <div class="Container">
+     <div class="Container-MenuBar">
+        <div class="Container-LeftMenu">
+          <span class="BrandName"><span>아트브릿지</span></span>
+          <a href="../../index.html">
+            <img
+              alt="Logo image"
+              src="images/header/Logo.png"
+              class="ImgLogo"
+              draggable="false"
+            />
+          </a>
+          <span class="HomeMenu"><a href="../../index.html">홈</a></span>
+          <span class="ArtworkMenu"
+            ><a href="../artwork/list.html">작품</a></span
+          >
+          <span class="ExhibitionMenu"
+            ><a href="../exhibition/list.html">전시회</a></span
+          >
+          <span class="IntroduceMenu"><span>소개</span></span>
+          <span class="ArtistMenu"
+            ><a href="../artist/list.html">아티스트</a></span
+          >
+        </div>
+        <div class="Container-RightMenu">
+          <div class="GroupLoginLogout">
+            <span class="TextLogin"
+              ><a href="../member/login.html" id="login">LOGIN</a></span
+            >
+            <span class="TextLogout"
+              ><a href="../member/logout.html" id="logout">LOGOUT</a></span
+            >
+            <span class="TextDelimeter">ㅣ</span>
+            <span class="TextMyPage"
+              ><a href="../member/mypage.html" id="mypage">마이페이지</a></span
+            >
+          </div>
+          <div class="BtnUploadArtwork">
+            <span class="BtnTextUploadArtwork"
+              ><a href="../artwork/upload.html">작품 올리기</a></span
+            >
+          </div>
+          <div class="BtnUploadExhibition">
+            <span class="BtnTextUploadExhibition"
+              ><a href="../exhibition/upload.html">전시회 올리기</a></span
+            >
+          </div>
+          <div class="Container-SearchBar">
+            <div class="GroupSearchInputAndButton">
+              <input id="input" placeholder="Search" class="TextSearchInput" />
+              <a id="searchButton" href="#">
+                <img
+                  alt="Search Button image"
+                  src="images/header/icon_Search.svg"
+                  class="BtnSearch"
+                  draggable="false"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="Container-Content">
+      <div class="container">
+        <div class="image">
+          <img id="artworkImage" src="" alt="image" />
+        </div>
+        <div class="info">
+          <h1 id="artworkTitle"></h1>
+          <div class="description-metadata">
             <p id="artworkDescription" class="description"></p>
             <div class="metadata">
-                <p id="artworkAuthor" class="author"></p>
-                <p id="artworkYear" class="year"></p>
+              <p id="artworkAuthor" class="author"></p>
+              <p id="artworkYear" class="year"></p>
             </div>
-        </div>
-        <div class="actions">
-            <button class="download"><i class="fa fa-download"></i>Download</button>
+          </div>
+          <div class="actions">
+            <button class="download">
+              <i class="fa fa-download"></i>Download
+            </button>
             <div class="actions-secondary">
-                <button class="like"><i class="fa fa-heart"></i>Like</button>
-                <button class="share"><i class="fa fa-share"></i>Share</button>
+              <button class="like"><i class="fa fa-heart"></i>Like</button>
+              <button class="share"><i class="fa fa-share"></i>Share</button>
             </div>
-        </div>
-        <p class="copyright">※ 모든 작품과 콘텐츠는 저작권법에 의하여 보호를 받아요. 저작권 사용 동의 없이 무단 복제 및 배포할 수 없어요</p>
-        <div class="comments">
+          </div>
+          <p class="copyright">
+            ※ 모든 작품과 콘텐츠는 저작권법에 의하여 보호를 받아요. 저작권 사용
+            동의 없이 무단 복제 및 배포할 수 없어요
+          </p>
+          <div class="comments">
             <!-- Comment section -->
-        </div>
-        <div class="add-comment">
+          </div>
+          <div class="add-comment">
             <label>
-                <i class="fas fa-smile"></i>
-                <input id="commentInput" type="text" placeholder="댓글 달기">
+              <i class="fas fa-smile"></i>
+              <input id="commentInput" type="text" placeholder="댓글 달기" />
             </label>
-            <button class="post"> 게시</button>
+            <button class="post">게시</button>
+          </div>
         </div>
-
+      </div>
     </div>
-
-</div>
-
+    <!-- </div> -->
+<!--검색창 기능-->
 <script>
-    const API_BASE_URL = "http://tobiasdev.ml/services/artwork/api";
-
-    function getArtwork() {
+    let link = document.getElementById("searchButton");
+    let input = document.getElementById("input");
+    // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
+    link.addEventListener("click", (e) => {
+      let searchText = input.value;
+      e.preventDefault();
+      let url = "search/?q=" + encodeURIComponent(searchText);
+      window.location.href = url;
+    });
+  </script>
+<!--로그인 상태에 따라 로그인/로그아웃 버튼 보이기-->
+<script>
+  window.addEventListener("DOMContentLoaded", (event) => {
+    if (localStorage.getItem("token")) {
+      document.querySelector(".TextLogin").style.display = "none";
+    } else {
+      document.querySelector(".TextLogout").style.display = "none";
+    }
+  });
+  //마이페이지 버튼 클릭시 로그인 상태 확인 후 이동 처리
+  document.querySelector(".TextMyPage").addEventListener("click", (e) => {
+    e.preventDefault();
+    if (localStorage.getItem("token")) {
+      // 로그인 토큰이 있는 경우 마이페이지로 이동
+      window.location.href = "../member/mypage.html";
+    } else {
+      // 로그인 토큰이 없는 경우 로그인 페이지로 이동
+      window.alert("먼저 로그인 해주세요");
+      window.location.href = "../member/login.html";
+    }
+  });
+</script>
+<!--로그아웃 버튼 클릭시 로컬스토리지에서 토큰 삭제-->
+<script>
+  document
+    .querySelector(".TextLogout")
+    .addEventListener("click", (event) => {
+      event.preventDefault();
+      localStorage.removeItem("token");
+      location.reload();
+    });
+</script>
+    <script>
+      const API_BASE_URL = "http://tobiasdev.ml/services/artwork/api";
+      function getArtwork() {
         var id = new URL(window.location.href).searchParams.get("id");
         var artworkUrl = `${API_BASE_URL}/artworks/${id}`;
 
-        $.get(artworkUrl, function(data, status, xhr) {
-            if (status === "success") {
-                $("#artworkImage").attr("src", data.imageUrl);
-                $("#artworkImage").attr("alt", data.title);
-                $("#artworkTitle").text(data.title);
-                $("#artworkDescription").text(data.shortDescription);
-                $("#artworkAuthor").text("작가명 " + data.artistname);
-                $("#artworkYear").text("제작연도 " + data.makingday);
-                getComments(id); // 댓글 조회 API 호출
-            }
+        $.get(artworkUrl, function (data, status, xhr) {
+          if (status === "success") {
+            $("#artworkImage").attr("src", data.imageUrl);
+            $("#artworkImage").attr("alt", data.title);
+            $("#artworkTitle").text(data.title);
+            $("#artworkDescription").text(data.shortDescription);
+            $("#artworkAuthor").text("작가명 " + data.artistname);
+            $("#artworkYear").text("제작연도 " + data.makingday);
+            getComments(id); // 댓글 조회 API 호출
+          }
         });
-    }
+      }
 
-    // 댓글 조회 함수
-    function getComments(artworkId) {
+      // 댓글 조회 함수
+      function getComments(artworkId) {
         var commentsUrl = `${API_BASE_URL}/comments?artworkId=${artworkId}`;
 
-        $.get(commentsUrl, function(data, status, xhr) {
-            if (status === "success") {
-                $('.comments').html(''); // 기존에 로드된 댓글들을 삭제
-                data.forEach(comment => {
-                    $('.comments').append(`
+        $.get(commentsUrl, function (data, status, xhr) {
+          if (status === "success") {
+            $(".comments").html(""); // 기존에 로드된 댓글들을 삭제
+            data.forEach((comment) => {
+              $(".comments").append(`
                         <div class="comment">
                             <p class="comment-text">${comment.content}</p>
                             <p class="comment-text">${comment.name}</p>
                             <!--TODO: -날짜 추가-->
                         </div>
                     `);
-                });
-            }
+            });
+          }
         });
-    }
+      }
 
-    function postComment() {
+      function postComment() {
         var commentText = $("#commentInput").val();
         var id = new URL(window.location.href).searchParams.get("id");
-        const jwtToken = localStorage.getItem('token');
+        const jwtToken = localStorage.getItem("token");
 
         var commentData = {
-            artwork: {
-                id: id // 해당 아트워크의 id
-            },
-            content: commentText // 댓글 내용
+          artwork: {
+            id: id, // 해당 아트워크의 id
+          },
+          content: commentText, // 댓글 내용
         };
 
         $.ajax({
-            url: `${API_BASE_URL}/comments`,
-            type: "POST",
-            headers: {
-                'Authorization': 'Bearer ' + jwtToken
-            },
-            contentType: "application/json",
-            data: JSON.stringify(commentData),
-            success: function(data) {
-                // 댓글을 성공적으로 게시했을 때 수행할 작업
-                // 댓글 목록 새로고침
-                getComments(id);
-                alert("댓글 게시 성공");
-                $("#commentInput").val(''); // 입력된 댓글 내용 초기화
-            },
-            error: function(request, status, error) {
-                alert("댓글 게시 실패");
-            }
+          url: `${API_BASE_URL}/comments`,
+          type: "POST",
+          headers: {
+            Authorization: "Bearer " + jwtToken,
+          },
+          contentType: "application/json",
+          data: JSON.stringify(commentData),
+          success: function (data) {
+            // 댓글을 성공적으로 게시했을 때 수행할 작업
+            // 댓글 목록 새로고침
+            getComments(id);
+            alert("댓글 게시 성공");
+            $("#commentInput").val(""); // 입력된 댓글 내용 초기화
+          },
+          error: function (request, status, error) {
+            alert("댓글 게시 실패");
+          },
         });
-    }
+      }
 
-    function likeArtwork() {
+      function likeArtwork() {
         var id = new URL(window.location.href).searchParams.get("id");
-        const jwtToken = localStorage.getItem('token');
+        const jwtToken = localStorage.getItem("token");
 
         var likeData = {
-            artwork: {
-                id: id
-            },
+          artwork: {
+            id: id,
+          },
         };
 
         $.ajax({
-            url: `${API_BASE_URL}/likes`,
-            type: "POST",
-            headers: {
-                'Authorization': 'Bearer ' + jwtToken
-            },
-            contentType: "application/json",
-            data: JSON.stringify(likeData),
-            success: function(data) {
-                alert("작품 좋아요 성공");
-                $('.like').addClass('liked'); // Add 'liked' class to the like button
-            },
-            error: function(request, status, error) {
-                alert("작품 좋아요 실패");
-            }
+          url: `${API_BASE_URL}/likes`,
+          type: "POST",
+          headers: {
+            Authorization: "Bearer " + jwtToken,
+          },
+          contentType: "application/json",
+          data: JSON.stringify(likeData),
+          success: function (data) {
+            alert("작품 좋아요 성공");
+            $(".like").addClass("liked"); // Add 'liked' class to the like button
+          },
+          error: function (request, status, error) {
+            alert("작품 좋아요 실패");
+          },
         });
-    }
-
-
-    $(document).ready(getArtwork);
-    $(document).on('click', '.post', postComment);
-    $(document).on('click', '.like', likeArtwork);
-</script>
-
-<script>
-</script>
-
-
-</body>
+      }
+      $(document).ready(getArtwork);
+      $(document).on("click", ".post", postComment);
+      $(document).on("click", ".like", likeArtwork);
+    </script>
+    <script></script>
+  </body>
 </html>
