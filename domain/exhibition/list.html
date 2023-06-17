@@ -85,115 +85,103 @@
     </div>
 
     <script>
-      const dummy = [
-        {
-          title: "가나다 개인전",
-          duration: "기간 2022.04.23~2022.05.04",
-          location: "서울 마포구",
-        },
-        {
-          title: "가나다 개인전",
-          duration: "기간 2022.04.23~2022.05.04",
-          location: "서울 마포구",
-        },
-        {
-          title: "가나다 개인전",
-          duration: "기간 2022.04.23~2022.05.04",
-          location: "서울 마포구",
-        },
-        {
-          title: "가나다 개인전",
-          duration: "기간 2022.04.23~2022.05.04",
-          location: "서울 마포구",
-        },
-        {
-          title: "가나다 개인전",
-          duration: "기간 2022.04.23~2022.05.04",
-          location: "서울 마포구",
-        },
-      ];
-      const $card = document.getElementById("cards");
+      async function JsonData() {
+        const response = await fetch(
+          'http://tobiasdev.ml/services/exhibition/api/exhibitions/status/ok?page=0&size=20&sort=magna%20cillum%20ullamco',
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': '*/*',
+            },
+          }
+        );
+        return response.json(); // JSON 응답을 네이티브 JavaScript 객체로 파싱
+      }
 
-      dummy.map((item) => {
-        const title = item.title;
-        const location = item.location;
-        const duration = item.duration;
+      JsonData().then((data) => {
+        const $card = document.getElementById('cards');
+        console.log(data);
+        data.map((item) => {
+          const title = item.title;
+          const location = item.location;
+          const duration = item.duration;
 
-        console.log(location);
-        console.log(duration);
-        // Creating the card container
-        const cardContainer = document.createElement("div");
-        cardContainer.classList.add("card");
+          console.log(location);
+          console.log(duration);
+          // Creating the card container
+          const cardContainer = document.createElement('div');
+          cardContainer.classList.add('card');
 
-        // Creating the text container
-        const textContainer = document.createElement("div");
-        textContainer.classList.add("textContainer");
+          // Creating the text container
+          const textContainer = document.createElement('div');
+          textContainer.classList.add('textContainer');
 
-        // Creating the title text element
-        const titleText = document.createElement("text");
-        titleText.classList.add("titleText");
-        titleText.textContent = title;
+          // Creating the title text element
+          const titleText = document.createElement('text');
+          titleText.classList.add('titleText');
+          titleText.textContent = title;
 
-        // Creating the content text element
-        const contentText = document.createElement("text");
-        contentText.classList.add("text");
-        contentText.textContent = duration;
+          // Creating the content text element
+          const contentText = document.createElement('text');
+          contentText.classList.add('text');
+          contentText.textContent = duration;
 
-        const locationText = document.createElement("text");
-        locationText.classList.add("text");
-        locationText.textContent = location;
+          const locationText = document.createElement('text');
+          locationText.classList.add('text');
+          locationText.textContent = location;
 
-        // Appending the image and text elements to the respective containers
-        textContainer.appendChild(titleText);
-        textContainer.appendChild(contentText);
-        textContainer.appendChild(locationText);
-        cardContainer.appendChild(textContainer);
+          // Appending the image and text elements to the respective containers
+          textContainer.appendChild(titleText);
+          textContainer.appendChild(contentText);
+          textContainer.appendChild(locationText);
+          cardContainer.appendChild(textContainer);
 
-        // Appending the card container to the main container
-        $card.appendChild(cardContainer);
+          // Appending the card container to the main container
+          $card.appendChild(cardContainer);
+        });
       });
     </script>
     <!--검색창 기능-->
     <script>
-      let link = document.getElementById("searchButton");
-      let input = document.getElementById("input");
+      let link = document.getElementById('searchButton');
+      let input = document.getElementById('input');
       // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
-      link.addEventListener("click", (e) => {
+      link.addEventListener('click', (e) => {
         let searchText = input.value;
         e.preventDefault();
-        let url = "search/?q=" + encodeURIComponent(searchText);
+        let url = 'search/?q=' + encodeURIComponent(searchText);
         window.location.href = url;
       });
     </script>
     <!--로그인 상태에 따라 로그인/로그아웃 버튼 보이기-->
     <script>
-      window.addEventListener("DOMContentLoaded", (event) => {
-        if (localStorage.getItem("token")) {
-          document.querySelector(".TextLogin").style.display = "none";
+      window.addEventListener('DOMContentLoaded', (event) => {
+        if (localStorage.getItem('token')) {
+          document.querySelector('.TextLogin').style.display = 'none';
         } else {
-          document.querySelector(".TextLogout").style.display = "none";
+          document.querySelector('.TextLogout').style.display = 'none';
         }
       });
       //마이페이지 버튼 클릭시 로그인 상태 확인 후 이동 처리
-      document.querySelector(".TextMyPage").addEventListener("click", (e) => {
+      document.querySelector('.TextMyPage').addEventListener('click', (e) => {
         e.preventDefault();
-        if (localStorage.getItem("token")) {
+        if (localStorage.getItem('token')) {
           // 로그인 토큰이 있는 경우 마이페이지로 이동
-          window.location.href = "../member/mypage.html";
+          window.location.href = '../member/mypage.html';
         } else {
           // 로그인 토큰이 없는 경우 로그인 페이지로 이동
-          window.alert("먼저 로그인 해주세요");
-          window.location.href = "../member/login.html";
+          window.alert('먼저 로그인 해주세요');
+          window.location.href = '../member/login.html';
         }
       });
     </script>
     <!--로그아웃 버튼 클릭시 로컬스토리지에서 토큰 삭제-->
     <script>
       document
-        .querySelector(".TextLogout")
-        .addEventListener("click", (event) => {
+        .querySelector('.TextLogout')
+        .addEventListener('click', (event) => {
           event.preventDefault();
-          localStorage.removeItem("token");
+          localStorage.removeItem('token');
           location.reload();
         });
     </script>
