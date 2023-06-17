@@ -1,10 +1,11 @@
-a {
-  font-size: inherit; /* 링크의 텍스트 크기를 부모 요소로 상속 */
-  color: inherit; /* 링크의 텍스트 색상을 부모 요소로 상속 */
-  outline: none;
-  cursor: default; /*커서 기본*/
-  text-decoration: none; /* 밑줄 제거 */
-  /* color: black; 링크 색상 지정 */
+* {
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+}
+html {
+  line-height: 1.15;
+  scroll-behavior: smooth;
 }
 body {
   font-weight: 400;
@@ -18,43 +19,43 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /*페이지 로드시 페이드 인 효과*/
-  animation: fadein 2000ms ease-out;
-  -moz-animation: fadein 2000ms ease-out; /* Firefox */
-  -webkit-animation: fadein 2000ms ease-out; /* Safari and  Chrome */
-  -o-animation: fadein 2000ms ease-out; /* Opera */
-  /*페이지 전체 드래그 막기*/
-  -webkit-user-select: none; /* Chrome, Safari, Opera */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE 10+ */
-  user-select: none; /* Standard syntax */
+}
+a {
+  font-size: inherit; /* 링크의 텍스트 크기를 부모 요소로 상속 */
+  color: inherit; /* 링크의 텍스트 색상을 부모 요소로 상속 */
+  outline: none;
+  cursor: default; /*커서 기본*/
+  text-decoration: none; /* 밑줄 제거 */
+  /* color: black; 링크 색상 지정 */
 }
 span {
   cursor: default;
 }
+
 .Container {
   width: 100%;
-  height: 190px;
+  height: 1024px;
   display: flex;
   overflow: hidden;
-  position: relative;
+  position: auto;
   align-items: flex-start;
   flex-shrink: 0;
   background-color: rgba(255, 255, 255, 1);
 }
 .Container-MenuBar {
   width: 100%;
+  height: 21.48%;
   display: flex;
   overflow: hidden;
   align-items: flex-start;
   flex-shrink: 0;
 }
 .Container-LeftMenu {
-  top: 0;
+  top: 0px;
   width: 394.59375px;
   height: 184.3125px;
   display: flex;
-  position: relative;
+  position: absolute;
   align-items: flex-start;
   margin-left: 6.6%;
   margin-right: 3%;
@@ -62,83 +63,83 @@ span {
 .BrandName {
   top: 68px;
   color: rgba(51, 61, 65, 0.800000011920929);
-  right: 0;
+  right: 0px;
   height: auto;
   position: absolute;
   font-size: 35px;
-  font-style: normal;
+  font-style: Regular;
   text-align: center;
-  font-family: NanumMyeongjo, serif;
+  font-family: NanumMyeongjo;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
   text-decoration: none;
 }
 .ImgLogo {
-  top: 0;
-  left: 0;
+  top: 0px;
+  left: 0px;
   width: 221px;
   height: 137px;
   position: absolute;
 }
 .HomeMenu {
-  left: 0;
-  color: rgba(207, 94, 83, 1);
-  bottom: 0;
+  left: 0px;
+  color: rgba(0, 0, 0, 1);
+  bottom: 0px;
   height: auto;
   position: absolute;
   font-size: 20px;
-  font-style: normal;
+  font-style: Regular;
   text-align: left;
-  font-family: Inter, serif;
+  font-family: Inter;
   font-weight: 400;
   line-height: normal;
-  margin-left: 0;
+  margin-left: 0%;
   font-stretch: normal;
   text-decoration: none;
 }
 .ArtworkMenu {
   left: 45px;
-  color: rgba(0, 0, 0, 1);
-  bottom: 0;
+  color: rgba(207, 94, 83, 1);
+  bottom: 0px;
   height: auto;
   position: absolute;
   font-size: 20px;
-  font-style: normal;
+  font-style: Regular;
   text-align: left;
-  font-family: Inter, serif;
+  font-family: Inter;
   font-weight: 400;
   line-height: normal;
-  margin-left: 0;
+  margin-left: 0%;
   font-stretch: normal;
   text-decoration: none;
 }
 .ExhibitionMenu {
   left: 110px;
   color: rgba(0, 0, 0, 1);
-  bottom: 0;
+  bottom: 0px;
   height: auto;
   position: absolute;
   font-size: 20px;
-  font-style: normal;
+  font-style: Regular;
   text-align: left;
-  font-family: Inter, serif;
+  font-family: Inter;
   font-weight: 400;
   line-height: normal;
-  margin-left: 0;
+  margin-left: 0%;
   font-stretch: normal;
   text-decoration: none;
 }
 .IntroduceMenu {
   left: 190px;
   color: rgba(0, 0, 0, 1);
-  bottom: 0;
+  bottom: 0px;
   height: auto;
   position: absolute;
   font-size: 20px;
-  font-style: normal;
+  font-style: Regular;
   text-align: left;
-  font-family: Inter, serif;
+  font-family: Inter;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
@@ -147,13 +148,13 @@ span {
 .ArtistMenu {
   color: rgba(0, 0, 0, 1);
   right: 73.390625px;
-  bottom: 0;
+  bottom: 0px;
   height: auto;
   position: absolute;
   font-size: 20px;
-  font-style: normal;
+  font-style: Regular;
   text-align: left;
-  font-family: Inter, serif;
+  font-family: Inter;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
@@ -162,7 +163,7 @@ span {
 
 .Container-RightMenu {
   top: 45.9765625px;
-  right: 0;
+  right: 0px;
   width: 280px;
   height: 130.96875px;
   display: flex;
@@ -172,7 +173,7 @@ span {
   margin-right: 6.6%;
 }
 .GroupLoginLogout {
-  top: 0;
+  top: 0px;
   left: 74px;
   width: 123px;
   height: 19px;
@@ -188,32 +189,15 @@ span {
   height: auto;
   position: absolute;
   font-size: 15px;
-  font-style: normal;
+  font-style: Regular;
   text-align: left;
-  font-family: Inter, serif;
+  font-family: Inter;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
   text-decoration: none;
 }
 .TextLogin:hover {
-  color: rgba(207, 94, 83, 1);
-}
-.TextLogout {
-  color: rgba(0, 0, 0, 1);
-  width: 63px;
-  height: auto;
-  position: absolute;
-  font-size: 15px;
-  font-style: normal;
-  text-align: left;
-  font-family: Inter, serif;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-.TextLogout:hover {
   color: rgba(207, 94, 83, 1);
 }
 .TextDelimeter {
@@ -231,6 +215,23 @@ span {
   font-stretch: normal;
   text-decoration: none;
 }
+.TextLogout {
+  color: rgba(0, 0, 0, 1);
+  width: 63px;
+  height: auto;
+  position: absolute;
+  font-size: 15px;
+  font-style: Regular;
+  text-align: left;
+  font-family: Inter;
+  font-weight: 400;
+  line-height: normal;
+  font-stretch: normal;
+  text-decoration: none;
+}
+.TextLogout:hover {
+  color: rgba(207, 94, 83, 1);
+}
 .TextMyPage {
   left: 79px;
   color: rgba(0, 0, 0, 1);
@@ -247,44 +248,23 @@ span {
   text-decoration: none;
 }
 
+.GroupLanguageSelection {
+  top: 0px;
+  right: 2.6328125px;
+  width: 62px;
+  height: 19px;
+  display: flex;
+  position: absolute;
+  align-items: flex-start;
+  flex-shrink: 1;
+}
 .TextMyPage:hover {
   color: rgba(207, 94, 83, 1);
 }
 
-/* .GroupLanguageSelection {
-      top: 0;
-      right: 2.6328125px;
-      width: 62px;
-      height: 19px;
-      display: flex;
-      position: absolute;
-      align-items: flex-start;
-      flex-shrink: 1;
-    }
-    .CurrentLanguage {
-      width: 42px;
-      height: auto;
-      position: absolute;
-      font-size: 15px;
-      font-style: normal;
-      text-align: left;
-      font-family: Inter, serif;
-      font-weight: 400;
-      line-height: normal;
-      font-stretch: normal;
-      text-decoration: none;
-    }
-    .LanguageSelectImgBtn {
-      top: 1px;
-      left: 48px;
-      width: 14px;
-      height: 14px;
-      position: absolute;
-    } */
-
 .Container-SearchBar {
   top: 32px;
-  left: 0;
+  left: 0px;
   width: 280px;
   height: 40px;
   display: flex;
@@ -316,16 +296,16 @@ span {
   color: rgba(26, 26, 26, 0.699999988079071);
   position: absolute;
   font-size: 15px;
-  font-style: normal;
+  font-style: Regular;
   text-align: left;
-  font-family: Inter, serif;
+  font-family: Inter;
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
   text-decoration: none;
 }
 .BtnSearch {
-  top: 0;
+  top: 0px;
   left: 225.33331298828125px;
   width: 21px;
   height: 23px;
@@ -334,7 +314,7 @@ span {
 .BtnUploadArtwork {
   left: 5px;
   width: 130px;
-  bottom: 0;
+  bottom: 0px;
   height: 40px;
   display: flex;
   position: absolute;
@@ -355,9 +335,9 @@ span {
   height: auto;
   position: absolute;
   font-size: 14px;
-  font-style: normal;
+  font-style: Medium;
   text-align: center;
-  font-family: Inter, serif;
+  font-family: Inter;
   font-weight: 500;
   line-height: normal;
   font-stretch: normal;
@@ -366,7 +346,7 @@ span {
 .BtnUploadExhibition {
   right: 2.6328125px;
   width: 130px;
-  bottom: 0;
+  bottom: 0px;
   height: 40px;
   display: flex;
   position: absolute;
@@ -387,9 +367,9 @@ span {
   height: auto;
   position: absolute;
   font-size: 14px;
-  font-style: normal;
+  font-style: Medium;
   text-align: center;
-  font-family: Inter, serif;
+  font-family: Inter;
   font-weight: 500;
   line-height: normal;
   font-stretch: normal;
@@ -613,324 +593,4 @@ input[type="file"] {
   .image-upload label {
     font-size: 30px;
   }
-}
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@-moz-keyframes fadein {
-  /* Firefox */
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes fadein {
-  /* Safari and Chrome */
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@-o-keyframes fadein {
-  /* Opera */
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/*Slide Show*/
-.slider1 {
-  position: absolute;
-  top: 445px;
-  left: 734px;
-  width: 250px;
-  height: 514px;
-}
-
-.slider1 img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  z-index: 0;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
-  transition: opacity 1s, transform 0.2s ease-in-out,
-    box-shadow 0.2s ease-in-out;
-}
-
-.slider1 img.active {
-  opacity: 1;
-  z-index: 1;
-}
-
-.slider1 img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-.slider2 {
-  position: absolute;
-  top: 444px;
-  left: 1015px;
-  width: 256px;
-  height: 514px;
-}
-
-.slider2 img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  z-index: 0;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
-  transition: opacity 1s, transform 0.2s ease-in-out,
-    box-shadow 0.2s ease-in-out;
-}
-
-.slider2 img.active {
-  opacity: 1;
-  z-index: 1;
-}
-
-.slider2 img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-.slider3 {
-  position: absolute;
-  top: 444px;
-  left: 1300px;
-  width: 561px;
-  height: 516px;
-}
-
-.slider3 img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  z-index: 0;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
-  transition: opacity 1s, transform 0.2s ease-in-out,
-    box-shadow 0.2s ease-in-out;
-}
-
-.slider3 img.active {
-  opacity: 1;
-  z-index: 1;
-}
-
-.slider3 img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-.Container {
-  width: 100%;
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-}
-
-.Content1Title {
-  top: 250px;
-  left: 162px;
-  color: rgba(51, 61, 65, 1);
-  height: auto;
-  position: absolute;
-  font-size: 60px;
-  text-align: left;
-  font-family: "Estonia", cursive;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-
-.imgContent1 {
-  top: 325px;
-  left: 162px;
-  width: 540px;
-  height: 633px;
-  position: absolute;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
-}
-
-.imgContent1:hover {
-  transform: scale(1.03);
-  transition: transform 0.2s ease-in-out;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-.Content1Text {
-  top: 416px;
-  left: 231px;
-  color: rgba(53, 34, 5, 1);
-  width: 437px;
-  height: auto;
-  position: absolute;
-  font-size: 25px;
-  text-align: left;
-  font-family: Inter;
-  font-weight: 100;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-
-.Copywrite {
-  top: 1025px;
-  left: 910px;
-  color: rgba(51, 61, 65, 1);
-  height: auto;
-  position: fixed;
-  font-size: 11px;
-  text-align: center;
-  font-family: Inter;
-  font-weight: 200;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-
-.Content2Title {
-  top: 380px;
-  left: 734px;
-  color: rgba(51, 61, 65, 1);
-  width: 256px;
-  height: auto;
-  position: absolute;
-  font-size: 45px;
-  text-align: left;
-  font-family: "Estonia", cursive;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-
-.imgContent2 {
-  width: 256px;
-  height: 514px;
-  position: absolute;
-}
-
-.Content2More {
-  top: 966px;
-  left: 832px;
-  color: rgba(51, 61, 65, 1);
-  height: auto;
-  position: absolute;
-  font-size: 27px;
-  text-align: left;
-  font-family: "Estonia", cursive;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-
-.Content3Title {
-  top: 380px;
-  left: 1015px;
-  color: rgba(51, 61, 65, 1);
-  width: 247px;
-  height: auto;
-  position: absolute;
-  font-size: 45px;
-  text-align: left;
-  font-family: "Estonia", cursive;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-
-.imgContent3 {
-  width: 250px;
-  height: 514px;
-  position: absolute;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
-}
-
-.Content3More {
-  top: 966px;
-  left: 1116px;
-  color: rgba(51, 61, 65, 1);
-  height: auto;
-  position: absolute;
-  font-size: 27px;
-  text-align: left;
-  font-family: "Estonia", cursive;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-
-.Content4Title {
-  top: 380px;
-  left: 1302px;
-  color: rgba(51, 61, 65, 1);
-  width: 367px;
-  height: auto;
-  position: absolute;
-  font-size: 45px;
-  text-align: left;
-  font-family: "Estonia", cursive;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-}
-
-.imgContent4 {
-  /* top: 444px;
-      left: 1300px; */
-  bottom: 50px;
-  width: 561px;
-  height: 516px;
-  position: absolute;
-  align-self: flex-end;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.16), 0 5px 8px rgba(0, 0, 0, 0.23);
-}
-
-.Content4More {
-  top: 966px;
-  left: 1555px;
-  color: rgba(51, 61, 65, 1);
-  height: auto;
-  position: absolute;
-  font-size: 27px;
-  text-align: left;
-  font-family: "Estonia", cursive;
-  font-weight: 400;
-  line-height: normal;
-  font-stretch: normal;
-  text-decoration: none;
-  white-space: nowrap;
 }

@@ -37,7 +37,7 @@ span {
   height: 1024px;
   display: flex;
   overflow: hidden;
-  position: relative;
+  position: auto;
   align-items: flex-start;
   flex-shrink: 0;
   background-color: rgba(255, 255, 255, 1);

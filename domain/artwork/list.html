@@ -5,16 +5,21 @@
     <title>작품 목록 페이지</title>
   </head>
   <link rel="stylesheet" href="list_card.css" />
-  <link rel="stylesheet" href="../exhibition/edit.css" />
+  <link rel="stylesheet" href="./menubar.css" />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+    data-tag="font"
+  />
   <body>
-    <div class="listContainer">
+    <div class="Container">
       <div class="Container-MenuBar">
         <div class="Container-LeftMenu">
           <span class="BrandName"><span>아트브릿지</span></span>
           <a href="../../index.html">
             <img
               alt="Logo image"
-              src="images/Logo.png"
+              src="images/header/Logo.png"
               class="ImgLogo"
               draggable="false"
             />
@@ -23,7 +28,9 @@
           <span class="ArtworkMenu"
             ><a href="../artwork/list.html">작품</a></span
           >
-          <span class="ExhibitionMenu"><a href="list.html">전시회</a></span>
+          <span class="ExhibitionMenu"
+            ><a href="../exhibition/list.html">전시회</a></span
+          >
           <span class="IntroduceMenu"><span>소개</span></span>
           <span class="ArtistMenu"
             ><a href="../artist/list.html">아티스트</a></span
@@ -34,19 +41,13 @@
             <span class="TextLogin"
               ><a href="../member/login.html" id="login">LOGIN</a></span
             >
-            <span class="TextDelimeter">ㅣ</span>
             <span class="TextLogout"
               ><a href="../member/logout.html" id="logout">LOGOUT</a></span
             >
-          </div>
-          <div class="GroupLanguageSelection">
-            <span class="CurrentLanguage"><span>한국어</span></span>
-            <img
-              alt="LanguageSelect image"
-              src="images/icon_LanguageSelect.png"
-              class="LanguageSelectImgBtn"
-              draggable="false"
-            />
+            <span class="TextDelimeter">ㅣ</span>
+            <span class="TextMyPage"
+              ><a href="../member/mypage.html" id="mypage">마이페이지</a></span
+            >
           </div>
           <div class="BtnUploadArtwork">
             <span class="BtnTextUploadArtwork"
@@ -55,7 +56,7 @@
           </div>
           <div class="BtnUploadExhibition">
             <span class="BtnTextUploadExhibition"
-              ><a href="upload.html">전시회 올리기</a></span
+              ><a href="../exhibition/upload.html">전시회 올리기</a></span
             >
           </div>
           <div class="Container-SearchBar">
@@ -64,7 +65,7 @@
               <a id="searchButton" href="#">
                 <img
                   alt="Search Button image"
-                  src="images/icon_Search.svg"
+                  src="images/header/icon_Search.svg"
                   class="BtnSearch"
                   draggable="false"
                 />
@@ -73,16 +74,20 @@
           </div>
         </div>
       </div>
-      <div id="cards" class="container"></div>
+      <div class="Container-Content">
+        <div class="listContainer">
+          <div id="cards" class="container"></div>
+        </div>
+      </div>
     </div>
     <script>
       async function JsonData() {
         const response = await fetch(
-          'http://tobiasdev.ml/services/artwork/api/artworks?page=0&size=20',
+          "http://tobiasdev.ml/services/artwork/api/artworks?page=0&size=20",
           {
-            method: 'GET',
+            method: "GET",
             headers: {
-              'Content-Type': '*/*',
+              "Content-Type": "*/*",
             },
           }
         );
@@ -93,37 +98,37 @@
         console.log(data);
         dummy = data;
         console.log(dummy);
-        const $card = document.getElementById('cards');
+        const $card = document.getElementById("cards");
 
         dummy.map((item) => {
-          const imgSrc = './images/list/exampleImg.png';
+          const imgSrc = "./images/list/exampleImg.png";
           const title = item.title;
           const content = item.shortDescription;
 
           // Creating the card container
-          const navigate = document.createElement('a');
-          navigate.setAttribute('href', `detail.html?id=${item.id}`);
-          const cardContainer = document.createElement('div');
-          cardContainer.classList.add('card');
+          const navigate = document.createElement("a");
+          navigate.setAttribute("href", `detail.html?id=${item.id}`);
+          const cardContainer = document.createElement("div");
+          cardContainer.classList.add("card");
 
           // Creating the image element
-          const img = document.createElement('img');
+          const img = document.createElement("img");
           img.src = imgSrc;
-          img.alt = 'image';
-          img.classList.add('img');
+          img.alt = "image";
+          img.classList.add("img");
 
           // Creating the text container
-          const textContainer = document.createElement('div');
-          textContainer.classList.add('textContainer');
+          const textContainer = document.createElement("div");
+          textContainer.classList.add("textContainer");
 
           // Creating the title text element
-          const titleText = document.createElement('text');
-          titleText.classList.add('titleText');
+          const titleText = document.createElement("text");
+          titleText.classList.add("titleText");
           titleText.textContent = title;
 
           // Creating the content text element
-          const contentText = document.createElement('text');
-          contentText.classList.add('text');
+          const contentText = document.createElement("text");
+          contentText.classList.add("text");
           contentText.textContent = content;
 
           // Appending the image and text elements to the respective containers
@@ -137,6 +142,50 @@
           $card.appendChild(navigate);
         });
       });
+    </script>
+    <!--검색창 기능-->
+    <script>
+      let link = document.getElementById("searchButton");
+      let input = document.getElementById("input");
+      // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
+      link.addEventListener("click", (e) => {
+        let searchText = input.value;
+        e.preventDefault();
+        let url = "search/?q=" + encodeURIComponent(searchText);
+        window.location.href = url;
+      });
+    </script>
+    <!--로그인 상태에 따라 로그인/로그아웃 버튼 보이기-->
+    <script>
+      window.addEventListener("DOMContentLoaded", (event) => {
+        if (localStorage.getItem("token")) {
+          document.querySelector(".TextLogin").style.display = "none";
+        } else {
+          document.querySelector(".TextLogout").style.display = "none";
+        }
+      });
+      //마이페이지 버튼 클릭시 로그인 상태 확인 후 이동 처리
+      document.querySelector(".TextMyPage").addEventListener("click", (e) => {
+        e.preventDefault();
+        if (localStorage.getItem("token")) {
+          // 로그인 토큰이 있는 경우 마이페이지로 이동
+          window.location.href = "../member/mypage.html";
+        } else {
+          // 로그인 토큰이 없는 경우 로그인 페이지로 이동
+          window.alert("먼저 로그인 해주세요");
+          window.location.href = "../member/login.html";
+        }
+      });
+    </script>
+    <!--로그아웃 버튼 클릭시 로컬스토리지에서 토큰 삭제-->
+    <script>
+      document
+        .querySelector(".TextLogout")
+        .addEventListener("click", (event) => {
+          event.preventDefault();
+          localStorage.removeItem("token");
+          location.reload();
+        });
     </script>
   </body>
 </html>
