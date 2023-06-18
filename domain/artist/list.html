@@ -1,83 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>아티스트 프로필 목록 페이지</title>
-    <link rel="stylesheet" type="text/css" href="list.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="list.css" />
+    <link rel="stylesheet" type="text/css" href="menubar.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+      data-tag="font"
+    />
+    <!--파비콘-->
+    <link rel="icon" type="image/png" href="images/Favicon.png" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
-<body>
-<div class="container">
-    <h1>아티스트 프로필 목록</h1>
-    <hr>
+  </head>
+  <body>
+    <div class="Container">
+      <!--상단 기본 메뉴 영역-->
+      <div class="Container-MenuBar">
+        <div class="Container-LeftMenu">
+          <span class="BrandName"><span>아트브릿지</span></span>
+          <a href="../../index.html">
+            <img
+              alt="Logo image"
+              src="images/Logo.png"
+              class="ImgLogo"
+              draggable="false"
+            />
+          </a>
+          <span class="HomeMenu"><a href="../../index.html">홈</a></span>
+          <span class="ArtworkMenu"
+            ><a href="../artwork/list.html">작품</a></span
+          >
+          <span class="ExhibitionMenu"
+            ><a href="../exhibition/list.html">전시회</a></span
+          >
+          <span class="IntroduceMenu"><span>소개</span></span>
+          <span class="ArtistMenu"
+            ><a href="../artist/list.html">아티스트</a></span
+          >
+        </div>
+        <div class="Container-RightMenu">
+          <div class="GroupLoginLogout">
+            <span class="TextLogin"
+              ><a href="../member/login.html" id="login">LOGIN</a></span
+            >
+            <span class="TextLogout"
+              ><a href="../member/logout.html" id="logout">LOGOUT</a></span
+            >
+            <span class="TextDelimeter">ㅣ</span>
+            <span class="TextMyPage"
+              ><a href="../member/mypage.html" id="mypage">마이페이지</a></span
+            >
+          </div>
+          <div class="BtnUploadArtwork">
+            <span class="BtnTextUploadArtwork"
+              ><a href="../artwork/upload.html">작품 올리기</a></span
+            >
+          </div>
+          <div class="BtnUploadExhibition">
+            <span class="BtnTextUploadExhibition"
+              ><a href="../exhibition/upload.html">전시회 올리기</a></span
+            >
+          </div>
+          <div class="Container-SearchBar">
+            <div class="GroupSearchInputAndButton">
+              <input id="input" placeholder="Search" class="TextSearchInput" />
+              <a id="searchButton" href="#">
+                <img
+                  alt="Search Button image"
+                  src="images/icon_Search.svg"
+                  class="BtnSearch"
+                  draggable="false"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="Container-Content">
+        <div class="container">
+          <h1>아티스트 프로필 목록</h1>
+          <hr />
 
-    <div id="artistList">
+          <div id="artistList"></div>
+
+          <div class="pagination" id="pagination"></div>
+
+          <div class="search">
+            <div class="label-container">
+              <span>이름+내용</span>
+              <div class="vertical-line"></div>
+            </div>
+            <div class="input-container">
+              <input type="text" id="searchQuery" />
+            </div>
+            <div class="icon-container" onclick="search()">
+              <span class="material-icons">search</span>
+              <div class="upload-button">Upload</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="pagination" id="pagination">
-    </div>
-
-    <div class="search">
-        <div class="label-container">
-            <span>이름+내용</span>
-            <div class="vertical-line"></div>
-        </div>
-        <div class="input-container">
-            <input type="text" id="searchQuery">
-        </div>
-        <div class="vertical-line"></div>
-        <div class="icon-container" onclick="search()">
-            <span class="material-icons">search</span>
-        </div>
-    </div>
-</div>
-
-<script>
-
-    $(document).ready(function() {
+    <script>
+      $(document).ready(function () {
         loadArtworks(0);
-    });
+      });
 
-    const ITEMS_PER_PAGE = 5;
+      const ITEMS_PER_PAGE = 5;
 
-    function createProfileElement(artwork) {
+      function createProfileElement(artwork) {
         return (
-            '<div class="profile">' +
-            '<img src="' + artwork.imgUrl + '" class="profile-img" alt="Artwork ' + artwork.title + '">' +
-            '<h3>' + artwork.name + '</h3>' +
-            '</div>'
+          '<div class="profile">' +
+          '<img src="' +
+          artwork.imgUrl +
+          '" class="profile-img" alt="Artwork ' +
+          artwork.title +
+          '">' +
+          "<h3>" +
+          artwork.name +
+          "</h3>" +
+          "</div>"
         );
-    }
+      }
 
-    function createPaginationElement(i, page) {
+      function createPaginationElement(i, page) {
         if (i === page) {
-            return '<span class="current-page">' + i + '</span>';
+          return '<span class="current-page">' + i + "</span>";
         } else {
-            return '<span class="page-link" onclick="loadArtworks(' + i + ')">' + i + '</span>';
+          return (
+            '<span class="page-link" onclick="loadArtworks(' +
+            i +
+            ')">' +
+            i +
+            "</span>"
+          );
         }
-    }
+      }
 
-    function loadArtworks(page) {
-        $.get(`http://tobiasdev.ml/services/artist/api/artists?page=${page}&size=${ITEMS_PER_PAGE}`, function(data, status, xhr) {
-            $('#artistList').empty();
-            data.forEach(function(artwork) {
-                $('#artistList').append(createProfileElement(artwork));
+      function loadArtworks(page) {
+        $.get(
+          `http://tobiasdev.ml/services/artist/api/artists?page=${page}&size=${ITEMS_PER_PAGE}`,
+          function (data, status, xhr) {
+            $("#artistList").empty();
+            data.forEach(function (artwork) {
+              $("#artistList").append(createProfileElement(artwork));
             });
 
-            var totalItems = xhr.getResponseHeader('X-Total-Count');
+            var totalItems = xhr.getResponseHeader("X-Total-Count");
             var totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE) - 1;
 
-            $('#pagination').empty();
+            $("#pagination").empty();
             for (var i = 0; i <= totalPages; i++) {
-                $('#pagination').append(createPaginationElement(i, page));
+              $("#pagination").append(createPaginationElement(i, page));
             }
+          }
+        );
+      }
+
+      loadArtworks(1);
+    </script>
+    <!--검색창 기능-->
+    <script>
+      let link = document.getElementById("searchButton");
+      let input = document.getElementById("input");
+      // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
+      link.addEventListener("click", (e) => {
+        let searchText = input.value;
+        e.preventDefault();
+        let url = "search/?q=" + encodeURIComponent(searchText);
+        window.location.href = url;
+      });
+    </script>
+    <!--로그인 상태에 따라 로그인/로그아웃 버튼 보이기-->
+    <script>
+      window.addEventListener("DOMContentLoaded", (event) => {
+        if (localStorage.getItem("token")) {
+          document.querySelector(".TextLogin").style.display = "none";
+        } else {
+          document.querySelector(".TextLogout").style.display = "none";
+        }
+      });
+      //마이페이지 버튼 클릭시 로그인 상태 확인 후 이동 처리
+      document.querySelector(".TextMyPage").addEventListener("click", (e) => {
+        e.preventDefault();
+        if (localStorage.getItem("token")) {
+          // 로그인 토큰이 있는 경우 마이페이지로 이동
+          window.location.href = "../member/mypage.html";
+        } else {
+          // 로그인 토큰이 없는 경우 로그인 페이지로 이동
+          window.alert("먼저 로그인 해주세요");
+          window.location.href = "../member/login.html";
+        }
+      });
+    </script>
+    <!--로그아웃 버튼 클릭시 로컬스토리지에서 토큰 삭제-->
+    <script>
+      document
+        .querySelector(".TextLogout")
+        .addEventListener("click", (event) => {
+          event.preventDefault();
+          localStorage.removeItem("token");
+          location.reload();
         });
-    }
-
-    loadArtworks(1);
-</script>
-
-
-</body>
+    </script>
+  </body>
 </html>

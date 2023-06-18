@@ -35,6 +35,7 @@ span {
 
 .Container {
   width: 100%;
+  height: 1024px;
   display: flex;
   overflow: hidden;
   position: auto;
@@ -61,6 +62,7 @@ span {
   margin-right: 3%;
 }
 .BrandName {
+  text-decoration: none;
   top: 68px;
   color: rgba(51, 61, 65, 0.800000011920929);
   right: 0;
@@ -100,7 +102,7 @@ span {
 }
 .ArtworkMenu {
   left: 45px;
-  color: rgba(207, 94, 83, 1);
+  color: rgba(0, 0, 0, 1);
   bottom: 0px;
   height: auto;
   position: absolute;
@@ -146,7 +148,7 @@ span {
   text-decoration: none;
 }
 .ArtistMenu {
-  color: rgba(0, 0, 0, 1);
+  color: rgba(207, 94, 83, 1);
   right: 73.390625px;
   bottom: 0px;
   height: auto;

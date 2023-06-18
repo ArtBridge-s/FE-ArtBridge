@@ -1,180 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>아티스트 프로필 업로드 페이지</title>
-    <link rel="stylesheet" href="upload.css">
+    <link rel="stylesheet" href="upload.css" />
+    <!--파비콘-->
+    <link rel="icon" type="image/png" href="images/Favicon.png" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!--Check logged in-->
     <script>
-        let jwtToken = localStorage.getItem('token'); // Check if user is logged in
-        if (!jwtToken) {
-            window.location.href = "../../index.html" // If user is not logged in, redirect to index.html
-        }
+      let jwtToken = localStorage.getItem("token"); // Check if user is logged in
+      if (!jwtToken) {
+        window.location.href = "../../index.html"; // If user is not logged in, redirect to index.html
+      }
     </script>
-</head>
-<body>
-<div class="container">
-    <div class="title">
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
         <div class="rectangle-1943"></div>
         <h1>아티스트 프로필 업로드</h1>
         <div></div>
-    </div>
-    <div class="lines">
-        <hr class="combined-line">
-    </div>
+      </div>
+      <div class="lines">
+        <hr class="combined-line" />
+      </div>
 
-    <form onsubmit="submitForm(event)">
+      <form onsubmit="submitForm(event)">
         <div class="image-upload">
-            <label for="image">사진</label>
-            <input type="file" id="image" name="image" onchange="previewImage(this);" required>
+          <label for="image">사진</label>
+          <input
+            type="file"
+            id="image"
+            name="image"
+            onchange="previewImage(this);"
+            required
+          />
         </div>
         <div class="fields">
-            <div class="field">
-                <label for="name">이름</label>
-                <input type="text" id="name" name="name" minlength="3" maxlength="100" required>
-            </div>
-            <div class="field">
-                <label for="real-name">본명</label>
-                <input type="text" id="real-name" name="real_name" minlength="2" maxlength="100">
-            </div>
-            <div class="field">
-                <label for="work">작품</label>
-                <input type="text" id="work" name="work">
-            </div>
-            <div class="field">
-                <label for="contact">연락처</label>
-                <input type="text" id="contact" name="contact">
-            </div>
-            <div class="field">
-                <label for="career">경력</label>
-                <input type="text" id="career" name="career">
-            </div>
+          <div class="field">
+            <label for="name">이름</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              minlength="3"
+              maxlength="100"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="real-name">본명</label>
+            <input
+              type="text"
+              id="real-name"
+              name="real_name"
+              minlength="2"
+              maxlength="100"
+            />
+          </div>
+          <div class="field">
+            <label for="work">작품</label>
+            <input type="text" id="work" name="work" />
+          </div>
+          <div class="field">
+            <label for="contact">연락처</label>
+            <input type="text" id="contact" name="contact" />
+          </div>
+          <div class="field">
+            <label for="career">경력</label>
+            <input type="text" id="career" name="career" />
+          </div>
         </div>
         <div class="buttons">
-            <button type="submit" class="button" id="submitButton">등록</button>
-            <button type="reset" class="button">취소</button>
+          <button type="submit" class="button" id="submitButton">등록</button>
+          <button type="reset" class="button">취소</button>
         </div>
-    </form>
-    <!--로딩 표시-->
-    <div id="loading" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-        <img src="images/loading.gif" alt="">
+      </form>
+      <!--로딩 표시-->
+      <div
+        id="loading"
+        style="
+          display: none;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        "
+      >
+        <img src="images/loading.gif" alt="" />
+      </div>
     </div>
-</div>
 
-
-<!-- 이미지 미리보기 -->
-<script>
-    function previewImage(input) {
+    <!-- 이미지 미리보기 -->
+    <script>
+      function previewImage(input) {
         if (input.files && input.files[0]) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const imageUpload = document.querySelector('.image-upload');
-                imageUpload.style.background = 'none';
-                imageUpload.style.backgroundImage = `url(${e.target.result})`;
-                imageUpload.style.backgroundSize = 'contain';
-                imageUpload.style.backgroundPosition = 'center';
-                imageUpload.style.backgroundRepeat = 'no-repeat';
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const imageUpload = document.querySelector(".image-upload");
+            imageUpload.style.background = "none";
+            imageUpload.style.backgroundImage = `url(${e.target.result})`;
+            imageUpload.style.backgroundSize = "contain";
+            imageUpload.style.backgroundPosition = "center";
+            imageUpload.style.backgroundRepeat = "no-repeat";
 
-                const imageLabel = document.querySelector('.image-upload label');
-                imageLabel.style.display = 'none';
-            };
-            reader.readAsDataURL(input.files[0]);
+            const imageLabel = document.querySelector(".image-upload label");
+            imageLabel.style.display = "none";
+          };
+          reader.readAsDataURL(input.files[0]);
         }
-    }
-</script>
+      }
+    </script>
 
-<!--api-->
-<script>
-    function submitForm(event) {
+    <!--api-->
+    <script>
+      function submitForm(event) {
         event.preventDefault(); // Submit 기본 동작(페이지 리로딩) 방지
 
         disableSubmitButton(); // 제출 버튼 비활성화
         showLoadingIndicator(); // 로딩 표시기 표시
 
         // Form에서 입력받은 데이터 가져오기
-        const name = document.querySelector('#name').value;
-        const realName = document.querySelector('#real-name').value;
-        const work = document.querySelector('#work').value;
-        const contact = document.querySelector('#contact').value;
-        const career = document.querySelector('#career').value;
+        const name = document.querySelector("#name").value;
+        const realName = document.querySelector("#real-name").value;
+        const work = document.querySelector("#work").value;
+        const contact = document.querySelector("#contact").value;
+        const career = document.querySelector("#career").value;
 
         // FormData 객체 생성
         const formData = new FormData();
-        formData.append('image', document.querySelector('#image').files[0]);
-        formData.append('artistDTO', JSON.stringify({
+        formData.append("image", document.querySelector("#image").files[0]);
+        formData.append(
+          "artistDTO",
+          JSON.stringify({
             name: name,
             realName: realName,
             artworkDTO: {
-                title: work
+              title: work,
             },
             phone: contact,
-            career: career
-        }));
+            career: career,
+          })
+        );
 
         // JWT 토큰 가져오기 (이 예제에서는 localStorage에서 가져옵니다)
-        const jwtToken = localStorage.getItem('token');
+        const jwtToken = localStorage.getItem("token");
 
         uploadArtist(formData, jwtToken); // Ajax 요청
-    }
+      }
 
-    // 제출 버튼 비활성화
-    function disableSubmitButton() {
+      // 제출 버튼 비활성화
+      function disableSubmitButton() {
         $("#submitBtn").prop("disabled", true);
-    }
+      }
 
-    // 로딩 표시기 표시
-    function showLoadingIndicator() {
+      // 로딩 표시기 표시
+      function showLoadingIndicator() {
         $("#loading").show();
-    }
+      }
 
-    // 폼 데이터 구성 및 Ajax 요청
-    function uploadArtist(formData, jwtToken) {
+      // 폼 데이터 구성 및 Ajax 요청
+      function uploadArtist(formData, jwtToken) {
         $.ajax({
-            url: 'http://tobiasdev.ml/services/artist/api/artists',
-            type: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + jwtToken
-            },
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            xhrFields: {
-                withCredentials: true
-            },
-            success: function (data, textStatus, xhr) {
-                enableSubmitButton(); // 제출 버튼 활성화
-                hideLoadingIndicator(); // 로딩 표시기 숨김
+          url: "http://tobiasdev.ml/services/artist/api/artists",
+          type: "POST",
+          headers: {
+            Authorization: "Bearer " + jwtToken,
+          },
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          xhrFields: {
+            withCredentials: true,
+          },
+          success: function (data, textStatus, xhr) {
+            enableSubmitButton(); // 제출 버튼 활성화
+            hideLoadingIndicator(); // 로딩 표시기 숨김
 
-                if (xhr.status === 201) {
-                    alert('아티스트 프로필이 성공적으로 업로드되었습니다.');
-                    window.location.href = '../../index.html'; // 성공적으로 업로드한 후 이동할 페이지
-                }
-            },
-            error: function (xhr, textStatus, error) {
-                // 제출 버튼 활성화 및 로딩 표시기 숨김
-                document.getElementById('submitButton').disabled = false;
-                document.getElementById('loadingIndicator').style.display = 'none';
-
-                alert('아티스트 프로필 업로드에 실패했습니다. 다시 시도해주세요.');
-
-                enableSubmitButton(); // 제출 버튼 활성화
-                hideLoadingIndicator(); // 로딩 표시기 숨김
+            if (xhr.status === 201) {
+              alert("아티스트 프로필이 성공적으로 업로드되었습니다.");
+              window.location.href = "../../index.html"; // 성공적으로 업로드한 후 이동할 페이지
             }
+          },
+          error: function (xhr, textStatus, error) {
+            // 제출 버튼 활성화 및 로딩 표시기 숨김
+            document.getElementById("submitButton").disabled = false;
+            document.getElementById("loadingIndicator").style.display = "none";
+
+            alert("아티스트 프로필 업로드에 실패했습니다. 다시 시도해주세요.");
+
+            enableSubmitButton(); // 제출 버튼 활성화
+            hideLoadingIndicator(); // 로딩 표시기 숨김
+          },
         });
-    }
+      }
 
-    // 제출 버튼 활성화
-    function enableSubmitButton() {
+      // 제출 버튼 활성화
+      function enableSubmitButton() {
         $("#submitBtn").prop("disabled", false);
-    }
+      }
 
-    // 로딩 표시기 숨김
-    function hideLoadingIndicator() {
+      // 로딩 표시기 숨김
+      function hideLoadingIndicator() {
         $("#loading").hide();
-    }
-</script>
-
-</body>
+      }
+    </script>
+  </body>
 </html>
