@@ -59,11 +59,6 @@
   <div class="content">
     <div class="top_area">
       <h2>전시회 <span>삭제</span> 요청</h2>
-      <ul class="btns">
-        <li>업로드 요청</li>
-        <li>Refresh list</li>
-        <li>사용자 생성</li>
-      </ul>
     </div>
     <table class="table">
       <tr class="th">
@@ -80,14 +75,6 @@
         <th class="col center">선택</th>
       </tr>
     </table>
-    <div class="pagination">
-      <div class="pagination-item">1</div>
-      <div class="pagination-item">2</div>
-      <div class="pagination-item">3</div>
-      <div class="pagination-item">4</div>
-      <div class="pagination-item">5</div>
-      <div class="pagination-item">6</div>
-    </div>
   </div>
 
   <script>
@@ -116,13 +103,9 @@
         }
       });
 
-      fetchPendingExhibitionEditings();
+      fetchPendingExhibitionDeletions();
 
-      $(".btns li:contains('업로드 요청')").click(function () {
-        uploadArtworkRequest();
-      });
-
-      function fetchPendingExhibitionEditings() {
+      function fetchPendingExhibitionDeletions() {
         $.ajax({
           url: "http://tobiasdev.ml/services/exhibition/api/exhibitions/status/delete",
           type: "GET",
@@ -158,25 +141,6 @@
           $(".table").append(row);
         });
       }
-
-      // function uploadArtworkRequest() {
-      //   $.ajax({
-      //     url: "http://tobiasdev.ml/services/artwork/api/artworks/upload",
-      //     type: "POST",
-      //     headers: {
-      //       Authorization: "Bearer " + localStorage.getItem("token"),
-      //     },
-      //     success: function (data) {
-      //       alert("작품 업로드 요청이 성공적으로 이루어졌습니다.");
-      //       location.reload();
-      //     },
-      //     error: function (xhr, textStatus, error) {
-      //       console.error("Error: " + xhr.status + " " + xhr.statusText);
-      //       alert("작품 업로드 요청이 실패하였습니다. 다시 시도해주세요.");
-      //     },
-      //   });
-      // }
-
       $(document).on("click", ".selectBtn", function () {
         const id = $(this).closest("tr").find("td:first").text();
         $.ajax({

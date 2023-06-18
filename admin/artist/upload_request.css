@@ -1,206 +1,164 @@
 /* 초기화 */
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
 }
 
 #sidebar {
-    position: fixed;
-    width: 259px;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: #383F51;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  position: fixed;
+  width: 259px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: #383f51;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 #menu {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.arrow-down {
+  transform: rotate(90deg);
 }
 
 .menu-item {
-    font-size: 16px;
-    color: #FFFFFF;
-    margin-bottom: 20px;
-    width: 100%;
-    position: relative;
-    text-align: center;
+  font-size: 16px;
+  color: #ffffff;
+  margin-bottom: 20px;
+  width: 100%;
+  position: relative;
+  text-align: center;
 }
 
 .menu-item:first-child {
-    font-size: 10px;
-    text-align: left;
+  font-size: 10px;
+  text-align: left;
+}
+
+/* 선택된 메뉴 아이템의 배경색을 빨간색으로 변경 */
+.menu-item.active,
+.menu-item.active:hover {
+  background-color: #dc3545;
+}
+
+/* 마우스 호버 시 메뉴 아이템의 배경색과 글자색을 변경 */
+.menu-item:hover {
+  background-color: #003eb3; /* 배경색을 어두운 회색으로 변경 */
+  color: #fff; /* 글자색을 흰색으로 변경 */
 }
 
 .menu-item.bullet {
-    font-size: 16px;
-    padding: 5px 10px;
-    border-radius: 0 30px 30px 0;
-    width: calc(100% - 20px);
-}
-
-.menu-item.bullet:nth-child(4) {
-    background-color: #DC3545;
-    padding: 15px 15px;
-    border-radius: 0 30px 30px 0;
-}
-
-.menu-item:first-child {
-    font-size: 10px;
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 0 30px 30px 0;
+  width: calc(100% - 20px);
 }
 
 .arrow {
-    color: #FFFFFF;
-    position: absolute;
-    right: 0;
-}
-
-.pagination {
-    position: fixed;
-    width: 160px;
-    height: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.pagination-item {
-    font-family: 'Inter', serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000000;
-    width: 30px;
-    height: 30px;
-    margin: 0 5px;
-}
-
-.pagination-item:hover {
-    cursor: pointer;
-    background-color: #CCCCCC;
-}
-
-/* icon "chevron left" */
-.pagination .chevron-left {
-    position: absolute;
-    width: 20px;
-    height: 34.97px;
-    opacity: 0.1;
-}
-
-/* icon "chevron right" */
-.pagination .chevron-right {
-    position: absolute;
-    width: 20px;
-    height: 34.97px;
-    opacity: 0.1;
+  color: #ffffff;
+  position: absolute;
+  right: 0;
 }
 
 .content {
-    width: calc(100% - 299px);
-    height: 100vh;
-    margin-left: 299px;
-    padding: 0 83px;
-    box-sizing: border-box;
-    padding-top: 200px;
+  width: calc(100% - 299px);
+  height: 100vh;
+  margin-left: 299px;
+  padding: 0 83px;
+  box-sizing: border-box;
+  padding-top: 200px;
 }
 
 .content h2 {
-    font-size: 50px;
+  font-size: 50px;
 }
 
 .content h2 span {
-    color: #e36d42;
+  color: #e36d42;
 }
 
 .top_area {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
 
 .table {
-    border-top: 1px solid #999;
-    padding-top: 20px;
-}
-
-.tr {
-    display: flex;
-    justify-content: space-between;
+  border-collapse: collapse;
+  border-top: 1px solid #999999;
+  width: 100%;
 }
 
 .th {
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    font-weight: bold;
+  height: 50px;
+  text-align: left;
+  font-weight: bold;
 }
 
-.tr div {
-    width: auto;
-    padding: 0 10px;
-    min-width: calc(100% / 9);
-    box-sizing: border-box;
-}
-
-.left {
-    text-align: left;
+.td {
+  padding: 10px;
+  border: 1px solid #dddddd;
+  text-align: left;
 }
 
 .center {
-    text-align: center;
+  text-align: center;
 }
 
 .btns {
-    display: flex;
-    float: right;
-    gap: 20px;
-}
-
-.btns {
-    display: flex;
-    float: right;
-    gap: 20px;
-}
-
-.btns {
-    display: flex;
-    float: right;
-    gap: 20px;
+  display: flex;
+  float: right;
+  gap: 20px;
 }
 
 .btns li {
-    list-style: none;
-    padding: 10px 20px; /* Adjust the padding to modify the button size */
-    border: none; /* Remove the border */
-    color: #FFFFFF;
+  list-style: none;
+  padding: 10px 20px; /* Adjust the padding to modify the button size */
+  border: none; /* Remove the border */
+  color: #ffffff;
 }
 
 .btns li:nth-child(1) {
-    background-color: #DC3545;
+  background-color: #dc3545;
 }
 
 .btns li:nth-child(2) {
-    background-color: #17A2B8;
+  background-color: #17a2b8;
 }
 
 .btns li:nth-child(3) {
-    background-color: #3E8ACC;
+  background-color: #3e8e9d;
+}
+
+/* 페이지네이션 CSS */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination .pagination-item {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+.pagination .pagination-item:hover {
+  background-color: #eee;
 }
