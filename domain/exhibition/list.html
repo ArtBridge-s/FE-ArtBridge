@@ -100,17 +100,19 @@
 
       JsonData().then((data) => {
         const $card = document.getElementById('cards');
-        console.log(data);
         data.map((item) => {
+          const id = item.id;
           const title = item.title;
           const location = item.location;
           const duration = item.duration;
 
-          console.log(location);
-          console.log(duration);
           // Creating the card container
           const cardContainer = document.createElement('div');
           cardContainer.classList.add('card');
+          cardContainer.addEventListener('click', function () {
+            console.log('first');
+            window.location.replace(`detail.html?id=${id}`);
+          });
 
           // Creating the text container
           const textContainer = document.createElement('div');
