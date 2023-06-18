@@ -58,11 +58,11 @@
     <div class="content">
       <div class="top_area">
         <h2>전시회 <span>업로드</span> 요청</h2>
-        <ul class="btns">
+        <!-- <ul class="btns">
           <li>업로드 요청</li>
           <li>Refresh list</li>
           <li>사용자 생성</li>
-        </ul>
+        </ul> -->
       </div>
       <table class="table">
         <tr class="th">
@@ -79,14 +79,14 @@
           <th class="col center">선택</th>
         </tr>
       </table>
-      <div class="pagination">
+      <!-- <div class="pagination">
         <div class="pagination-item">1</div>
         <div class="pagination-item">2</div>
         <div class="pagination-item">3</div>
         <div class="pagination-item">4</div>
         <div class="pagination-item">5</div>
         <div class="pagination-item">6</div>
-      </div>
+      </div> -->
     </div>
 
     <script>
@@ -117,9 +117,9 @@
 
         fetchPendingExhibitionCreations();
 
-        $(".btns li:contains('업로드 요청')").click(function () {
-          uploadArtworkRequest();
-        });
+        // $(".btns li:contains('업로드 요청')").click(function () {
+        //   uploadArtworkRequest();
+        // });
 
         function fetchPendingExhibitionCreations() {
           $.ajax({
