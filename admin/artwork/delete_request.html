@@ -153,7 +153,7 @@
 
           $.ajax({
             url: `http://tobiasdev.ml/services/artwork/api/artworks/${id}`,
-            type: "PATCH",
+            type: "DELETE",
             headers: {
               Authorization: "Bearer " + localStorage.getItem("token"),
             },
