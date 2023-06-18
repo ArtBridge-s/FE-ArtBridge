@@ -1,10 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>마이 페이지</title>
+    <meta charset="UTF-8" />
+    <title>마이페이지</title>
+    <link rel="stylesheet" href="mypage.css" />
+    <link rel="stylesheet" href="../exhibition/edit.css" />
 </head>
 <body>
+<div class="listContainer">
+    <div class="Container-MenuBar">
+        <div class="Container-LeftMenu">
+            <span class="BrandName"><span>아트브릿지</span></span>
+            <a href="../../index.html">
+                <img
+                        alt="Logo image"
+                        src="bridge.png"
+                        class="ImgLogo"
+                        draggable="false"
+                />
+            </a>
+            <span class="HomeMenu"><a href="../../index.html">홈</a></span>
+            <span class="ArtworkMenu"><a href="../artwork/list.html">작품</a></span>
+            <span class="ExhibitionMenu"><a href="domain/artwork/list.html">전시회</a></span>
+            <span class="IntroduceMenu"><span>소개</span></span>
+            <span class="ArtistMenu"><a href="../artist/list.html">아티스트</a></span>
+        </div>
+        <div class="Container-RightMenu">
+            <div class="GroupLoginLogout">
+                <span class="TextLogin"><a href="../member/login.html" id="login">LOGIN</a></span>
+                <span class="TextDelimeter">ㅣ</span>
+                <span class="TextLogout"><a href="mypage.html" id="mypage">마이페이지</a></span>
+            </div>
+            <div class="BtnUploadArtwork">
+                <span class="BtnTextUploadArtwork"><a href="../artwork/upload.html">작품 올리기</a></span>
+            </div>
+            <div class="BtnUploadExhibition">
+                <span class="BtnTextUploadExhibition"><a href="../artwork/upload.css">전시회 올리기</a></span>
+            </div>
+            <div class="Container-SearchBar">
+                <div class="GroupSearchInputAndButton">
+                    <input id="input" placeholder="Search" class="TextSearchInput" />
+                    <a id="searchButton" href="#">
+                        <img
+                                alt="Search Button image"
+                                src="../../images/SearchIcon.svg"
+                                class="BtnSearch"
+                                draggable="false"
+                        />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="user-info" id="group249">
+        <h1><img src="ren.png" alt="edit icon" class="edit-icon"> 김없음 <img src="pen.png" alt="edit icon" class="edit-icon"></h1>
+        <p><strong>Email </strong> <span id="email">abcdef12345@naver.com</span></p>
+        <p><strong>Password </strong> <span id="password">abcdefghtf2222314</span></p>
+    </div>
+
+    <div class="my-artworks" id="frame50">
+        <h2>내가 올린 작품 / 전시회 보기</h2>
+        <div class="artwork-details" id="cards"></div>
+    </div>
+
+    <div class="liked-artworks" id="frame51">
+        <h2>좋아요 누른 작품 보기</h2>
+    </div>
+
+    <div class="my-comments" id="group27">
+        <h2>내가 작성한 댓글 보기</h2>
+    </div>
+
+    <div class="buttons" id="group34">
+        <button class="edit" id="group35">수정</button>
+        <button class="delete">삭제</button>
+    </div>
+
+    <script>
+        const data = [
+            { title: '작품1', shortDescription: '작품 설명1' },
+            { title: '작품2', shortDescription: '작품 설명2' },
+            { title: '작품3', shortDescription: '작품 설명3' },
+        ];
+
+        const cardContainer = document.getElementById('cards');
+
+        data.forEach((item) => {
+            const imgSrc = 'list.jpg';
+            const title = item.title;
+            const content = item.shortDescription;
+
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            const img = document.createElement('img');
+            img.src = imgSrc;
+            img.alt = 'image';
+            img.classList.add('img');
+
+            const textContainer = document.createElement('div');
+            textContainer.classList.add('textContainer');
+
+            const titleText = document.createElement('text');
+            titleText.classList.add('titleText');
+            titleText.textContent = title;
+
+            const contentText = document.createElement('text');
+            contentText.classList.add('text');
+            contentText.textContent = content;
+
+            textContainer.appendChild(titleText);
+            textContainer.appendChild(contentText);
+
+            card.appendChild(img);
+            card.appendChild(textContainer);
+
+            cardContainer.appendChild(card);
+        });
+    </script>
+
+    <script>
+        window.addEventListener('wheel', function(e) {
+            if(e.ctrlKey) {
+                e.preventDefault();
+                e.returnValue = false;
+            }
+        }, { passive: false });
+    </script>
+</div>
 </body>
 </html>
