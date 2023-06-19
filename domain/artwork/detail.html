@@ -89,13 +89,13 @@
         </div>
         <div class="info">
            <div class="DUContainer">
-          <button id="editBtn" type="button">
-            <img src="images/edit.png">
-          </button>
-            <button id="deleteBtn" type="button">
-            <img src="images/delete.png">
-            </button>
-        </div>
+              <button id="editBtn" type="button">
+                <img src="images/edit.png">
+              </button>
+              <button id="deleteBtn" type="button">
+                <img src="images/delete.png">
+              </button>
+            </div>
           <h1 id="artworkTitle"></h1>
           <div class="description-metadata">
             <p id="artworkDescription" class="description"></p>
@@ -232,7 +232,6 @@ window.addEventListener("DOMContentLoaded", checkSameId);
 <script>
   // editBtn 버튼 클릭 시
   document.getElementById("editBtn").addEventListener("click", function() {
-    alert("editBtn이 클릭되었습니다.");
     const id = new URL(window.location.href).searchParams.get("id");
     //해당 작품의 edit page로 이동
     window.location.href = `edit.html?id=${id}`;

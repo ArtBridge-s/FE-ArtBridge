@@ -118,6 +118,14 @@
           <span class="ExhibitionName">
             <span id = "exhibitionName">김건우 개인전</span>
           </span>
+          <div class="DUContainer">
+            <button id="editBtn" type="button">
+              <img src="images/detail/edit.png">
+            </button>
+            <button id="deleteBtn" type="button">
+              <img src="images/detail/delete.png">
+            </button>
+          </div>
           <div class="Conatainer-Uploader">
             <span id = "writerTitle">작성자</span>
             <span> : </span>
@@ -308,5 +316,97 @@
               location.reload();
             });
         </script>
+<!--해당 글의 작성자라면 수정, 삭제 버튼 표시-->
+<script>
+  async function getUserId() {
+   const response = await fetch("http://tobiasdev.ml/api/authenticate", {
+     headers: {
+       Authorization: "Bearer " + localStorage.getItem("token"),
+     },
+   });
+   if (response.ok) {
+     const userID = await response.text();
+     return userID;
+   } else {
+     throw new Error("Failed to get user ID");
+   }
+ }
+ 
+ // 해당 전시회를 업로드한 유저 id 반환
+ async function getAuthorId() {
+   const id = new URL(window.location.href).searchParams.get("id");
+   const response = await fetch(`http://tobiasdev.ml/services/exhibition/api/exhibitions/${id}`);
+   if (response.ok) {
+     const data = await response.json();
+     const uploaderID = data.createdMemberDTO.login;
+     return uploaderID;
+   } else {
+     throw new Error("Failed to get author ID");
+   }
+ }
+ 
+ // 로그인한 사용자의 아이디와 글 작성자의 아이디 비교
+ async function checkSameId() {
+   try {
+     const userID = await getUserId();
+     const uploaderID = await getAuthorId();
+    //  alert("userID: " + userID);
+    //  alert("uploaderID: " + uploaderID);
+     if (userID === uploaderID) {
+       //아이디가 글 작성자의 아이디와 일치하는 경우
+       document.getElementById("editBtn").style.display = "block";
+       document.getElementById("deleteBtn").style.display = "block";
+     } else {
+       //아니면 버튼 가림
+       document.getElementById("editBtn").style.display = "none";
+       document.getElementById("deleteBtn").style.display = "none";
+     }
+   } catch (error) {
+     console.error("Error: " + error);
+   }
+ }
+ // 페이지 로드 시 checkSameId 함수를 호출하여 버튼 상태를 설정
+ window.addEventListener("DOMContentLoaded", checkSameId);
+ </script>
+ 
+ <!--수정/삭제 버튼 이벤트 리스너-->
+ <script>
+   // editBtn 버튼 클릭 시
+   document.getElementById("editBtn").addEventListener("click", function() {
+     const id = new URL(window.location.href).searchParams.get("id");
+     //해당 작품의 edit page로 이동
+     window.location.href = `edit.html?id=${id}`;
+   });
+ 
+   // deleteBtn 버튼 클릭 시
+   document.getElementById("deleteBtn").addEventListener("click", function() {
+     var result = confirm("해당 작품을 삭제하시겠습니까?");
+     if (result) {
+       deleteContent();
+     } else {
+     }
+   });
+   
+   async function deleteContent() {
+   const id = new URL(window.location.href).searchParams.get("id");
+   try {
+     const response = await fetch(`http://tobiasdev.ml/services/exhibition/api/exhibitions/request/delete/${id}`, {
+       method: "PATCH",
+       headers: {
+         Authorization: "Bearer " + localStorage.getItem("token"),
+       },
+     });
+     if (response.ok) {
+       window.location.href="list.html";
+     } else {
+       throw new Error("삭제 요청을 실패하였습니다.");
+     }
+   } catch (error) {
+     console.error("Error: " + error);
+     alert("삭제 요청을 실패하였습니다. 다시 시도해주세요.");
+   }
+ }
+ </script>
+
   </body>
 </html>
