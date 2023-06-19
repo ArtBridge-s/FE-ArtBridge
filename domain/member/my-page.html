@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>마이페이지</title>
-    <link rel="stylesheet" href="mypage.css" />
+    <link rel="stylesheet" href="my-page.css" />
     <link rel="stylesheet" href="../exhibition/edit.css" />
 </head>
 <body>
@@ -21,15 +21,15 @@
             </a>
             <span class="HomeMenu"><a href="../../index.html">홈</a></span>
             <span class="ArtworkMenu"><a href="../artwork/list.html">작품</a></span>
-            <span class="ExhibitionMenu"><a href="domain/artwork/list.html">전시회</a></span>
+            <span class="ExhibitionMenu"><a href="../artwork/list.html">전시회</a></span>
             <span class="IntroduceMenu"><span>소개</span></span>
             <span class="ArtistMenu"><a href="../artist/list.html">아티스트</a></span>
         </div>
         <div class="Container-RightMenu">
             <div class="GroupLoginLogout">
                 <span class="TextLogin"><a href="../member/login.html" id="login">LOGIN</a></span>
-                <span class="TextDelimeter">ㅣ</span>
-                <span class="TextLogout"><a href="mypage.html" id="mypage">마이페이지</a></span>
+                <span class="TextDelimiter">ㅣ</span>
+                <span class="TextLogout"><a href="my-page.html" id="my-page">마이페이지</a></span>
             </div>
             <div class="BtnUploadArtwork">
                 <span class="BtnTextUploadArtwork"><a href="../artwork/upload.html">작품 올리기</a></span>
@@ -39,7 +39,7 @@
             </div>
             <div class="Container-SearchBar">
                 <div class="GroupSearchInputAndButton">
-                    <input id="input" placeholder="Search" class="TextSearchInput" />
+                    <label for="input"></label><input id="input" placeholder="Search" class="TextSearchInput" />
                     <a id="searchButton" href="#">
                         <img
                                 alt="Search Button image"
@@ -56,7 +56,7 @@
     <div class="user-info" id="group249">
         <h1><img src="ren.png" alt="edit icon" class="edit-icon"> 김없음 <img src="pen.png" alt="edit icon" class="edit-icon"></h1>
         <p><strong>Email </strong> <span id="email">abcdef12345@naver.com</span></p>
-        <p><strong>Password </strong> <span id="password">abcdefghtf2222314</span></p>
+        <p><strong>Password </strong> <span id="password">delightful2222314</span></p>
     </div>
 
     <div class="my-artworks" id="frame50">
@@ -128,6 +128,30 @@
             }
         }, { passive: false });
     </script>
+
+
+    <script>
+        window.addEventListener('wheel', function(e) {
+            if(e.ctrlKey) {
+                e.preventDefault();
+                e.returnValue = false;
+            }
+        }, { passive: false });
+    </script>
+
+    <script>
+        let link = document.getElementById("searchButton");
+        let input = document.getElementById("input");
+        // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
+        link.addEventListener("click", (e) => {
+            let searchText = input.value;
+            e.preventDefault();
+            let url = "search/?q=" + encodeURIComponent(searchText);
+            window.location.href = url;
+        });
+    </script>
 </div>
+
+
 </body>
 </html>
