@@ -102,7 +102,14 @@
             <hr class="combined-line" />
           </div>
 
-          <form>
+          <div
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              padding: 0 150px;
+            "
+          >
             <div class="image-upload">
               <label for="image">사진</label>
               <input
@@ -126,8 +133,12 @@
                 <input type="text" id="place" name="place" />
               </div>
               <div class="field">
-                <label for="period">기간</label>
-                <input type="text" id="period" name="period" />
+                <label for="period">시작날짜</label>
+                <input type="text" id="startDate" name="period" />
+              </div>
+              <div class="field">
+                <label for="period">종료날짜</label>
+                <input type="text" id="endDate" name="period" />
               </div>
               <div class="field">
                 <label for="time">시간</label>
@@ -147,28 +158,72 @@
               </div>
             </div>
             <div class="buttons">
-              <button type="submit" class="button" id="buttonUpload">
-                수정하기
-              </button>
-              <button type="reset" class="button" id="buttonCancel">
-                취소
-              </button>
+              <button class="button" id="buttonUpload">수정하기</button>
+              <button class="button" id="buttonCancel">취소</button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
+    <script>
+      const API_BASE_URL =
+        'http://tobiasdev.ml/services/exhibition/api/exhibitions/request/revision';
+      let id = new URL(window.location.href).searchParams.get('id');
+      console.log(id);
+      let url = `${API_BASE_URL}/${id}`;
+      async function putData() {
+        console.log('first');
+        const jwtToken = localStorage.getItem('token');
+        const name = document.getElementById('name').value; // Get the value entered by the user
+        const realName = document.getElementById('artist').value;
+        const location = document.getElementById('place').value;
+        const startDate = document.getElementById('startDate').value;
+        const endDate = document.getElementById('endDate').value;
+        const time = document.getElementById('time').value;
+        const fee = document.getElementById('fee').value;
+        const contact = document.getElementById('contact').value;
+        const introduce = document.getElementById('introduce').value;
+        const response = await fetch(url, {
+          method: 'PUT',
+          headers: {
+            Authorization: 'Bearer ' + jwtToken,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            title: name,
+            location: location,
+            fee: fee,
+            contact: contact,
+            periodDTO: {
+              startDate: startDate,
+              endDate: endDate,
+              time: time,
+            },
+            artworkDTO: {
+              name: artist,
+            },
+          }),
+        });
+        return response.json();
+      }
+      const editButton = document.getElementById('buttonUpload');
+      editButton.addEventListener('click', putData);
+
+      putData().then((data) => {
+        alert('전시회가 수정이 성공적으로 완료되었습니다.');
+      });
+    </script>
     <!--검색창 기능-->
     <script>
-      let link = document.getElementById("searchButton");
-      let input = document.getElementById("input");
-      // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
-      link.addEventListener("click", (e) => {
-        let searchText = input.value;
-        e.preventDefault();
-        let url = "search/?q=" + encodeURIComponent(searchText);
-        window.location.href = url;
-      });
+      // let link = document.getElementById('searchButton');
+      // let input = document.getElementById('input');
+      // // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
+      // link.addEventListener('click', (e) => {
+      //   let searchText = input.value;
+      //   e.preventDefault();
+      //   let url = 'search/?q=' + encodeURIComponent(searchText);
+      //   window.location.href = url;
+      // });
     </script>
     <!-- 이미지 미리보기 -->
     <script>
@@ -176,15 +231,15 @@
         if (input.files && input.files[0]) {
           const reader = new FileReader();
           reader.onload = function (e) {
-            const imageUpload = document.querySelector(".image-upload");
-            imageUpload.style.background = "none";
+            const imageUpload = document.querySelector('.image-upload');
+            imageUpload.style.background = 'none';
             imageUpload.style.backgroundImage = `url(${e.target.result})`;
-            imageUpload.style.backgroundSize = "contain";
-            imageUpload.style.backgroundPosition = "center";
-            imageUpload.style.backgroundRepeat = "no-repeat";
+            imageUpload.style.backgroundSize = 'contain';
+            imageUpload.style.backgroundPosition = 'center';
+            imageUpload.style.backgroundRepeat = 'no-repeat';
 
-            const imageLabel = document.querySelector(".image-upload label");
-            imageLabel.style.display = "none";
+            const imageLabel = document.querySelector('.image-upload label');
+            imageLabel.style.display = 'none';
           };
           reader.readAsDataURL(input.files[0]);
         }
