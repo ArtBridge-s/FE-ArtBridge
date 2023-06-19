@@ -245,6 +245,9 @@ span {
   font-stretch: normal;
   text-decoration: none;
 }
+.TextMyPage:hover {
+  color: rgba(207, 94, 83, 1);
+}
 
 .Container-SearchBar {
   top: 32px;
