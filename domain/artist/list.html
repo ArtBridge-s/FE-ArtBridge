@@ -117,16 +117,18 @@
 
       function createProfileElement(artwork) {
         return (
-          '<div class="profile">' +
-          '<img src="' +
-          artwork.imgUrl +
-          '" class="profile-img" alt="Artwork ' +
-          artwork.title +
-          '">' +
-          "<h3>" +
-          artwork.name +
-          "</h3>" +
-          "</div>"
+                '<a href="detail.html?id=' + artwork.id + '">' +
+                '<div class="profile">' +
+                '<img src="' +
+                artwork.imgUrl +
+                '" class="profile-img" alt="Artwork ' +
+                artwork.title +
+                '">' +
+                "<h3>" +
+                artwork.name +
+                "</h3>" +
+                "</div>" +
+                "</a>"
         );
       }
 
