@@ -1,26 +1,38 @@
-.Container-MenuBar {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    padding: 0 1vw;
+* {
     box-sizing: border-box;
-    flex-wrap: wrap;
+}
+
+html {
+    font-size: 62.5%; /* 10px = 1rem */
+}
+
+body {
+    font-size: 1.6rem;
+}
+
+.Container-MenuBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .Container-MenuBar {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 
 .Container-LeftMenu {
-    flex: 1;
     display: flex;
-    align-items: stretch;
-    flex-direction: column;
-    padding-left: 2vw;
-    box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
 }
 
 .BrandName {
-    text-align: left;
     margin-left: 2vw;
-    align-self: center;
     font-size: 2.5vw;
 }
 
@@ -28,8 +40,7 @@
     flex: 1;
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Updated */
-    white-space: nowrap;
+    justify-content: flex-end;
 }
 
 .my-artworks .artwork-details,
@@ -42,14 +53,14 @@
 
 .card {
     background: #ffffff;
-    padding: 2vw;
+    padding: 1vw;
     box-shadow: 0 0.2vw 0.8vw rgba(0, 0, 0, 0.1);
     border-radius: 1.2vw;
     transition: transform 0.2s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 20vw;
+    min-width: 15vw;
 }
 
 .card:hover {
@@ -57,23 +68,21 @@
 }
 
 .img {
-    width: 100%;
-    height: 20vw;
+    width: 80%;
+    max-width: 6vw;
     object-fit: cover;
     border-radius: 1vw;
+    cursor: pointer;
 }
 
 .textContainer {
     margin-top: 1vw;
 }
 
-.titleText {
-    font-size: 1.8vw;
-    font-weight: 500;
-}
-
+.titleText,
 .text {
     font-size: 1.4vw;
+    font-weight: 200;
     color: #555;
     margin-top: 0.5vw;
 }
@@ -94,31 +103,24 @@
 
 .user-info h1 img:first-child {
     width: 6.5vw;
-    height: 6.5vw;
+    max-width: 100%;
+    height: auto;
 }
 
 .edit-icon {
     width: 1.6vw;
-    height: 1.6vw;
+    max-width: 100%;
+    height: auto;
 }
 
 .buttons {
     display: flex;
     gap: 0.5vw;
     align-items: center;
-    justify-content: center; /* Updated */
+    justify-content: center;
 }
 
-.edit {
-    width: 6.9vw;
-    height: 4vw;
-    background-color: #333d41;
-    color: #ffffff;
-    border: none;
-    font-size: 1.6vw;
-    cursor: pointer;
-}
-
+.edit,
 .delete {
     width: 6.9vw;
     height: 4vw;
@@ -128,6 +130,7 @@
     font-size: 1.6vw;
     cursor: pointer;
 }
+
 .GroupLoginLogout {
     display: flex;
     align-items: center;
@@ -135,7 +138,5 @@
 }
 
 .TextDelimiter {
-    margin: 0 2.6vw; /* Updated */
+    margin: 0 2.3vw;
 }
-
-

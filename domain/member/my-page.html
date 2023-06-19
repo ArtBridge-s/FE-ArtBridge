@@ -5,6 +5,7 @@
     <title>마이페이지</title>
     <link rel="stylesheet" href="my-page.css" />
     <link rel="stylesheet" href="../exhibition/edit.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="listContainer">
@@ -12,12 +13,7 @@
         <div class="Container-LeftMenu">
             <span class="BrandName"><span>아트브릿지</span></span>
             <a href="../../index.html">
-                <img
-                        alt="Logo image"
-                        src="bridge.png"
-                        class="ImgLogo"
-                        draggable="false"
-                />
+                <img alt="Logo image" src="bridge.png" class="ImgLogo" draggable="false" />
             </a>
             <span class="HomeMenu"><a href="../../index.html">홈</a></span>
             <span class="ArtworkMenu"><a href="../artwork/list.html">작품</a></span>
@@ -41,117 +37,117 @@
                 <div class="GroupSearchInputAndButton">
                     <label for="input"></label><input id="input" placeholder="Search" class="TextSearchInput" />
                     <a id="searchButton" href="#">
-                        <img
-                                alt="Search Button image"
-                                src="../../images/SearchIcon.svg"
-                                class="BtnSearch"
-                                draggable="false"
-                        />
+                        <img alt="Search Button image" src="../../images/SearchIcon.svg" class="BtnSearch" draggable="false" />
                     </a>
                 </div>
             </div>
         </div>
     </div>
-
     <div class="user-info" id="group249">
-        <h1><img src="ren.png" alt="edit icon" class="edit-icon"> 김없음 <img src="pen.png" alt="edit icon" class="edit-icon"></h1>
-        <p><strong>Email </strong> <span id="email">abcdef12345@naver.com</span></p>
-        <p><strong>Password </strong> <span id="password">delightful2222314</span></p>
+        <h1 id="username"><img src="ren.png" alt="edit icon" class="edit-icon"> <img src="pen.png" alt="edit icon" class="edit-icon"></h1>
+        <p><strong>Email: </strong> <span id="email"></span></p>
+        <p><strong>Password: </strong> <span id="password"></span></p>
+        <script>
+            $(document).ready(function() {
+                $.ajax({
+                    url: 'http://tobiasdev.ml/api/account',
+                    type: 'GET',
+                    authorization: localStorage.getItem("token"),
+                    dataType: 'json',
+                    success: function(data) {
+                        $('#username').text(data.firstName);
+                        $('#email').text(data.login);
+                        $('#password').text(data.password);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+        </script>
     </div>
-
     <div class="my-artworks" id="frame50">
         <h2>내가 올린 작품 / 전시회 보기</h2>
         <div class="artwork-details" id="cards"></div>
-    </div>
+        <script>
+            async function JsonData() {
+                const response = await fetch(
+                    'http://tobiasdev.ml/services/artwork/api/artworks?page=0&size=20',
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': '*/*',
+                        },
+                    }
+                );
+                return response.json();
+            }
 
+            JsonData().then((data) => {
+                console.log(data);
+                dummy = data;
+                console.log(dummy);
+                const $card = document.getElementById('cards');
+
+                dummy.map((item) => {
+                    const imgSrc = './images/list/exampleImg.png';
+                    const title = item.title;
+                    const content = item.shortDescription;
+                    const navigate = document.createElement('a');
+                    navigate.setAttribute('href', `detail.html?id=${item.id}`);
+                    const cardContainer = document.createElement('div');
+                    cardContainer.classList.add('card');
+                    const img = document.createElement('img');
+                    img.src = imgSrc;
+                    img.alt = 'image';
+                    img.classList.add('img');
+                    const textContainer = document.createElement('div');
+                    textContainer.classList.add('textContainer');
+                    const titleText = document.createElement('text');
+                    titleText.classList.add('titleText');
+                    titleText.textContent = title;
+                    const contentText = document.createElement('text');
+                    contentText.classList.add('text');
+                    contentText.textContent = content;
+                    navigate.appendChild(cardContainer);
+                    textContainer.appendChild(titleText);
+                    textContainer.appendChild(contentText);
+                    cardContainer.appendChild(img);
+                    cardContainer.appendChild(textContainer);
+                    $card.appendChild(navigate);
+                });
+            });
+        </script>
+    </div>
     <div class="liked-artworks" id="frame51">
         <h2>좋아요 누른 작품 보기</h2>
     </div>
-
     <div class="my-comments" id="group27">
         <h2>내가 작성한 댓글 보기</h2>
     </div>
-
     <div class="buttons" id="group34">
         <button class="edit" id="group35">수정</button>
         <button class="delete">삭제</button>
     </div>
-
     <script>
-        const data = [
-            { title: '작품1', shortDescription: '작품 설명1' },
-            { title: '작품2', shortDescription: '작품 설명2' },
-            { title: '작품3', shortDescription: '작품 설명3' },
-        ];
-
-        const cardContainer = document.getElementById('cards');
-
-        data.forEach((item) => {
-            const imgSrc = 'list.jpg';
-            const title = item.title;
-            const content = item.shortDescription;
-
-            const card = document.createElement('div');
-            card.classList.add('card');
-
-            const img = document.createElement('img');
-            img.src = imgSrc;
-            img.alt = 'image';
-            img.classList.add('img');
-
-            const textContainer = document.createElement('div');
-            textContainer.classList.add('textContainer');
-
-            const titleText = document.createElement('text');
-            titleText.classList.add('titleText');
-            titleText.textContent = title;
-
-            const contentText = document.createElement('text');
-            contentText.classList.add('text');
-            contentText.textContent = content;
-
-            textContainer.appendChild(titleText);
-            textContainer.appendChild(contentText);
-
-            card.appendChild(img);
-            card.appendChild(textContainer);
-
-            cardContainer.appendChild(card);
+        $(document).on('click', '.delete', function() {
+            alert('삭제 완료!');
         });
     </script>
-
     <script>
-        window.addEventListener('wheel', function(e) {
-            if(e.ctrlKey) {
-                e.preventDefault();
-                e.returnValue = false;
-            }
-        }, { passive: false });
+        $(document).on('click', '.edit', function() {
+            alert('수정 완료!');
+        });
     </script>
-
-
-    <script>
-        window.addEventListener('wheel', function(e) {
-            if(e.ctrlKey) {
-                e.preventDefault();
-                e.returnValue = false;
-            }
-        }, { passive: false });
-    </script>
-
     <script>
         let link = document.getElementById("searchButton");
         let input = document.getElementById("input");
-        // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
         link.addEventListener("click", (e) => {
             let searchText = input.value;
             e.preventDefault();
-            let url = "search/?q=" + encodeURIComponent(searchText);
-            window.location.href = url;
+            window.location.href = "search/?q=" + encodeURIComponent(searchText);
         });
     </script>
 </div>
-
-
 </body>
 </html>
