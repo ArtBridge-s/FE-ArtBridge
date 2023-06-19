@@ -17,12 +17,13 @@
     <link rel="stylesheet" href="upload.css" />
     <!--Check logged in-->
     <script>
-      let jwtToken = localStorage.getItem("token"); // Check if user is logged in
+      let jwtToken = localStorage.getItem('token'); // Check if user is logged in
       if (!jwtToken) {
-        window.location.href = "../../index.html"; // If user is not logged in, redirect to index.html
+        window.location.href = '../../index.html'; // If user is not logged in, redirect to index.html
       }
     </script>
   </head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <body>
     <!--전체 영역-->
     <div class="Container">
@@ -108,7 +109,7 @@
           <div class="lines">
             <hr class="combined-line" />
           </div>
-          <form>
+          <form onsubmit="submitForm(event)">
             <div class="image-upload">
               <label for="image">사진</label>
               <input
@@ -132,8 +133,12 @@
                 <input type="text" id="place" name="place" />
               </div>
               <div class="field">
-                <label for="period">기간</label>
-                <input type="text" id="period" name="period" />
+                <label for="period">시작날짜</label>
+                <input type="text" id="startDate" name="period" />
+              </div>
+              <div class="field">
+                <label for="period">종료날짜</label>
+                <input type="text" id="endDate" name="period" />
               </div>
               <div class="field">
                 <label for="time">시간</label>
@@ -178,19 +183,109 @@
     </script> -->
     <!-- 이미지 미리보기 -->
     <script>
+      function submitForm(event) {
+        console.log('first');
+        event.preventDefault(); // Submit 기본 동작(페이지 리로딩) 방지
+
+        // Form에서 입력받은 데이터 가져오기
+        const name = document.querySelector('#name').value;
+        const artist = document.querySelector('#artist').value;
+        const place = document.querySelector('#place').value;
+        const startDate = document.querySelector('#startDate').value;
+        const endDate = document.querySelector('#endDate').value;
+        const time = document.querySelector('#time').value;
+        const fee = document.querySelector('#fee').value;
+        const contact = document.querySelector('#contact').value;
+        const introduce = document.querySelector('#introduce').value;
+
+        // FormData 객체 생성
+
+        const form = {
+          title: name,
+          location: place,
+          content: introduce,
+          fee: fee,
+          contact: contact,
+          periodDTO: {
+            startDate: startDate,
+            endDate: endDate,
+          },
+          time: time,
+          artistDTO: {
+            name: artist,
+          },
+        };
+        const formData = new FormData();
+        formData.append('image', document.querySelector('#image').files[0]);
+        formData.append(
+          'exhibition_post_req',
+          JSON.stringify({
+            title: name,
+            location: place,
+            content: introduce,
+            fee: fee,
+            contact: contact,
+            periodDTO: {
+              startDate: startDate,
+              endDate: endDate,
+            },
+            time: time,
+            artistDTO: {
+              name: artist,
+            },
+          })
+        );
+
+        // JWT 토큰 가져오기 (이 예제에서는 localStorage에서 가져옵니다)
+        const jwtToken = localStorage.getItem('token');
+        console.log(jwtToken);
+        postData(formData, jwtToken); // Ajax 요청
+      }
+      // 폼 데이터 구성 및 Ajax 요청
+      const API_BASE_URL =
+        'http://tobiasdev.ml/services/exhibition/api/exhibitions';
+      // 폼 데이터 구성 및 Ajax 요청
+      function postData(formData, jwtToken) {
+        $.ajax({
+          url: API_BASE_URL,
+          type: 'POST',
+          headers: {
+            Authorization: 'Bearer ' + jwtToken,
+          },
+          data: formData,
+          cache: false,
+          contentType: false,
+          processData: false,
+          xhrFields: {
+            withCredentials: true,
+          },
+          success: function (data, textStatus, xhr) {
+            console.log(xhr.status);
+            if (xhr.status === 201) {
+              alert('아티스트 프로필이 성공적으로 업로드되었습니다.');
+              window.location.href = '../../index.html'; // 성공적으로 업로드한 후 이동할 페이지
+            }
+          },
+          error: function (xhr, textStatus, error) {
+            alert('아티스트 프로필 업로드에 실패했습니다. 다시 시도해주세요.');
+          },
+        });
+      }
+    </script>
+    <script>
       function previewImage(input) {
         if (input.files && input.files[0]) {
           const reader = new FileReader();
           reader.onload = function (e) {
-            const imageUpload = document.querySelector(".image-upload");
-            imageUpload.style.background = "none";
+            const imageUpload = document.querySelector('.image-upload');
+            imageUpload.style.background = 'none';
             imageUpload.style.backgroundImage = `url(${e.target.result})`;
-            imageUpload.style.backgroundSize = "contain";
-            imageUpload.style.backgroundPosition = "center";
-            imageUpload.style.backgroundRepeat = "no-repeat";
+            imageUpload.style.backgroundSize = 'contain';
+            imageUpload.style.backgroundPosition = 'center';
+            imageUpload.style.backgroundRepeat = 'no-repeat';
 
-            const imageLabel = document.querySelector(".image-upload label");
-            imageLabel.style.display = "none";
+            const imageLabel = document.querySelector('.image-upload label');
+            imageLabel.style.display = 'none';
           };
           reader.readAsDataURL(input.files[0]);
         }
