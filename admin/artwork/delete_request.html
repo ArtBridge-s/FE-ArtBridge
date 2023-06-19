@@ -150,13 +150,19 @@
         }
         $(document).on("click", ".selectBtn", function () {
           const id = $(this).closest("tr").find("td:first").text();
+          console.log(id);
 
+          const requestData = {
+            id: id,
+          };
           $.ajax({
             url: `http://tobiasdev.ml/services/artwork/api/artworks/${id}`,
             type: "DELETE",
             headers: {
               Authorization: "Bearer " + localStorage.getItem("token"),
             },
+            data: JSON.stringify(requestData),
+            contentType: "application/json",
             success: function (data) {
               alert(`작품 ${id}의 삭제 요청이 승인되었습니다.`);
               location.reload();
