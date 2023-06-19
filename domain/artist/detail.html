@@ -127,7 +127,7 @@
       const name = document.getElementById("artistName");
       const fullName = document.getElementById("artist-fullName");
       const career = document.getElementById("artist-career");
-      const img = document.getElementsByClassName("artist-image");
+      const img = document.getElementsByClassName("artist-image")[0];
       console.log(data.name);
       img.src =
         data?.imgUrl === undefined
