@@ -199,22 +199,6 @@
         const introduce = document.querySelector('#introduce').value;
 
         // FormData 객체 생성
-
-        const form = {
-          title: name,
-          location: place,
-          content: introduce,
-          fee: fee,
-          contact: contact,
-          periodDTO: {
-            startDate: startDate,
-            endDate: endDate,
-          },
-          time: time,
-          artistDTO: {
-            name: artist,
-          },
-        };
         const formData = new FormData();
         formData.append('image', document.querySelector('#image').files[0]);
         formData.append(
@@ -228,8 +212,8 @@
             periodDTO: {
               startDate: startDate,
               endDate: endDate,
+              time: time,
             },
-            time: time,
             artistDTO: {
               name: artist,
             },
@@ -262,12 +246,12 @@
           success: function (data, textStatus, xhr) {
             console.log(xhr.status);
             if (xhr.status === 201) {
-              alert('아티스트 프로필이 성공적으로 업로드되었습니다.');
+              alert('전시회가 성공적으로 업로드되었습니다.');
               window.location.href = '../../index.html'; // 성공적으로 업로드한 후 이동할 페이지
             }
           },
           error: function (xhr, textStatus, error) {
-            alert('아티스트 프로필 업로드에 실패했습니다. 다시 시도해주세요.');
+            alert('전시회 업로드에 실패했습니다. 다시 시도해주세요.');
           },
         });
       }
