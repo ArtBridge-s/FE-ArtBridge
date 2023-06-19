@@ -88,6 +88,14 @@
           <img id="artworkImage" src="" alt="image" />
         </div>
         <div class="info">
+           <div class="DUContainer">
+          <button id="editBtn" type="button">
+            <img src="images/edit.png">
+          </button>
+            <button id="deleteBtn" type="button">
+            <img src="images/delete.png">
+            </button>
+        </div>
           <h1 id="artworkTitle"></h1>
           <div class="description-metadata">
             <p id="artworkDescription" class="description"></p>
@@ -167,109 +175,200 @@
       location.reload();
     });
 </script>
-    <script>
-      const API_BASE_URL = "http://tobiasdev.ml/services/artwork/api";
-      function getArtwork() {
-        var id = new URL(window.location.href).searchParams.get("id");
-        var artworkUrl = `${API_BASE_URL}/artworks/${id}`;
+<!--해당 글의 작성자라면 수정, 삭제 버튼 표시-->
+<script>
+ async function getUserId() {
+  const response = await fetch("http://tobiasdev.ml/api/authenticate", {
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
+  });
+  if (response.ok) {
+    const userID = await response.text();
+    return userID;
+  } else {
+    throw new Error("Failed to get user ID");
+  }
+}
 
-        $.get(artworkUrl, function (data, status, xhr) {
-          if (status === "success") {
-            $("#artworkImage").attr("src", data.imageUrl);
-            $("#artworkImage").attr("alt", data.title);
-            $("#artworkTitle").text(data.title);
-            $("#artworkDescription").text(data.shortDescription);
-            $("#artworkAuthor").text("작가명 " + data.artistname);
-            $("#artworkYear").text("제작연도 " + data.makingday);
-            getComments(id); // 댓글 조회 API 호출
-          }
+// 해당 작품을 업로드한 유저 id 반환
+async function getAuthorId() {
+  const id = new URL(window.location.href).searchParams.get("id");
+  const response = await fetch(`http://tobiasdev.ml/services/artwork/api/artworks/${id}`);
+  if (response.ok) {
+    const data = await response.json();
+    const uploaderID = data.member.login;
+    return uploaderID;
+  } else {
+    throw new Error("Failed to get author ID");
+  }
+}
+
+// 로그인한 사용자의 아이디와 글 작성자의 아이디 비교
+async function checkSameId() {
+  try {
+    const userID = await getUserId();
+    const uploaderID = await getAuthorId();
+    //alert("userID: " + userID);
+    //alert("uploaderID: " + uploaderID);
+    if (userID === uploaderID) {
+      //토큰이 글 작성자의 아이디와 일치하는 경우
+      document.getElementById("editBtn").style.display = "block";
+      document.getElementById("deleteBtn").style.display = "block";
+    } else {
+      //아니면 버튼 가림
+      document.getElementById("editBtn").style.display = "none";
+      document.getElementById("deleteBtn").style.display = "none";
+    }
+  } catch (error) {
+    console.error("Error: " + error);
+  }
+}
+// 페이지 로드 시 checkSameId 함수를 호출하여 버튼 상태를 설정
+window.addEventListener("DOMContentLoaded", checkSameId);
+</script>
+
+<!--수정/삭제 버튼 이벤트 리스너-->
+<script>
+  // editBtn 버튼 클릭 시
+  document.getElementById("editBtn").addEventListener("click", function() {
+    alert("editBtn이 클릭되었습니다.");
+    const id = new URL(window.location.href).searchParams.get("id");
+    //해당 작품의 edit page로 이동
+    window.location.href = `edit.html?id=${id}`;
+  });
+
+  // deleteBtn 버튼 클릭 시
+  document.getElementById("deleteBtn").addEventListener("click", function() {
+    var result = confirm("해당 작품을 삭제하시겠습니까?");
+    if (result) {
+      deleteContent();
+    } else {
+    }
+  });
+  
+  async function deleteContent() {
+  const id = new URL(window.location.href).searchParams.get("id");
+  const requestData = {
+    id: id,
+  };
+  try {
+    const response = await fetch(`http://tobiasdev.ml/services/artwork/api/artworks/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    });
+    if (response.ok) {
+      window.location.href="list.html";
+    } else {
+      throw new Error("삭제 요청을 실패하였습니다.");
+    }
+  } catch (error) {
+    console.error("Error: " + error);
+    alert("삭제 요청을 실패하였습니다. 다시 시도해주세요.");
+  }
+}
+</script>
+<script>
+  const API_BASE_URL = "http://tobiasdev.ml/services/artwork/api";
+  function getArtwork() {
+  var id = new URL(window.location.href).searchParams.get("id");
+  var artworkUrl = `${API_BASE_URL}/artworks/${id}`;
+  $.get(artworkUrl, function (data, status, xhr) {
+    if (status === "success") {
+      $("#artworkImage").attr("src", data.imageUrl);
+      $("#artworkImage").attr("alt", data.title);
+      $("#artworkTitle").text(data.title);
+      $("#artworkDescription").text(data.shortDescription);
+      $("#artworkAuthor").text("작가명 " + data.artistname);
+      $("#artworkYear").text("제작연도 " + data.makingday);
+      getComments(id); // 댓글 조회 API 호출
+      }
+    });
+  }
+
+  // 댓글 조회 함수
+  function getComments(artworkId) {
+    var commentsUrl = `${API_BASE_URL}/comments?artworkId=${artworkId}`;
+    $.get(commentsUrl, function (data, status, xhr) {
+      if (status === "success") {
+        $(".comments").html(""); // 기존에 로드된 댓글들을 삭제
+        data.forEach((comment) => {
+          $(".comments").append(`
+            <div class="comment">
+                <p class="comment-text">${comment.content}</p>
+                <p class="comment-text">${comment.name}</p>
+                <!--TODO: -날짜 추가-->
+            </div>
+        `);
         });
       }
+    });
+  }
+  function postComment() {
+    var commentText = $("#commentInput").val();
+    var id = new URL(window.location.href).searchParams.get("id");
+    const jwtToken = localStorage.getItem("token");
 
-      // 댓글 조회 함수
-      function getComments(artworkId) {
-        var commentsUrl = `${API_BASE_URL}/comments?artworkId=${artworkId}`;
+    var commentData = {
+      artwork: {
+        id: id, // 해당 아트워크의 id
+      },
+      content: commentText, // 댓글 내용
+    };
+    $.ajax({
+      url: `${API_BASE_URL}/comments`,
+      type: "POST",
+      headers: {
+        Authorization: "Bearer " + jwtToken,
+      },
+      contentType: "application/json",
+      data: JSON.stringify(commentData),
+      success: function (data) {
+        // 댓글을 성공적으로 게시했을 때 수행할 작업
+        // 댓글 목록 새로고침
+        getComments(id);
+        alert("댓글 게시 성공");
+        $("#commentInput").val(""); // 입력된 댓글 내용 초기화
+      },
+      error: function (request, status, error) {
+        alert("댓글 게시 실패");
+      },
+    });
+  }
+  function likeArtwork() {
+    var id = new URL(window.location.href).searchParams.get("id");
+    const jwtToken = localStorage.getItem("token");
 
-        $.get(commentsUrl, function (data, status, xhr) {
-          if (status === "success") {
-            $(".comments").html(""); // 기존에 로드된 댓글들을 삭제
-            data.forEach((comment) => {
-              $(".comments").append(`
-                        <div class="comment">
-                            <p class="comment-text">${comment.content}</p>
-                            <p class="comment-text">${comment.name}</p>
-                            <!--TODO: -날짜 추가-->
-                        </div>
-                    `);
-            });
-          }
-        });
-      }
+    var likeData = {
+      artwork: {
+        id: id,
+      },
+    };
 
-      function postComment() {
-        var commentText = $("#commentInput").val();
-        var id = new URL(window.location.href).searchParams.get("id");
-        const jwtToken = localStorage.getItem("token");
-
-        var commentData = {
-          artwork: {
-            id: id, // 해당 아트워크의 id
-          },
-          content: commentText, // 댓글 내용
-        };
-
-        $.ajax({
-          url: `${API_BASE_URL}/comments`,
-          type: "POST",
-          headers: {
-            Authorization: "Bearer " + jwtToken,
-          },
-          contentType: "application/json",
-          data: JSON.stringify(commentData),
-          success: function (data) {
-            // 댓글을 성공적으로 게시했을 때 수행할 작업
-            // 댓글 목록 새로고침
-            getComments(id);
-            alert("댓글 게시 성공");
-            $("#commentInput").val(""); // 입력된 댓글 내용 초기화
-          },
-          error: function (request, status, error) {
-            alert("댓글 게시 실패");
-          },
-        });
-      }
-
-      function likeArtwork() {
-        var id = new URL(window.location.href).searchParams.get("id");
-        const jwtToken = localStorage.getItem("token");
-
-        var likeData = {
-          artwork: {
-            id: id,
-          },
-        };
-
-        $.ajax({
-          url: `${API_BASE_URL}/likes`,
-          type: "POST",
-          headers: {
-            Authorization: "Bearer " + jwtToken,
-          },
-          contentType: "application/json",
-          data: JSON.stringify(likeData),
-          success: function (data) {
-            alert("작품 좋아요 성공");
-            $(".like").addClass("liked"); // Add 'liked' class to the like button
-          },
-          error: function (request, status, error) {
-            alert("작품 좋아요 실패");
-          },
-        });
-      }
-      $(document).ready(getArtwork);
-      $(document).on("click", ".post", postComment);
-      $(document).on("click", ".like", likeArtwork);
-    </script>
-    <script></script>
+    $.ajax({
+      url: `${API_BASE_URL}/likes`,
+      type: "POST",
+      headers: {
+        Authorization: "Bearer " + jwtToken,
+      },
+      contentType: "application/json",
+      data: JSON.stringify(likeData),
+      success: function (data) {
+        alert("작품 좋아요 성공");
+        $(".like").addClass("liked"); // Add 'liked' class to the like button
+      },
+      error: function (request, status, error) {
+        alert("작품 좋아요 실패");
+      },
+    });
+  }
+  $(document).ready(getArtwork);
+  $(document).on("click", ".post", postComment);
+  $(document).on("click", ".like", likeArtwork);
+</script>
   </body>
 </html>
