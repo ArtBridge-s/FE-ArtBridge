@@ -133,11 +133,11 @@
                 <input type="text" id="place" name="place" />
               </div>
               <div class="field">
-                <label for="period">시작날짜</label>
+                <label for="startDate">시작날짜</label>
                 <input type="text" id="startDate" name="period" />
               </div>
               <div class="field">
-                <label for="period">종료날짜</label>
+                <label for="endDate">종료날짜</label>
                 <input type="text" id="endDate" name="period" />
               </div>
               <div class="field">
@@ -199,6 +199,7 @@
             body: JSON.stringify({
               title: name,
               location: location,
+              content: introduce,
               fee: fee,
               contact: contact,
               periodDTO: {
