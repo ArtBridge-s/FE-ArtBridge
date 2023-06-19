@@ -83,26 +83,25 @@
       </div>
     </div>
     <script>
+      let page = 0;
+      const size = 20;
+      let isLoading = false;
+      const $card = document.getElementById("cards");
+
       async function JsonData() {
-        const response = await fetch(
-          "http://tobiasdev.ml/services/artwork/api/artworks?page=0&size=20",
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "*/*",
-            },
-          }
-        );
-        return response.json(); // JSON 응답을 네이티브 JavaScript 객체로 파싱
+        isLoading = true;
+        const response = await fetch(`http://tobiasdev.ml/services/artwork/api/artworks?page=${page}&size=${size}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "*/*",
+          },
+        });
+        isLoading = false;
+        return response.json();
       }
 
-      JsonData().then((data) => {
-        console.log(data);
-        dummy = data;
-        console.log(dummy);
-        const $card = document.getElementById("cards");
-
-        dummy.map((item) => {
+      function render(data) {
+        data.map((item) => {
           const imgSrc = item.imageUrl;
           const title = item.title;
           const content = item.shortDescription;
@@ -143,8 +142,24 @@
           // Appending the card container to the main container
           $card.appendChild(navigate);
         });
+      }
+
+      async function loadMore() {
+        const data = await JsonData();
+        render(data);
+        page++;
+      }
+
+      // Initial load
+      loadMore();
+
+      window.addEventListener('scroll', () => {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight && !isLoading) {
+          loadMore();
+        }
       });
     </script>
+
     <!--검색창 기능-->
     <script>
       let link = document.getElementById("searchButton");
