@@ -158,8 +158,8 @@
               </div>
             </div>
             <div class="buttons">
-              <button class="button" id="buttonUpload">수정하기</button>
-              <button class="button" id="buttonCancel">취소</button>
+              <div class="button" id="editbutton">수정하기</div>
+              <div class="button" id="buttonCancel">취소</div>
             </div>
           </div>
         </div>
@@ -171,6 +171,12 @@
       let id = new URL(window.location.href).searchParams.get('id');
       console.log(id);
       let url = `${API_BASE_URL}/${id}`;
+
+      const editButton = document.getElementById('editbutton');
+      editButton.addEventListener('click', function () {
+        putData();
+      });
+
       async function putData() {
         console.log('first');
         const jwtToken = localStorage.getItem('token');
@@ -183,35 +189,42 @@
         const fee = document.getElementById('fee').value;
         const contact = document.getElementById('contact').value;
         const introduce = document.getElementById('introduce').value;
-        const response = await fetch(url, {
-          method: 'PUT',
-          headers: {
-            Authorization: 'Bearer ' + jwtToken,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            title: name,
-            location: location,
-            fee: fee,
-            contact: contact,
-            periodDTO: {
-              startDate: startDate,
-              endDate: endDate,
-              time: time,
+        try {
+          const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+              Authorization: 'Bearer ' + jwtToken,
+              'Content-Type': 'application/json',
             },
-            artworkDTO: {
-              name: artist,
-            },
-          }),
-        });
-        return response.json();
-      }
-      const editButton = document.getElementById('buttonUpload');
-      editButton.addEventListener('click', putData);
+            body: JSON.stringify({
+              title: name,
+              location: location,
+              fee: fee,
+              contact: contact,
+              periodDTO: {
+                startDate: startDate,
+                endDate: endDate,
+                time: time,
+              },
+              artworkDTO: {
+                name: realName,
+              },
+            }),
+          });
 
-      putData().then((data) => {
-        alert('전시회가 수정이 성공적으로 완료되었습니다.');
-      });
+          if (response.ok) {
+            const data = await response.json();
+            console.log(data);
+            console.log('Data being sent');
+            alert('전시회 수정이 완료되었다');
+          } else {
+            throw new Error('Error: ' + response.status);
+          }
+        } catch (error) {
+          console.error(error);
+          alert('수정 에러');
+        }
+      }
     </script>
     <!--검색창 기능-->
     <script>
