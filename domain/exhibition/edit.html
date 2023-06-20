@@ -166,6 +166,51 @@
       </div>
     </div>
     <script>
+      const API_URL = 'http://tobiasdev.ml/services/exhibition/api/exhibitions';
+      async function getData() {
+        let id = new URL(window.location.href).searchParams.get('id');
+        let url = `${API_URL}/${id}`;
+        const response = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': '*/*',
+          },
+        });
+        return response.json();
+      }
+
+      getData().then((data) => {
+        const exhibitionName = document.getElementById('name');
+        const img = document.getElementById('image');
+        const authorName = document.getElementById('artist');
+        const location = document.getElementById('place');
+        const startDate = document.getElementById('startDate');
+        const endDate = document.getElementById('endDate');
+        const time = document.getElementById('time');
+        const fee = document.getElementById('fee');
+        const contact = document.getElementById('contact');
+        const content = document.getElementById('introduce');
+        content.value = data?.content === undefined ? '알수없음' : data.content;
+        img.src = data?.imgUrl === undefined ? '' : data.imgUrl;
+        exhibitionName.value =
+          data?.title === undefined ? '알 수 없음' : data.title;
+        authorName.value =
+          data?.artistDTO === undefined ? '알 수 없음' : data.artistDTO.name;
+        location.value =
+          data?.location === undefined ? '알 수 없음' : data.location;
+        startDate.value =
+          data?.periodDTO === undefined
+            ? '알 수 없음'
+            : data?.periodDTO.startDate;
+        endDate.value =
+          data?.periodDTO === undefined ? '알 수 없음' : data.periodDTO.endDate;
+        time.value =
+          data?.periodDTO === undefined ? '알 수 없음' : data.periodDTO.time;
+        fee.value = data?.fee === undefined ? '알 수 없음' : data.fee;
+        contact.value =
+          data?.contact === undefined ? '알 수 없음' : data.contact;
+      });
+
       const API_BASE_URL =
         'http://tobiasdev.ml/services/exhibition/api/exhibitions/request/revision';
       let id = new URL(window.location.href).searchParams.get('id');
