@@ -74,10 +74,13 @@
 .ExhibitionDescription {
   top: 121px;
   left: 355px;
-  color: rgba(102, 102, 100, 1);
   width: 564px;
+  position: relative;
+  margin-bottom: 30px;
+}
+#content {
+  color: rgba(102, 102, 100, 1);
   height: auto;
-  position: absolute;
   font-size: 20px;
   font-style: Regular;
   text-align: left;
@@ -85,17 +88,17 @@
   font-weight: 400;
   line-height: normal;
   font-stretch: normal;
-  margin-bottom: 30px;
-  text-decoration: none;
 }
 .Container-ExhibitionInfo {
-  top: 324.0390625px;
+  position: absolute; /* 추가 */
+  top: 100%; /* ExhibitionDescription의 위치와 동일하게 조정 */
   left: 342px;
   width: 587px;
   height: 386px;
   display: flex;
-  position: absolute;
+  flex-direction: column; /* 아래로 쌓이도록 column으로 설정 */
   align-items: flex-start;
+  margin-top: 20%; /* 원하는 간격으로 조정 */
 }
 .TitleExhibitionInfo {
   top: 0px;
