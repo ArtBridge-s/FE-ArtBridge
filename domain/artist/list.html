@@ -39,7 +39,9 @@
           <span class="ExhibitionMenu"
             ><a href="../exhibition/list.html">전시회</a></span
           >
-          <span class="IntroduceMenu"><span>소개</span></span>
+          <span class="IntroduceMenu"
+            ><a href="../introduce/introduce.html">소개</a></span
+          >
           <span class="ArtistMenu"
             ><a href="../artist/list.html">아티스트</a></span
           >
@@ -101,7 +103,12 @@
             </div>
             <div class="icon-container" onclick="search()">
               <span class="material-icons">search</span>
-              <div class="upload-button">Upload</div>
+              <div
+                class="upload-button"
+                onclick="window.location.href='upload.html'"
+              >
+                Upload
+              </div>
             </div>
           </div>
         </div>
@@ -117,18 +124,20 @@
 
       function createProfileElement(artwork) {
         return (
-                '<a href="detail.html?id=' + artwork.id + '">' +
-                '<div class="profile">' +
-                '<img src="' +
-                artwork.imgUrl +
-                '" class="profile-img" alt="Artwork ' +
-                artwork.title +
-                '">' +
-                "<h3>" +
-                artwork.name +
-                "</h3>" +
-                "</div>" +
-                "</a>"
+          '<a href="detail.html?id=' +
+          artwork.id +
+          '">' +
+          '<div class="profile">' +
+          '<img src="' +
+          artwork.imgUrl +
+          '" class="profile-img" alt="Artwork ' +
+          artwork.title +
+          '">' +
+          "<h3>" +
+          artwork.name +
+          "</h3>" +
+          "</div>" +
+          "</a>"
         );
       }
 
