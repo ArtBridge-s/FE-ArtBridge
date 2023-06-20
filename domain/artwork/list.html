@@ -33,7 +33,9 @@
           <span class="ExhibitionMenu"
             ><a href="../exhibition/list.html">전시회</a></span
           >
-          <span class="IntroduceMenu"><span>소개</span></span>
+          <span class="IntroduceMenu"
+            ><a href="../introduce/introduce.html">소개</a></span
+          >
           <span class="ArtistMenu"
             ><a href="../artist/list.html">아티스트</a></span
           >
@@ -90,12 +92,15 @@
 
       async function JsonData() {
         isLoading = true;
-        const response = await fetch(`http://tobiasdev.ml/services/artwork/api/artworks?page=${page}&size=${size}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "*/*",
-          },
-        });
+        const response = await fetch(
+          `http://tobiasdev.ml/services/artwork/api/artworks?page=${page}&size=${size}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "*/*",
+            },
+          }
+        );
         isLoading = false;
         return response.json();
       }
@@ -153,8 +158,11 @@
       // Initial load
       loadMore();
 
-      window.addEventListener('scroll', () => {
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight && !isLoading) {
+      window.addEventListener("scroll", () => {
+        if (
+          window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+          !isLoading
+        ) {
           loadMore();
         }
       });

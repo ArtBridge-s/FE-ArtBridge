@@ -34,7 +34,9 @@
           <span class="ExhibitionMenu"
             ><a href="../exhibition/list.html">전시회</a></span
           >
-          <span class="IntroduceMenu"><span>소개</span></span>
+          <span class="IntroduceMenu"
+            ><a href="../introduce/introduce.html">소개</a></span
+          >
           <span class="ArtistMenu"
             ><a href="../artist/list.html">아티스트</a></span
           >
@@ -87,11 +89,11 @@
     <script>
       async function JsonData() {
         const response = await fetch(
-          'http://tobiasdev.ml/services/exhibition/api/exhibitions/status/ok?page=0&size=20&sort=magna%20cillum%20ullamco',
+          "http://tobiasdev.ml/services/exhibition/api/exhibitions/status/ok?page=0&size=20&sort=magna%20cillum%20ullamco",
           {
-            method: 'GET',
+            method: "GET",
             headers: {
-              'Content-Type': '*/*',
+              "Content-Type": "*/*",
             },
           }
         );
@@ -99,7 +101,7 @@
       }
 
       JsonData().then((data) => {
-        const $card = document.getElementById('cards');
+        const $card = document.getElementById("cards");
         data.map((item) => {
           const id = item.id;
           const title = item.title;
@@ -107,29 +109,29 @@
           const duration = item.duration;
 
           // Creating the card container
-          const cardContainer = document.createElement('div');
-          cardContainer.classList.add('card');
-          cardContainer.addEventListener('click', function () {
-            console.log('first');
+          const cardContainer = document.createElement("div");
+          cardContainer.classList.add("card");
+          cardContainer.addEventListener("click", function () {
+            console.log("first");
             window.location.replace(`detail.html?id=${id}`);
           });
 
           // Creating the text container
-          const textContainer = document.createElement('div');
-          textContainer.classList.add('textContainer');
+          const textContainer = document.createElement("div");
+          textContainer.classList.add("textContainer");
 
           // Creating the title text element
-          const titleText = document.createElement('text');
-          titleText.classList.add('titleText');
+          const titleText = document.createElement("text");
+          titleText.classList.add("titleText");
           titleText.textContent = title;
 
           // Creating the content text element
-          const contentText = document.createElement('text');
-          contentText.classList.add('text');
+          const contentText = document.createElement("text");
+          contentText.classList.add("text");
           contentText.textContent = duration;
 
-          const locationText = document.createElement('text');
-          locationText.classList.add('text');
+          const locationText = document.createElement("text");
+          locationText.classList.add("text");
           locationText.textContent = location;
 
           // Appending the image and text elements to the respective containers
@@ -145,45 +147,45 @@
     </script>
     <!--검색창 기능-->
     <script>
-      let link = document.getElementById('searchButton');
-      let input = document.getElementById('input');
+      let link = document.getElementById("searchButton");
+      let input = document.getElementById("input");
       // 검색 버튼 클릭시 "search/?q="+검색어 주소로 이동
-      link.addEventListener('click', (e) => {
+      link.addEventListener("click", (e) => {
         let searchText = input.value;
         e.preventDefault();
-        let url = 'search/?q=' + encodeURIComponent(searchText);
+        let url = "search/?q=" + encodeURIComponent(searchText);
         window.location.href = url;
       });
     </script>
     <!--로그인 상태에 따라 로그인/로그아웃 버튼 보이기-->
     <script>
-      window.addEventListener('DOMContentLoaded', (event) => {
-        if (localStorage.getItem('token')) {
-          document.querySelector('.TextLogin').style.display = 'none';
+      window.addEventListener("DOMContentLoaded", (event) => {
+        if (localStorage.getItem("token")) {
+          document.querySelector(".TextLogin").style.display = "none";
         } else {
-          document.querySelector('.TextLogout').style.display = 'none';
+          document.querySelector(".TextLogout").style.display = "none";
         }
       });
       //마이페이지 버튼 클릭시 로그인 상태 확인 후 이동 처리
-      document.querySelector('.TextMyPage').addEventListener('click', (e) => {
+      document.querySelector(".TextMyPage").addEventListener("click", (e) => {
         e.preventDefault();
-        if (localStorage.getItem('token')) {
+        if (localStorage.getItem("token")) {
           // 로그인 토큰이 있는 경우 마이페이지로 이동
-          window.location.href = '../member/mypage.html';
+          window.location.href = "../member/mypage.html";
         } else {
           // 로그인 토큰이 없는 경우 로그인 페이지로 이동
-          window.alert('먼저 로그인 해주세요');
-          window.location.href = '../member/login.html';
+          window.alert("먼저 로그인 해주세요");
+          window.location.href = "../member/login.html";
         }
       });
     </script>
     <!--로그아웃 버튼 클릭시 로컬스토리지에서 토큰 삭제-->
     <script>
       document
-        .querySelector('.TextLogout')
-        .addEventListener('click', (event) => {
+        .querySelector(".TextLogout")
+        .addEventListener("click", (event) => {
           event.preventDefault();
-          localStorage.removeItem('token');
+          localStorage.removeItem("token");
           location.reload();
         });
     </script>
