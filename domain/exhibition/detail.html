@@ -249,7 +249,7 @@
           : data.imgUrl;
       exhibitionName.textContent = data?.title === undefined ? "알 수 없음" : data.title;
       username.textContent =
-        data?.createdMemberDTO===undefined?"알수없음":data.createdMemberDTO.name;
+        data?.createdMemberDTO===undefined?"알수없음":data.createdMemberDTO.login;
         authorName.textContent =
         data?.artistDTO === undefined ? "알 수 없음" : data.artistDTO.name;
         location.textContent = data?.location === undefined ? "알 수 없음" : data.location;
